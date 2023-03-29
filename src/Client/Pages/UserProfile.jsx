@@ -114,8 +114,15 @@ const UserProfile = () => {
              
             )})}
            </div>
+
+
+
+           <div className="border md:flex md:mx-2 md:my-2">
+           <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Personal  Information</h1>
+            </div>
            </div>
         </div>
+        
 
     </div>
   )
