@@ -41,9 +41,9 @@ const UserProfile = () => {
            </div>
 
            <div className='flex gap-4'>
-           <Tooltip content="My Account" placeholder='bottom'>
+          
            <Profile/>
-           </Tooltip>
+           
             <Menu>
       <MenuHandler>
           <button>

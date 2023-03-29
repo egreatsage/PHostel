@@ -10,7 +10,7 @@ import Login from './Client/Pages/Login'
 import SignUp from './Client/Pages/SignUp'
 import SNotices from './Client/Pages/SNotices'
 import UserProfile from './Client/Pages/UserProfile'
-
+import Reply from './Client/Pages/Reply'
 import ForgotPassword from './Common/ForgotPassword'
 import HostellarPr from './Routes/HostellarPr'
 
@@ -30,6 +30,7 @@ function App() {
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/notices' element={<SNotices/>}/>
+          <Route path='/reply' element={<Reply/>}/>
         </Routes>
        
   </div>
