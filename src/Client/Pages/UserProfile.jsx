@@ -65,6 +65,43 @@ const UserProfile = () => {
     </Menu> 
            </div>
         </div>
+          <h1 className='text-center bold md:text-2xl tracking-wide text-md'>Hosteller Information</h1>
+        <div className='shadow-md md:mx-8 border h-screen my-7  rounded-md'>
+           <div className="div">
+           
+           <div className="border md:flex md:mx-2 md:my-2">
+           <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Room Information</h1>
+           <div className="div">
+            <div className="flex">
+            <div className=" border px-3 py-2 flex">
+                <h1 className='text-center items-center flex'>First Name</h1>
+            </div>
+            <h1 className='text-center items-center flex'>First Name</h1>
+            </div>
+            <div className="flex">
+            <div className=" border px-3 py-2 flex">
+                <h1 className='text-center items-center flex'>First Name</h1>
+                
+            </div>
+            </div>
+            <div className="flex">
+            <div className=" border px-3 py-2 flex">
+                <h1 className='text-center items-center flex'>First Name</h1>
+                
+            </div>
+            </div>
+            <div className="flex">
+            <div className=" border px-3 py-2 flex">
+                <h1 className='text-center items-center flex'>First Name</h1>
+                
+            </div>
+            </div>
+           
+          
+           </div>
+           </div>
+           </div>
+        </div>
 
     </div>
   )
