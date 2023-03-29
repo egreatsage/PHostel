@@ -14,8 +14,7 @@ const ContactUs = () => {
                 <input type="email" placeholder='Enter Your Email/Phone Number' className=' md:mx-8 mb-6 max-w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
                 <textarea type="text" placeholder='Write A Message' className=' md:mx-8 mb-6 max-w-full border-gray-600 text-gray-800 py-6 rounded-2xl px-4 border ' />
                 </form>
-
-                      
+     
               <div className="md:flex gap-4 md:ml-9 ml-5">
           
                 <p className='flex my-6 '> <span> <AiFillPhone className='text-[indigo] text-2xl mr-2'/> </span> Phone Number: <span>+254769375210</span></p>
