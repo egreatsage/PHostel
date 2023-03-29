@@ -4,12 +4,12 @@ import {AiFillPhone} from 'react-icons/ai'
 import {HiOutlineMailOpen} from 'react-icons/hi'
 const ContactUs = () => {
   return (
-    <div className='mt-20 mx-2 overflow-y-hidden'>
+    <div className='mt-20 mx-2 w-screen overflow-x-hidden'>
         <div className="items-center gap-8  grid md:grid-cols-2">
             <div className='items-center'>
               
                 <h2 className='text-center text-xl font-semibold'>Write Us A Message</h2>
-                <form className='flex flex-col md:my-1 my-8'>
+                <form className='flex flex-col md:my-1 my-8 mx-3'>
                 <input type="text" placeholder='Enter Your Name' className=' md:mx-8 mb-6  max-w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
                 <input type="email" placeholder='Enter Your Email/Phone Number' className=' md:mx-8 mb-6 max-w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
                 <textarea type="text" placeholder='Write A Message' className=' md:mx-8 mb-6 max-w-full border-gray-600 text-gray-800 py-6 rounded-2xl px-4 border ' />

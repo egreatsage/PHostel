@@ -22,8 +22,10 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/contactus' element={<ContactUs/>}/>
-          <Route path='/userprofile' element={<UserProfile/> }/>
-          <Route path='/booking' element={<Booking/>}/>
+          <Route path='/userprofile' element={
+          <HostellarPr><UserProfile/></HostellarPr> }/>
+          <Route path='/booking' element={
+          <HostellarPr><Booking/></HostellarPr>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
