@@ -115,11 +115,52 @@ const UserProfile = () => {
             )})}
            </div>
 
-
+           {occupants?.filter((room) => room.userId === userId).map((doc, index) => {
+        return(
 
            <div className="border md:flex md:mx-2 md:my-2">
            <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Personal  Information</h1>
+           <div className="div">
+            <div className="md:flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Full Name</h1>
             </div>
+            <h1 className='text-center items-center flex'>{doc.RoomNo}</h1>
+            </div>
+            <div className="flex">
+
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Room Type</h1>        
+            </div>
+            <h1 className='text-center items-center flex'>{doc.RoomType}</h1>
+            </div>
+            <div className="flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Entry Date</h1>
+                
+            </div>
+            <h1 className='text-center items-center flex'>{doc.EntryDate}</h1>
+
+            </div>
+            <div className="flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Exit Date</h1>
+                
+            </div>
+            <h1 className='text-center items-center flex'>{doc.ExitDate}</h1>
+            </div>
+            <div className="flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Remaining Days</h1>
+                
+            </div>
+            <h1 className='text-center items-center flex'>{doc.Period}</h1>
+            </div>
+           
+          
+           </div>
+            </div>
+              )})}
            </div>
         </div>
         
