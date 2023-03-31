@@ -170,7 +170,7 @@ const UserProfile = () => {
 
             <div className="border md:flex md:mx-2 md:my-2">
           <div className='w-72'>
-          <h1 className='text-center flex my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Parent/Guardian  Information</h1>
+          <h1 className='text-center my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide'>Parent/Guardian  Information</h1>
           </div>
            <div className="div">
             <div className="flex">
@@ -190,7 +190,7 @@ const UserProfile = () => {
               </div>
                <div className="border md:flex md:mx-2 md:my-2">
                 <div className='md:w-72'>
-                <h1 className='text-center my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Emergency  Information</h1>
+                <h1 className='text-center my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide '>Emergency  Information</h1>
                 </div>
 
            <div className="div">
@@ -218,11 +218,11 @@ const UserProfile = () => {
               </div>
               <div className="border md:flex md:mx-2  md:my-2">
                 <div className='md:w-72'>
-                <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Academic  Information</h1>
+                <h1 className='text-center my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide '>Academic  Information</h1>
                 </div>
           
            <div className="div">
-            <div className="md:flex">
+            <div className="flex">
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
                 <h1 className='text-center items-center flex'> Institution Of Study</h1>
             </div>
