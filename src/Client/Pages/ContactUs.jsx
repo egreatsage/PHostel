@@ -6,13 +6,13 @@ const ContactUs = () => {
   return (
     <div className='mt-20 mx-2 w-screen overflow-x-hidden'>
         <div className="items-center gap-8  grid md:grid-cols-2">
-            <div className='items-center'>
+            <div>
               
                 <h2 className='text-center text-xl font-semibold'>Write Us A Message</h2>
-                <form className='flex flex-col md:my-1 my-8 mx-3'>
-                <input type="text" placeholder='Enter Your Name' className=' md:mx-8 mb-6  max-w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
-                <input type="email" placeholder='Enter Your Email/Phone Number' className=' md:mx-8 mb-6 max-w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
-                <textarea type="text" placeholder='Write A Message' className=' md:mx-8 mb-6 max-w-full border-gray-600 text-gray-800 py-6 rounded-2xl px-4 border ' />
+                <form className=' md:my-1 my-8 '>
+                <input type="text" placeholder='Enter Your Name' className=' md:mx-8 mb-6  w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
+                <input type="email" placeholder='Enter Your Email/Phone Number' className=' md:mx-8 mb-6 w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
+                <textarea type="text" placeholder='Write A Message' className=' md:mx-8 mb-6 w-full border-gray-600 text-gray-800 py-6 rounded-2xl px-4 border ' />
                 </form>
      
               <div className="md:flex gap-4 md:ml-9 ml-5">

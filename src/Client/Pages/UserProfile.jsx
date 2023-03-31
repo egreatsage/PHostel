@@ -70,16 +70,16 @@ const UserProfile = () => {
            <div className="div">      
            <div className="border md:flex md:mx-2 md:my-2">
            <div className="md:w-72">
-           <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Room Information</h1>
+           <h1 className='text-center my-5 md:mx-2 md:mr-20 font-bold md:text-xl tracking-wide text-md'>Room Information</h1>
            </div>
            {occupants?.filter((room) => room.userId === userId).map((doc, index) => {
         return(
            <div className="div">
-            <div className="md:flex">
+            <div className="flex">
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Room Number</h1>
+                <h1 className='text-center text-md items-center flex'>Room Number</h1>
             </div>
-            <h1 className='text-center items-center flex'>{doc.RoomNo}</h1>
+            <h1 className='text-center  border-b-gray-800 items-center flex'>{doc.RoomNo}</h1>
             </div>
             <div className="flex">
 
@@ -105,7 +105,7 @@ const UserProfile = () => {
             </div>
             <div className="flex">
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Remaining Days</h1>
+                <h1 className='text-center items-center flex'>Remaining Days :</h1>
                 
             </div>
             <h1 className='text-center items-center flex'>{doc.Period}</h1>
@@ -119,9 +119,9 @@ const UserProfile = () => {
         return(
            <div>
           <div className="border md:flex md:mx-2 md:my-2">
-           <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Personal  Information</h1>
+           <h1 className='my-9 font-bold text-xl text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Personal  Information</h1>
            <div className="div">
-            <div className="md:flex">
+            <div className="flex">
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
                 <h1 className='text-center items-center flex'>Full Name</h1>
             </div>
@@ -170,10 +170,10 @@ const UserProfile = () => {
 
             <div className="border md:flex md:mx-2 md:my-2">
           <div className='w-72'>
-          <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Parent/Guardian  Information</h1>
+          <h1 className='text-center flex my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Parent/Guardian  Information</h1>
           </div>
            <div className="div">
-            <div className="md:flex">
+            <div className="flex">
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
                 <h1 className='text-center items-center flex'>Parent/Guardian Name</h1>
             </div>
@@ -190,7 +190,7 @@ const UserProfile = () => {
               </div>
                <div className="border md:flex md:mx-2 md:my-2">
                 <div className='md:w-72'>
-                <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Emergency  Information</h1>
+                <h1 className='text-center my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Emergency  Information</h1>
                 </div>
 
            <div className="div">
