@@ -68,8 +68,8 @@ const Booking = () => {
             <div>
             <label className='tracking-tighter'>Phone Number</label>
              <input type="tel" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-              value={LName} 
-              onChange={(e)=>setLName(e.target.value)} required
+              value={PNumber} 
+              onChange={(e)=>setPNumber(e.target.value)} required
              />
             </div>
             <div>

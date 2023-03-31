@@ -66,10 +66,12 @@ const UserProfile = () => {
            </div>
         </div>
           <h1 className='text-center bold md:text-2xl tracking-wide text-md'>Hosteller Information</h1>
-        <div className='shadow-md md:mx-8 border h-screen my-7  rounded-md'>
+        <div className='shadow-md md:mx-8 border h-full my-7  rounded-md'>
            <div className="div">      
            <div className="border md:flex md:mx-2 md:my-2">
+           <div className="md:w-72">
            <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Room Information</h1>
+           </div>
            {occupants?.filter((room) => room.userId === userId).map((doc, index) => {
         return(
            <div className="div">
@@ -111,55 +113,138 @@ const UserProfile = () => {
            
           
            </div>
-             
             )})}
            </div>
-
-           {occupants?.filter((room) => room.userId === userId).map((doc, index) => {
+         {bookings?.filter((booking) => booking.userId === userId).map((doc, index) => {
         return(
-
-           <div className="border md:flex md:mx-2 md:my-2">
+           <div>
+          <div className="border md:flex md:mx-2 md:my-2">
            <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Personal  Information</h1>
            <div className="div">
             <div className="md:flex">
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
                 <h1 className='text-center items-center flex'>Full Name</h1>
             </div>
-            <h1 className='text-center items-center flex'>{doc.RoomNo}</h1>
+            <h1 className='text-center items-center flex'>{doc.FName}</h1>
             </div>
             <div className="flex">
 
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Room Type</h1>        
+                <h1 className='text-center items-center flex'>Phone Number</h1>        
             </div>
-            <h1 className='text-center items-center flex'>{doc.RoomType}</h1>
-            </div>
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Entry Date</h1>
-                
-            </div>
-            <h1 className='text-center items-center flex'>{doc.EntryDate}</h1>
-
+            <h1 className='text-center items-center flex'>{doc.PNumber}</h1>
             </div>
             <div className="flex">
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Exit Date</h1>
+                <h1 className='text-center items-center flex'>Age</h1>
                 
             </div>
-            <h1 className='text-center items-center flex'>{doc.ExitDate}</h1>
+            <h1 className='text-center items-center flex'>{doc.Age}</h1>
+            </div>
+              <div className="flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Gender</h1>
+                
+            </div>
+            <h1 className='text-center items-center flex'>{doc.Gender}</h1>
+            </div>
+              <div className="flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Marital Status</h1>
+                
+            </div>
+            <h1 className='text-center items-center flex'>{doc.MaritalStatus}</h1>
             </div>
             <div className="flex">
             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Remaining Days</h1>
+                <h1 className='text-center items-center flex'>Address</h1>
                 
             </div>
-            <h1 className='text-center items-center flex'>{doc.Period}</h1>
+            <h1 className='text-center items-center flex'>{doc.Homecounty}</h1>
             </div>
+           
            
           
            </div>
             </div>
+
+            <div className="border md:flex md:mx-2 md:my-2">
+          <div className='w-72'>
+          <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Parent/Guardian  Information</h1>
+          </div>
+           <div className="div">
+            <div className="md:flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Parent/Guardian Name</h1>
+            </div>
+            <h1 className='text-center items-center flex'>{doc.PGName}</h1>
+            </div>
+            <div className="flex">
+
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Contact</h1>        
+            </div>
+            <h1 className='text-center items-center flex'>{doc.PGContact}</h1>
+            </div>
+           </div>
+              </div>
+               <div className="border md:flex md:mx-2 md:my-2">
+                <div className='md:w-72'>
+                <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Emergency  Information</h1>
+                </div>
+
+           <div className="div">
+            <div className="md:flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'> Name</h1>
+            </div>
+            <h1 className='text-center items-center flex'>{doc.EName}</h1>
+            </div>
+            <div className="flex">
+
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Contact</h1>        
+            </div>
+            <h1 className='text-center items-center flex'>{doc.EContact}</h1>
+            </div>
+            <div className="flex">
+
+<div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+    <h1 className='text-center items-center flex'>Relation</h1>        
+</div>
+           <h1 className='text-center items-center flex'>{doc.Relation}</h1>
+           </div>
+           </div>
+              </div>
+              <div className="border md:flex md:mx-2  md:my-2">
+                <div className='md:w-72'>
+                <h1 className='text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Academic  Information</h1>
+                </div>
+          
+           <div className="div">
+            <div className="md:flex">
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'> Institution Of Study</h1>
+            </div>
+            <h1 className='text-center items-center flex'>{doc.Institution}</h1>
+            </div>
+            <div className="flex">
+
+            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+                <h1 className='text-center items-center flex'>Year Of Study</h1>        
+            </div>
+            <h1 className='text-center items-center flex'>{doc.YearOfStudy}</h1>
+            </div>
+            <div className="flex">
+
+             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
+    <h1 className='text-center items-center flex'>Relation</h1>        
+           </div>
+           <h1 className='text-center items-center flex'>{doc.Relation}</h1>
+           </div>
+           </div>
+              </div>
+           </div>
               )})}
            </div>
         </div>
