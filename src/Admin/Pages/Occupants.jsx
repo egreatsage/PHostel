@@ -1,27 +1,156 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Nav from '../Components/Nav'
 
-const Occupants = () => {
+import React, { useState, useEffect, useRef } from 'react'
+import { Link } from "react-router-dom";
+import dbdataservice from '../../Common/Operations';
+import { AiFillEdit, AiOutlineSearch ,AiOutlineDownload} from 'react-icons/ai';
+import { MdOutlineDeleteForever } from 'react-icons/md';
+import { Input, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
+import Nav from '../Components/Nav';
+import { useDownloadExcel } from 'react-export-table-to-excel';
+const Occupants = ({ getOccupantId }) => {
+  const [occupants, setOccupants] = useState([]);
+  useEffect(() => {
+    getAllOccupants();
+  }, []);
+  const getAllOccupants = async () => {
+    const data = await dbdataservice.getAllOccupants();
+    
+    setOccupants(data.docs.map((doc) => ({ ...doc.data(),
+      id: doc.id })));
+  };
+ 
+  const deleteHandler = async (id) => {
+    await dbdataservice.deleteOccupant(id);
+    getAllOccupants();
+  };
+  const [searchedVal, setSearchedVal] = useState("");
+  
+  const tableRef = useRef(null);
+
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Occupants table',
+        sheet: 'Occupants'
+    })
   return (
     <div>
-    <Nav/>
-    <div className='flex  mt-20 ml-5'>
-        <div className='hidden overflow-y-auto fixed x-50 relative md:flex md:flex-col bg-[lavender] w-64 h-screen shadow-lg border-blue-gray-400 rounded-md mt-8 p-16 '>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/dashboard'><span></span><span>Dashboard</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/bookings'><span></span><span>Bookings</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/occupants'><span></span><span>Occupants</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Users</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
-        </div>
-        <div>
-            hello
-        </div>
+       <div><Nav/></div>
+       <div className='mt-9 md:mx-14 pt-8 px-2'> 
+     <p className='text-xl text-gray-600 mt-8 text-center'>Occupants Details</p>
+     <div className="md:flex md:justify-between">
+     <div className="mt-6 flex gap-6">
+     <Link to='/addoccupant' className='text-sm mx-2 hover:underline hover:font-bold'>Add</Link>
+            <button className='text-sm hover:font-bold hover:underline'  onClick={getAllOccupants} > Refresh</button>
+            <button className='hover:font-bold mx-2 text-green-700 text-sm hover:underline'  onClick={onDownload} > Export</button>
     </div>
+    <div className='w-64 flex justify-end'>
+    <Input variant="standard" label="Search..."  color='teal' onChange={(e) => setSearchedVal(e.target.value)} icon={<AiOutlineSearch/>} />
+    </div>
+     </div>
+
+    </div>
+    <div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table ref={tableRef} class="min-w-full">
+          <thead class="bg-white border-b">
+            <tr>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                #
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                FName
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                SName
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Gender
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Age
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Contact
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                RoomNo
+              </th>
+             
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                EntryDate
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                ExitDate
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Edit
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Delete
+              </th>
+            </tr>
+          </thead>
+          {occupants.filter((row) =>
+         !searchedVal.length || row.FName
+           .toString()
+           .toLowerCase()
+           .includes(searchedVal.toString().toLowerCase()) 
+       ).map((doc,index)=>{
+             return(
+          <tbody>
+            <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index+1}</td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.FName}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.LName}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.Gender}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              {doc.Age}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.PNumber}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.RoomNo}
+              </td>
+              
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.EntryDate}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.ExitDate}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              <Link to='/occupantadd'>
+            <AiFillEdit className='text-[orange] text-2xl cursor-pointer'  onClick={(e) =>
+                   getOccupantId(doc.id)}/>
+            </Link>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              <MdOutlineDeleteForever onClick={(e) => 
+              deleteHandler(doc.id)} className='text-[red] text-2xl cursor-pointer'/>
+              </td>
+            </tr>
+         
+          
+              
+          </tbody>
+          )
+        })}
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
+    </div>
   )
 }
+
 export default Occupants

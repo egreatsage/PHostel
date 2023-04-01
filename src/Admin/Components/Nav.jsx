@@ -5,18 +5,10 @@ import Profile from '../../Common/Profile'
 const Nav = () => {
   return (
     <div>
-      <div className='fixed w-full top-0 z-50 px-4 bg-[lavender] py-2 flex justify-between '>
+      <div className='fixed w-full top-0 z-50 px-4 bg-[whitesmoke] py-2 flex justify-between '>
               <div className='items-center flex text-2xl font-semibold '>
-                <h1>Pamus Admin </h1>
-              </div>
-              <div>
-               <div className='md:flex gap-3 text-gray-700 items-center hidden'>
-            
-               </div>
-               <div className='flex'>
-               <Profile/>
-                <button
-  className=" bg-none px-6 mx-2 pt-2.5 pb-2 text-xl bold leading-normal text-black md:hidden  transition duration-200 ease-in-out"
+              <button
+  className=" bg-none px-6 mx-2 pt-2.5 pb-2 text-xl bold leading-normal text-black   transition duration-200 ease-in-out"
   type="button"
   data-te-offcanvas-toggle
   data-te-target="#offcanvasRight"
@@ -25,6 +17,22 @@ const Nav = () => {
   data-te-ripple-color="light">
   <AiOutlineMenu />
 </button>
+              </div>
+              <div className='items-center hidden  md:flex text-md  '>
+              <h1>Pamus Admin </h1>
+                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Dashboard</button>
+                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Bookings</button>
+                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Occupants</button>
+                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Users</button>
+                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Profile</button>
+                </div>
+              <div>
+          <div>
+          
+          </div>
+               <div className='flex'>
+               <Profile/>
+          
                </div>
               
               </div>

@@ -41,9 +41,9 @@ const Bookings = ({ getBookingId }) => {
         <h1 className=' md:text-xl text-md font-semibold tracking-wider text-gray-700'>Booking Details</h1>
                <div className='overflow-hidden'>
            <div className="flex my-3">
-            <Link to='/AddBooking' className='text-sm mx-2 hover:underline hover:font-bold'>Add</Link>
-            <button className='text-sm hover:font-bold hover:underline'> Refresh</button>
-            <button className='hover:font-bold mx-2 text-sm hover:underline'> Export</button>
+            <Link to='/addbooking' className='text-sm mx-2 hover:underline hover:font-bold'>Add</Link>
+            <button className='text-sm hover:font-bold hover:underline'  onClick={getAllBookings} > Refresh</button>
+            <button className='hover:font-bold mx-2 text-green-700 text-sm hover:underline'  onClick={onDownload} > Export</button>
            </div>
            <div className='bg-gray-300 w-full overflow-x-auto'>
                   <table ref={tableRef} className=''>

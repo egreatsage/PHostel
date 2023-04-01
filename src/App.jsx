@@ -17,6 +17,8 @@ import Dashboard from './Admin/Pages/Dashboard'
 import Occupants from './Admin/Pages/Occupants'
 import Users from './Admin/Pages/Users'
 import Bookings from './Admin/Pages/Bookings'
+import AddBooking from './Admin/Pages/AddBooking'
+import AddOccupant from './Admin/Pages/AddOccuppant'
 function App() {
   return (
   <div className=' overflow-hidden'>
@@ -40,6 +42,8 @@ function App() {
           <Route path='/occupants' element={<Occupants/>}/>
           <Route path='/users' element={<Users/>}/>
           <Route path='/bookings' element={<Bookings/>}/>
+          <Route path='/addbooking' element={<AddBooking/>}/>
+          <Route path='/addoccupant' element={<AddOccupant/>}/>
         </Routes>
         </BrowserRouter>
   </div>
