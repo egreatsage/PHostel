@@ -13,11 +13,12 @@ const UserProfile = () => {
     const [occupants, setOccupants] = useState([]);
     let userId = user.uid;
     useEffect(() => {
-        getAllBookings();
+        getAllBookings()
     }, []);
     const getAllBookings = async () => {
         const data = await dbdataservice.getAllBookings();
         setBookings(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        
     }; 
       useEffect(() => {
         getAllOccupants();

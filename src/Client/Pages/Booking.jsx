@@ -35,7 +35,7 @@ const Booking = () => {
       const newBooking = {
        FName,LName,Gender,PNumber,PGContact,Age,PGName,
        EName,EContact,Relation,Institution,YearOfStudy,
-       MaritalStatus,Homecounty,userId,email,PGEmail,EEmail
+       MaritalStatus,Homecounty,userId,email,PGEmail,EEmail,
       };
       try {
           await dbdataservice.addBooking(newBooking);
@@ -53,6 +53,8 @@ const Booking = () => {
   return (
     <div className='mt-20 overflow-x-hidden'>
         <form onSubmit={handleSubmit}>
+
+     
          <div className="md:mx-4 mx-2">
              <h1 className="text-xl font-semibold my-4">
                 Personal Information
@@ -191,7 +193,7 @@ const Booking = () => {
              </div>
          </div> 
          <div className='flex justify-end mx-2 mr-5 my-8'>
-             <button className='bg-indigo-700 px-4 py-1 rounded-md hover:bg-indigo-800 text-white'>Submit</button>
+             <button type='submit' className='bg-indigo-700 px-4 py-1 rounded-md hover:bg-indigo-800 text-white'>Submit</button>
          </div>
          </form> 
     </div>

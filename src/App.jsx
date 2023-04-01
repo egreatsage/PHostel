@@ -1,8 +1,6 @@
 
-import { Route, Routes } from 'react-router-dom'
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Navbar from './Client/Components/Navbar'
 import Booking from './Client/Pages/Booking'
 import ContactUs from './Client/Pages/ContactUs'
 import Home from './Client/Pages/Home'
@@ -13,12 +11,16 @@ import UserProfile from './Client/Pages/UserProfile'
 import Reply from './Client/Pages/Reply'
 import ForgotPassword from './Common/ForgotPassword'
 import HostellarPr from './Routes/HostellarPr'
-
+import Rules from './Client/Pages/Rules'
+import { ToastContainer } from 'react-toastify'
+import Dashboard from './Admin/Pages/Dashboard'
+import Occupants from './Admin/Pages/Occupants'
 function App() {
   return (
   <div className=' overflow-hidden'>
      
-     <Navbar/>
+   
+     <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/contactus' element={<ContactUs/>}/>
@@ -28,11 +30,14 @@ function App() {
           <HostellarPr><Booking/></HostellarPr>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/notices' element={<SNotices/>}/>
           <Route path='/reply' element={<Reply/>}/>
+          <Route path='/rules' element={<Rules/>}/>
+          <Route path='/occupants' element={<Occupants/>}/>
         </Routes>
-       
+        </BrowserRouter>
   </div>
   
   )
