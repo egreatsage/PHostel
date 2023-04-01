@@ -2,9 +2,13 @@ import React from 'react'
 import Map from './Map'
 import {AiFillPhone} from 'react-icons/ai'
 import {HiOutlineMailOpen} from 'react-icons/hi'
+import Navbar from '../Components/Navbar'
 const ContactUs = () => {
   return (
     <div className='mt-20 mx-2 w-screen overflow-x-hidden'>
+        <div>
+      <Navbar/>
+      </div>
         <div className="items-center gap-8  grid md:grid-cols-2">
             <div>
               

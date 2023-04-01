@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import Navbar from '../Components/Navbar'
 const Home = () => {
   return (
     <div className='mt-20 scroll-smooth'>
+      <div>
+      <Navbar/>
+      </div>
       <div>
         <div className='grid sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-4 lg:grid-cols-4 md:mx-3 mx-2 items-center'>
           <div className='items-center my-6 flex flex-col justify-center shadow-md border md:w-64 w-full  hover:-translate-y-1 hover:scale-110  transition cursor-pointer ease-in-out delay-150 h-60 rounded-md  shadow-indigo-400  '>
