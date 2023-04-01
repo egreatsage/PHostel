@@ -5,7 +5,7 @@ import Profile from '../../Common/Profile'
 const Nav = () => {
   return (
     <div>
-      <div className='fixed w-full top-0 z-50 px-4 bg-white py-2 flex justify-between '>
+      <div className='fixed w-full top-0 z-50 px-4 bg-[lavender] py-2 flex justify-between '>
               <div className='items-center flex text-2xl font-semibold '>
                 <h1>Pamus Admin </h1>
               </div>

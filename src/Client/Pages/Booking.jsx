@@ -105,8 +105,8 @@ const Booking = () => {
             <div>
             <label className='tracking-tighter'>Marital Status</label>
              <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-             value={email} 
-             onChange={(e)=>setEmail(e.target.value)} required
+             value={MaritalStatus} 
+             onChange={(e)=>setMaritalStatus(e.target.value)} required
              />
             </div>
             

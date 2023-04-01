@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Nav from '../Components/Nav'
 
-const Occupants = () => {
+const Users = () => {
   return (
     <div>
     <Nav/>
@@ -18,10 +18,11 @@ const Occupants = () => {
           <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
         </div>
         <div>
-            hello
+       
         </div>
     </div>
 </div>
   )
 }
-export default Occupants
+
+export default Users

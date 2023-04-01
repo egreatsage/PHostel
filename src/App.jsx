@@ -15,6 +15,8 @@ import Rules from './Client/Pages/Rules'
 import { ToastContainer } from 'react-toastify'
 import Dashboard from './Admin/Pages/Dashboard'
 import Occupants from './Admin/Pages/Occupants'
+import Users from './Admin/Pages/Users'
+import Bookings from './Admin/Pages/Bookings'
 function App() {
   return (
   <div className=' overflow-hidden'>
@@ -36,6 +38,8 @@ function App() {
           <Route path='/reply' element={<Reply/>}/>
           <Route path='/rules' element={<Rules/>}/>
           <Route path='/occupants' element={<Occupants/>}/>
+          <Route path='/users' element={<Users/>}/>
+          <Route path='/bookings' element={<Bookings/>}/>
         </Routes>
         </BrowserRouter>
   </div>
