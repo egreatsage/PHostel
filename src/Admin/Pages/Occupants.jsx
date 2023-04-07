@@ -7,7 +7,7 @@ import { MdOutlineDeleteForever } from 'react-icons/md';
 import { Input, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
 import Nav from '../Components/Nav';
 import { useDownloadExcel } from 'react-export-table-to-excel';
-const Occupants = ({ getOccupantId }) => {
+const Occupants = ({ id, getOccupantId }) => {
   const [occupants, setOccupants] = useState([]);
   useEffect(() => {
     getAllOccupants();
@@ -23,10 +23,34 @@ const Occupants = ({ getOccupantId }) => {
     await dbdataservice.deleteOccupant(id);
     getAllOccupants();
   };
-  const [searchedVal, setSearchedVal] = useState("");
-  
-  const tableRef = useRef(null);
 
+  const editHandler = async () => {
+    try {
+      const docSnap = await dbdataservice.getOccupant(id);
+      setFName(docSnap.data().FName);
+      setLName(docSnap.data().LName);
+      setGender(docSnap.data().Gender);
+      setPNumber(docSnap.data().PNumber);
+      setEntryDate(docSnap.data().EntryDate);
+      setRoomNo(docSnap.data().RoomNo);
+      setExitDate(docSnap.data().ExitDate);
+    } catch (err) {
+     Swal.fire({
+  title: 'Error!',
+  text: 'Error Editing Document',
+  icon: 'error',
+  confirmButtonText: 'Close'
+})
+    }
+  };
+  useEffect(() => {
+    if (id !== undefined && id !== "") {
+      editHandler();
+    } //eslint-disable-next-line
+  }, [id]);
+
+  const [searchedVal, setSearchedVal] = useState("")
+  const tableRef = useRef(null);
     const { onDownload } = useDownloadExcel({
         currentTableRef: tableRef.current,
         filename: 'Occupants table',
@@ -60,10 +84,7 @@ const Occupants = ({ getOccupantId }) => {
                 #
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                FName
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                SName
+                Name
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Gender
@@ -106,9 +127,6 @@ const Occupants = ({ getOccupantId }) => {
               {doc.FName}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {doc.LName}
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
               {doc.Gender}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -128,7 +146,7 @@ const Occupants = ({ getOccupantId }) => {
               {doc.ExitDate}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              <Link to='/occupantadd'>
+              <Link to='/addoccupant'>
             <AiFillEdit className='text-[orange] text-2xl cursor-pointer'  onClick={(e) =>
                    getOccupantId(doc.id)}/>
             </Link>

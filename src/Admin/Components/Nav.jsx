@@ -1,74 +1,68 @@
 import React from 'react'
-import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
+import {AiOutlineMenu} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import Profile from '../../Common/Profile'
 const Nav = () => {
   return (
     <div>
-      <div className='fixed w-full top-0 z-50 px-4 bg-[whitesmoke] py-2 flex justify-between '>
-              <div className='items-center flex text-2xl font-semibold '>
-              <button
-  className=" bg-none px-6 mx-2 pt-2.5 pb-2 text-xl bold leading-normal text-black   transition duration-200 ease-in-out"
-  type="button"
-  data-te-offcanvas-toggle
-  data-te-target="#offcanvasRight"
-  aria-controls="offcanvasRight"
-  data-te-ripple-init
-  data-te-ripple-color="light">
-  <AiOutlineMenu />
-</button>
-              </div>
-              <div className='items-center hidden  md:flex text-md  '>
-              <h1>Pamus Admin </h1>
-                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Dashboard</button>
-                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Bookings</button>
-                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Occupants</button>
-                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Users</button>
-                <button className='bg-none hover:border-black hover:bg-gray-50 border rounded-full text-md border-gray-800 text-gray-700 hover:text-black mx-2 px-3 py-1'>Profile</button>
-                </div>
-              <div>
-          <div>
-          
-          </div>
-               <div className='flex'>
-               <Profile/>
-          
-               </div>
-              
-              </div>
-      </div>
-      <div>
+      <div class="flex space-x-2 my-4">
+  <div>
     
-
-<div
-  className="invisible fixed bottom-0 top-0 right-0 z-[1045] flex w-96 max-w-full translate-x-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200 [&[data-te-offcanvas-show]]:transform-none"
- 
-  id="offcanvasRight"
-  aria-labelledby="offcanvasRightLabel"
-  data-te-offcanvas-init>
-  <div className="flex items-center justify-between p-4">
-    <h5
-      className="mb-0 font-semibold leading-normal"
-      id="offcanvasRightLabel">
-    Pamus Admin
-    </h5>
-    <button
+    <AiOutlineMenu
+      class="text-black font-bold text-2xl ml-2 cursor-pointer"
       type="button"
-      className="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-      data-te-offcanvas-dismiss>
-      <span
-        className="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
-      <AiOutlineClose className='text-black font-bold text-2xl'/>
-      </span>
-    </button>
-  </div>
-  <div className="flex flex-col items-center gap-8 mt-20">
-      <Link to={'/'}>Home</Link>
-      <Link to={'/contactus'}>Contact Us</Link>
-      <Link to={'/userprofile'}>Student</Link>
+      data-te-offcanvas-toggle
+      data-te-target="#offcanvasExample"
+      aria-controls="offcanvasExample"
+      data-te-ripple-init
+      data-te-ripple-color="light"
+    />
+    <div
+      class="invisible fixed bottom-0 left-0 top-0 z-[1045] flex w-84 max-w-full -translate-x-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200 [&[data-te-offcanvas-show]]:transform-none"
+      tabindex="-1"
+      id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel"
+      data-te-offcanvas-init>
+      <div class="flex items-center justify-between p-4">
+        <h5
+          class="mb-0 font-semibold leading-normal"
+          id="offcanvasExampleLabel">
+          Pamus
+        </h5>
+        <button
+          type="button"
+          class="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-offcanvas-dismiss>
+          <span
+            class="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-6 w-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="overflow-y-auto">
+      <div className='flex'>
+            <div className=' overflow-y-auto md:flex-col  w-64 mt-8 p-16 '>
+              <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/dashboard'><span></span><span>Dashboard</span></Link>
+              <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/bookings'><span></span><span>Bookings</span></Link>
+              <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/occupants'><span></span><span>Occupants</span></Link>
+              <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Users</span></Link>
+              
+            </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-      </div>
     </div>
   )
 }

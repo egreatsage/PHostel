@@ -1,88 +1,67 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState,useEffect } from 'react'
+import { Input} from "@material-tailwind/react";
 import dbdataservice from '../../Common/Operations';
+import { useNavigate } from 'react-router-dom';
 import Nav from '../Components/Nav';
-import Swal from 'sweetalert2';
-const AddOccupant = ({ id, setOccupantId }) => {
+import { toast } from 'react-toastify';
+const BookingsAllocate = ({ id, setBookingId ,setOccupantI}) => {
   const [FName, setFName] = useState('');
   const [PNumber, setPNumber] = useState('');
   const [Gender, setGender] = useState('');
+  const [Age, setAge] = useState('');
   const [RoomNo, setRoomNo] = useState('');
+  const [MaritalStatus, setMaritalStatus] = useState('');
   const [EntryDate, setEntryDate] = useState('');
   const [ExitDate, setExitDate] = useState('');
-
+  const [userId, setuserId] = useState('');
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (FName === "" || Gender === "" || RoomNo === "" || EntryDate === "" || ExitDate === ""    ) {
+     toast.success('Fill in all spaces')
+      return;
+    }
     const newOccupant= {
-     FName,Gender,PNumber,EntryDate,RoomNo,ExitDate     
+      FName,Gender,Age,PNumber,RoomNo,EntryDate,ExitDate,userId  
     };
     try {
-      if (id !== undefined && id !== "") {
-        await dbdataservice.updateOccupant(id, newOccupant);
-        setOccupantId("");
-        Swal.fire({
-          title: 'Success',
-          text: 'Document Edited Successfully',
-          icon: 'success',
-          confirmButtonText: 'Close'
-        })
-          navigate('/occupants');
-      } else {
         await dbdataservice.addOccupant(newOccupant);
-        Swal.fire({
-          title: 'Success!',
-          text: 'Occupant Added Successfully',
-          icon: 'success',
-          confirmButtonText: 'Close'
-        })
-        navigate('/occupants');
-      }
+        setTimeout(() => {
+          navigate('/occupants');
+      }, 3000);
+       toast.success('room added successfully')
     } catch (err) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Error Adding Details',
-        icon: 'error',
-        confirmButtonText: 'Close'
-      })
-    }
-    setFName(""); ;setGender("");setEntryDate("");setPNumber("");
-    setRoomNo("");setExitDate("");
+      toast.error('problem adding room')
+    }  
   };
   const editHandler = async () => {
+    toast.success('room edited successfully')
     try {
-      const docSnap = await dbdataservice.getOccupant(id);
+      const docSnap = await EmployeeDataService.getBooking(id);
       setFName(docSnap.data().FName);
       setGender(docSnap.data().Gender);
       setPNumber(docSnap.data().PNumber);
-      setEntryDate(docSnap.data().EntryDate);
-      setRoomNo(docSnap.data().RoomNo);
-      setExitDate(docSnap.data().ExitDate);
+      setAge(docSnap.data().Age);
+      setuserId(docSnap.data().userId);
     } catch (err) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'DProblem Adding Details',
-        icon: 'error',
-        confirmButtonText: 'Close'
-      })
+      toast.error('problem editing a room')
     }
   };
   useEffect(() => {
     if (id !== undefined && id !== "") {
       editHandler();
-    } //eslint-disable-next-line
+    }   //eslint-disable-next-line
   }, [id]);
   return (
     <div>
-      <div>
-        <Nav/>
-      </div>
-        <div className='mt-20 overflow-x-hidden'>
-<form onSubmit={handleSubmit}>
- <div className="md:mx-4 mx-2">
-     <h1 className="text-xl font-semibold my-4">
-        Add An Occupant
-     </h1>
+      <div><Nav/></div>
+      <div className='pb-9 mb-9 overflow-y-auto bg-[#FAFBFB]'>
+  <div className='mb-9'>
+      <p className='text-xl text-gray-600 text-center'>Allocation Of Rooms</p>
+  <div>
+  <form onSubmit={handleSubmit} className='my-6 overflow-y-auto'  >
+  <div className="md:mx-4 mx-2">
+    
 <div className='grid md:grid-cols-3 gap-2'>
     <div>
     <label className='tracking-tighter'>Full Name</label>
@@ -99,10 +78,10 @@ const AddOccupant = ({ id, setOccupantId }) => {
      />
     </div>
     <div>
-    <label className='tracking-tighter'>Gender</label>
-     <input type="email" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={Gender} 
-      onChange={(e)=>setGender(e.target.value)} required
+    <label className='tracking-tighter'>Marital Status</label>
+     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
+      value={MaritalStatus} 
+      onChange={(e)=>setMaritalStatus(e.target.value)} required
      />
     </div>
     <div>
@@ -131,10 +110,12 @@ const AddOccupant = ({ id, setOccupantId }) => {
  <div className='flex justify-end mx-2 mr-5 my-8'>
      <button type='submit' className='bg-indigo-700 px-4 py-1 rounded-md hover:bg-indigo-800 text-white'>Submit</button>
  </div>
- </form> 
+</form>
+  </div>
+</div> 
 </div>
     </div>
   )
 }
 
-export default AddOccupant
+export default BookingsAllocate

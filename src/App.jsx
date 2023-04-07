@@ -19,11 +19,20 @@ import Users from './Admin/Pages/Users'
 import Bookings from './Admin/Pages/Bookings'
 import AddBooking from './Admin/Pages/AddBooking'
 import AddOccupant from './Admin/Pages/AddOccuppant'
+import Allocate from './Admin/Pages/Allocate'
+import { useState } from 'react'
 function App() {
+  const [bookingId, setBookingId] = useState('');
+  const [occupantId, setOccupantId] = useState('');
+  const getOccupantHandler = (id)=>{
+    setOccupantId(id);
+  }
+  const getBookingIdHandler=(id) =>{
+    setBookingId(id);
+  }  
+
   return (
   <div className=' overflow-hidden'>
-     
-   
      <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
@@ -39,13 +48,15 @@ function App() {
           <Route path='/notices' element={<SNotices/>}/>
           <Route path='/reply' element={<Reply/>}/>
           <Route path='/rules' element={<Rules/>}/>
-          <Route path='/occupants' element={<Occupants/>}/>
+          <Route path='/occupants' element={<Occupants getOccupantId={getOccupantHandler} />}/>
           <Route path='/users' element={<Users/>}/>
-          <Route path='/bookings' element={<Bookings/>}/>
-          <Route path='/addbooking' element={<AddBooking/>}/>
-          <Route path='/addoccupant' element={<AddOccupant/>}/>
+          <Route path='/bookings' element={ <Bookings getBookingId={getBookingIdHandler}/>}/>
+          <Route path='/addbooking' element={<AddBooking id={bookingId} setBookingId={setBookingId} />}/>
+          <Route path='/addoccupant' element={<AddOccupant  id={occupantId} setOccupantId={setOccupantId} />}/>
+          <Route path='/allocate' element={<Allocate id={bookingId} setBookingId={setBookingId} />}/>
         </Routes>
         </BrowserRouter>
+
   </div>
   
   )

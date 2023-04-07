@@ -21,7 +21,7 @@ const Bookings = ({ getBookingId }) => {
     await dbdataservice.deleteBooking(id);
     getAllBookings();
   };
-  const [searchedVal, setSearchedVal] = useState("");
+  const [searchedVal] = useState("");
   const tableRef = useRef(null);
 
     const { onDownload } = useDownloadExcel({
@@ -29,10 +29,6 @@ const Bookings = ({ getBookingId }) => {
         filename: 'Booking List',
         sheet: 'Booking List'
     })
-    const componentRef = useRef();
-      const handlePrint = useReactToPrint({
-        content: () => componentRef.current,
-      })
   return (
     <div>
     <Nav/>
@@ -158,13 +154,13 @@ const Bookings = ({ getBookingId }) => {
               {doc.YearOfStudy}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              <Link to='/bookingsallocate'>
+              <Link to='/allocate'>
               <BsBoxArrowUpRight variant="outlined"  onClick={(e) => 
                getBookingId(doc.id)} className='text-xl text-[brown]'
                /></Link>
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              <Link to='/BookingsAdd'>
+              <Link to='/addbooking'>
             <AiFillEdit  onClick={(e) =>
                    getBookingId(doc.id)} className='text-xl text-[brown]'/>
             </Link>

@@ -4,11 +4,10 @@ import { toast } from 'react-toastify';
 import { useUserAuth } from '../../Common/UserAuthContext';
 import dbdataservice from '../../Common/Operations'
 import Nav from '../Components/Nav';
-const AddBooking = () => {
-
-    const {user} = useUserAuth();
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
+const AddBooking = ({id, setBookingId}) => {
     const [FName, setFName] = useState('');
-    const [LName, setLName] = useState('');
     const [PNumber, setPNumber] = useState('');
     const [email, setEmail] = useState('');
     const [PGEmail, setPGEmail] = useState('');
@@ -28,31 +27,84 @@ const AddBooking = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      let userId = user.uid;
-      if (FName === "" || LName === "") {
-       toast.error('All fields required')
+      if (FName === "" ) {
+        setTimeout(() => {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Missing fields',
+            icon: 'error',
+            confirmButtonText: 'Close'
+          })
+      }, 500);
+      
         return;
       }
       const newBooking = {
-       FName,LName,Gender,PNumber,PGContact,Age,PGName,
+       FName,Gender,PNumber,PGContact,Age,PGName,
        EName,EContact,Relation,Institution,YearOfStudy,
-       MaritalStatus,Homecounty,userId,email,PGEmail,EEmail,
+       MaritalStatus,Homecounty,email,PGEmail,EEmail,
       };
       try {
           await dbdataservice.addBooking(newBooking);
-          toast.success('Details Submitted Succeddfully')
-            navigate('/reply');
+          setTimeout(() => {
+            Swal.fire({
+              title: 'Success!',
+              text: 'Details Submitted Successfully',
+              icon: 'success',
+              confirmButtonText: 'Close'
+            })
+        }, 1000);
+        setTimeout(() => {
+          navigate('/bookings');
+        }, 3000);
+           
       } catch (err) {
-       toast.error('Problem Adding Details')
+        Swal.fire({
+          title: 'Error!',
+          text: 'Problem Adding Document',
+          icon: 'error',
+          confirmButtonText: 'Close'
+        })
       }
-      setFName(""); setLName("");setGender("");setPGContact("");setPNumber("");
+      setFName("");setGender("");setPGContact("");setPNumber("");
       setAge("");setPGName(""); setEName(''); setEContact(''); setRelation(''); 
       setInstitution(''); setMaritalStatus('');setPGEmail('');
       setYearOfStudy(''); setHomecounty('');setEmail("");setEEmail('');
       
     };
+    const editHandler = async () => {
+       try {
+         const docSnap = await dbdataservice.getBooking(id);
+         setFName(docSnap.data().FName);
+         setGender(docSnap.data().Gender);
+         setPNumber(docSnap.data().PNumber);
+         setPGContact(docSnap.data().PGContact);
+         setAge(docSnap.data().Age);
+         setPGName(docSnap.data().PGName);
+         setEName(docSnap.data().EName);
+         setEContact(docSnap.data().EContact);
+         setRelation(docSnap.data().Relation);
+         setInstitution(docSnap.data().Institution);
+         setYearOfStudy(docSnap.data().YearOfStudy);
+         setMaritalStatus(docSnap.data().MaritalStatus);
+         setHomecounty(docSnap.data().Homecounty);
+       } catch (err) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Error Editing Document',
+          icon: 'error',
+          confirmButtonText: 'Close'
+        })
+       }
+     };
+     useEffect(() => {
+       if (id !== undefined && id !== "") {
+      
+         editHandler();
+       }   //eslint-disable-next-line
+     }, [id]);
   return (
-    <div>
+    <div className='overflow-y-auto'>
       <div>
         <Nav/>
       </div>
