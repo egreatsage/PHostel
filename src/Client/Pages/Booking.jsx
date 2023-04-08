@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { useUserAuth } from '../../Common/UserAuthContext';
 import dbdataservice from '../../Common/Operations'
 import Navbar from '../Components/Navbar';
+import Swal from 'sweetalert2';
 const Booking = () => {
 
     const {user} = useUserAuth();
@@ -29,10 +30,6 @@ const Booking = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       let userId = user.uid;
-      if (FName === "" || LName === "") {
-       toast.error('All fields required')
-        return;
-      }
       const newBooking = {
        FName,LName,Gender,PNumber,PGContact,Age,PGName,
        EName,EContact,Relation,Institution,YearOfStudy,
@@ -40,10 +37,23 @@ const Booking = () => {
       };
       try {
           await dbdataservice.addBooking(newBooking);
-          toast.success('Details Submitted Succeddfully')
+          Swal.fire({
+            text: 'Details Submitted',
+            icon: 'success',
+            timer:3000,
+            position:'top-right',
+            confirmButtonText: 'Close'
+          })
             navigate('/reply');
       } catch (err) {
-       toast.error('Problem Adding Details')
+        Swal.fire({
+          text: 'Problem submitting details,please try again',
+          icon: 'success',
+          timer:3000,
+          width:400,
+          position:'top-right',
+          confirmButtonText: 'Close'
+        })
       }
       setFName(""); setLName("");setGender("");setPGContact("");setPNumber("");
       setAge("");setPGName(""); setEName(''); setEContact(''); setRelation(''); 
@@ -52,7 +62,7 @@ const Booking = () => {
       
     };
   return (
-    <div>
+    <div className='overflow-y-auto'>
       <div>
         <Navbar/>
       </div>

@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import OAuth from '../../Common/OAuth'
 import { useUserAuth } from '../../Common/UserAuthContext'
 import Navbar from '../Components/Navbar'
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
   const {signUp} = useUserAuth();
@@ -21,7 +22,7 @@ const SignUp = () => {
     await signUp(username, email,password);
     setTimeout(() => {
       navigate('/booking')
-     }, 6000);
+     }, 1000);
    
   }catch(err){
     Swal.fire({

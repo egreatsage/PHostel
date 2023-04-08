@@ -7,6 +7,7 @@ import { useReactToPrint } from 'react-to-print';
 import { AiOutlineMore } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import Profile from '../../Common/Profile'
+import Navbar from '../Components/Navbar'
 const StudentProfile = () => {
     const { user,} = useUserAuth();
     const [bookings, setBookings] = useState([]);
@@ -34,7 +35,11 @@ const StudentProfile = () => {
         content: () => componentRef.current,
       })
   return (
-    <div className='mt-20 overflow-x-hidden'>
+   <div>
+    <div>
+        <Navbar/>
+    </div>
+     <div className='mt-20 overflow-x-hidden'>
         
         <div className="flex justify-between">
            <div>
@@ -262,6 +267,7 @@ const StudentProfile = () => {
         </div>
       
     </div>
+   </div>
   )
 }
 

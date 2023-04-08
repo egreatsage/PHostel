@@ -18,7 +18,7 @@ const Reply = () => {
             <Button className='hover:bg-blue-600 ' variant='outlined' >Go Back</Button>
             </Link></div>
             <div>
-            <Link to='/userprofile'>
+            <Link to='/studentprofile'>
             <Button className='hover:bg-blue-600 ' variant='outlined' >My Profile</Button>
             </Link>
             </div>

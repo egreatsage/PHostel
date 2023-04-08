@@ -2,6 +2,7 @@ import { Button } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import dbdataservice from "../../Common/Operations"
+import Navbar from '../Components/Navbar';
 const SNotices = () => {
   const [notices, setNotices] = useState([]);
   useEffect(() => {
@@ -14,10 +15,10 @@ const SNotices = () => {
   };
   return (
     <div>
-        <Link className='pl-3 mb-4 mt-4' to='/userprofile'>
-        <Button  className=' bg-gray-700 hover:bg-black font-extrabold text-white  py-2 rounded-md'>Back</Button>
-        </Link>
-      <div className='md:mx-9 md:px-9 md:my-6 mt-5'>
+      <div>
+        <Navbar/>
+      </div>
+      <div className='md:mx-9 md:px-9 md:my-6 mt-20'>
         
       <h1 className='text-center mb-4 font-extrabold pt-3 underline'>Hostel Notices</h1>
        {notices.map((doc)=>{
