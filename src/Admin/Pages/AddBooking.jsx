@@ -24,21 +24,9 @@ const AddBooking = ({id, setBookingId}) => {
     const [MaritalStatus, setMaritalStatus] = useState('');
     const [Homecounty, setHomecounty] = useState('');
     const navigate = useNavigate();
-  
     const handleSubmit = async (e) => {
+      setBookingId("");
       e.preventDefault();
-      if (FName === "" ) {
-        setTimeout(() => {
-          Swal.fire({
-            title: 'Error!',
-            text: 'Missing fields',
-            icon: 'error',
-            confirmButtonText: 'Close'
-          })
-      }, 500);
-      
-        return;
-      }
       const newBooking = {
        FName,Gender,PNumber,PGContact,Age,PGName,
        EName,EContact,Relation,Institution,YearOfStudy,
@@ -49,7 +37,7 @@ const AddBooking = ({id, setBookingId}) => {
           setTimeout(() => {
             Swal.fire({
               title: 'Success!',
-              text: 'Details Submitted Successfully',
+              text: 'Details Added Successfully',
               icon: 'success',
               confirmButtonText: 'Close'
             })
@@ -57,11 +45,10 @@ const AddBooking = ({id, setBookingId}) => {
         setTimeout(() => {
           navigate('/bookings');
         }, 3000);
-           
       } catch (err) {
         Swal.fire({
           title: 'Error!',
-          text: 'Problem Adding Document',
+          text: 'Problem Adding Details',
           icon: 'error',
           confirmButtonText: 'Close'
         })
@@ -259,5 +246,4 @@ const AddBooking = ({id, setBookingId}) => {
  
   )
 }
-
 export default AddBooking

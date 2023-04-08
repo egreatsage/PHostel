@@ -3,7 +3,9 @@ import { AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import OAuth from '../../Common/OAuth'
-import { useUserAuth } from '../../Context/UserAuthContext'
+import { useUserAuth } from '../../Common/UserAuthContext'
+import Swal from 'sweetalert2'
+import Navbar from '../Components/Navbar'
 const UserLogin = () => {
     const {logIn} = useUserAuth();
   const [email, setEmail] = useState()
@@ -17,15 +19,23 @@ const UserLogin = () => {
     await logIn(email,password);
     setTimeout(() => {
       navigate('/booking')
-     }, 6000);
-    toast.success('Successfully Signed In')
+     }, 3000);
   }catch(err){
-    toast.error('Problem Signing in,Try again')
+    Swal.fire({
+      position: 'top-end',
+      icon: 'error',
+      title: 'Wrong Email or Password',
+      showConfirmButton: true,
+      height:200,
+      timer: 2000
+    })
           }  
       }        
   return (
+    
     <section>
-    <h1 className="text-3xl text-center mt-6 font-bold">Sign In |  User</h1>
+      <Navbar/>
+    <h1 className="text-3xl text-center  font-bold mt-20">Sign In |  User</h1>
     <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
       <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
         <img
@@ -42,7 +52,7 @@ const UserLogin = () => {
           
             onChange={e=>setEmail(e.target.value)}
             placeholder="Email address"
-            className="mb-6 w-full px-4 border py-2 text-md text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
+            className="mb-6 w-full px-4 border py-2 text-md text-gray-700 bg-white border-gray-300 rounded-full transition ease-in-out"
           />
           <div className="relative mb-6">
             <input
@@ -51,7 +61,7 @@ const UserLogin = () => {
             
               onChange={e=>setPassword(e.target.value)}
               placeholder="Password"
-              className="w-full px-4 py-2 border text-md text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
+              className="w-full px-4 py-2 border text-md text-gray-700 bg-white border-gray-300 rounded-full transition ease-in-out"
             />
             {showPassword ? (
               <AiFillEyeInvisible
@@ -85,7 +95,7 @@ const UserLogin = () => {
             </p>
           </div>
           <button
-            className="w-full bg-[#17202A] text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
+            className="w-full bg-orange-600 text-white px-7 py-3 text-sm font-bold uppercase rounded-full shadow-md transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
             type="submit"
           >
             Sign In

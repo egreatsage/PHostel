@@ -21,6 +21,8 @@ import AddBooking from './Admin/Pages/AddBooking'
 import AddOccupant from './Admin/Pages/AddOccuppant'
 import Allocate from './Admin/Pages/Allocate'
 import { useState } from 'react'
+import UserLogin from './Client/Pages/UserLogin'
+import UserSignUp from './Client/Pages/UserSignUp'
 function App() {
   const [bookingId, setBookingId] = useState('');
   const [occupantId, setOccupantId] = useState('');
@@ -42,6 +44,8 @@ function App() {
           <Route path='/booking' element={
           <HostellarPr><Booking/></HostellarPr>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/userlogin' element={<UserLogin/>}/>
+          <Route path='/usersignup' element={<UserSignUp/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>

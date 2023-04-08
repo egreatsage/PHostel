@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import dbdataservice from '../../Common/Operations';
 import Nav from '../Components/Nav';
 import Swal from 'sweetalert2';
+
 const AddOccupant = ({ id, setOccupantId }) => {
   const [FName, setFName] = useState('');
   const [PNumber, setPNumber] = useState('');

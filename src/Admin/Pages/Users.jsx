@@ -12,10 +12,6 @@ const Users = () => {
           <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/bookings'><span></span><span>Bookings</span></Link>
           <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/occupants'><span></span><span>Occupants</span></Link>
           <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Users</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
-          <Link className='flex hover:bg-gray-700 hover:text-white px-4 hover:rounded-md py-1 my-3 font-semibold tracking-wide' to='/'><span></span><span>Home</span></Link>
         </div>
         <div>
        
