@@ -7,12 +7,11 @@ import Home from './Client/Pages/Home'
 import Login from './Client/Pages/Login'
 import SignUp from './Client/Pages/SignUp'
 import SNotices from './Client/Pages/SNotices'
-import UserProfile from './Client/Pages/UserProfile'
+import StudentProfile from './Client/Pages/StudentProfile'
 import Reply from './Client/Pages/Reply'
 import ForgotPassword from './Common/ForgotPassword'
 import HostellarPr from './Routes/HostellarPr'
 import Rules from './Client/Pages/Rules'
-import { ToastContainer } from 'react-toastify'
 import Dashboard from './Admin/Pages/Dashboard'
 import Occupants from './Admin/Pages/Occupants'
 import Users from './Admin/Pages/Users'
@@ -23,6 +22,7 @@ import Allocate from './Admin/Pages/Allocate'
 import { useState } from 'react'
 import UserLogin from './Client/Pages/UserLogin'
 import UserSignUp from './Client/Pages/UserSignUp'
+import MyProfile from './Common/MyProfile'
 function App() {
   const [bookingId, setBookingId] = useState('');
   const [occupantId, setOccupantId] = useState('');
@@ -39,8 +39,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/contactus' element={<ContactUs/>}/>
-          <Route path='/userprofile' element={
-          <HostellarPr><UserProfile/></HostellarPr> }/>
+          <Route path='/studentprofile' element={
+          <HostellarPr><StudentProfile/></HostellarPr> }/>
           <Route path='/booking' element={
           <HostellarPr><Booking/></HostellarPr>}/>
           <Route path='/login' element={<Login/>}/>
@@ -52,6 +52,7 @@ function App() {
           <Route path='/notices' element={<SNotices/>}/>
           <Route path='/reply' element={<Reply/>}/>
           <Route path='/rules' element={<Rules/>}/>
+          <Route path='/myprofile' element={<MyProfile/>}/>
           <Route path='/occupants' element={<Occupants getOccupantId={getOccupantHandler} />}/>
           <Route path='/users' element={<Users/>}/>
           <Route path='/bookings' element={ <Bookings getBookingId={getBookingIdHandler}/>}/>

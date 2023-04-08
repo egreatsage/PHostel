@@ -1,13 +1,14 @@
 import React from 'react'
 import {AiOutlineMenu} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import Profile from '../../Common/Profile'
 const Nav = () => {
   return (
     <div>
       <div class="flex space-x-2 my-4">
   <div>
-    
-    <AiOutlineMenu
+         <div className='flex justify-between'>
+          <div>  <AiOutlineMenu
       class="text-black font-bold text-2xl ml-2 cursor-pointer"
       type="button"
       data-te-offcanvas-toggle
@@ -15,7 +16,12 @@ const Nav = () => {
       aria-controls="offcanvasExample"
       data-te-ripple-init
       data-te-ripple-color="light"
-    />
+    /></div>
+          <div>  <Profile/></div>
+       
+    
+         </div>
+   
     <div
       class="invisible fixed bottom-0 left-0 top-0 z-[1045] flex w-84 max-w-full -translate-x-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200 [&[data-te-offcanvas-show]]:transform-none"
       tabindex="-1"

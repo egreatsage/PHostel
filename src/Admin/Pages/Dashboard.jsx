@@ -4,9 +4,11 @@ import Nav from '../Components/Nav'
 
 const Dashboard = () => {
   return (
-    <div>
-        <Nav/>
-       
+    <div >
+      <div>
+      <Nav/>
+     
+      </div>
     </div>
   )
 }

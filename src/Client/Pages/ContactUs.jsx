@@ -1,42 +1,55 @@
 import React from 'react'
-import Map from './Map'
+import Navbar from '../Components/Navbar'
 import {AiFillPhone} from 'react-icons/ai'
 import {HiOutlineMailOpen} from 'react-icons/hi'
-import Navbar from '../Components/Navbar'
+import Map from './Map'
 const ContactUs = () => {
   return (
-    <div className='mt-20 mx-2 w-screen overflow-x-hidden'>
-        <div>
-      <Navbar/>
+    <div>
+      <div className='mt-20'>
+         <Navbar/>
       </div>
-        <div className="items-center gap-8  grid md:grid-cols-2">
-            <div>
-              
-                <h2 className='text-center text-xl font-semibold'>Write Us A Message</h2>
-                <form className=' md:my-1 my-8 '>
-                <input type="text" placeholder='Enter Your Name' className=' md:mx-8 mb-6  w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
-                <input type="email" placeholder='Enter Your Email/Phone Number' className=' md:mx-8 mb-6 w-full border-gray-600 text-gray-800 py-2 rounded-2xl px-4 border ' />
-                <textarea type="text" placeholder='Write A Message' className=' md:mx-8 mb-6 w-full border-gray-600 text-gray-800 py-6 rounded-2xl px-4 border ' />
-                </form>
-     
-              <div className="md:flex gap-4 md:ml-9 ml-5">
-          
-                <p className='flex my-6 '> <span> <AiFillPhone className='text-[indigo] text-2xl mr-2'/> </span> Phone Number: <span>+254769375210</span></p>
-                <p className='flex my-6'> <span><HiOutlineMailOpen className='text-[indigo] text-2xl mr-2'/></span> Email: <span>+pamushostel@gmail.com</span></p>
-              </div>
-            
-            </div>
-            <div className='md:ml-6 mt-1'>
-               
-                <div className='w-full'>
-                <Map/>
-                </div>
-            </div>
+      <div className='grid md:grid-cols-2'>
+          <div className="">
+          <h2 className='text-center my-8 text-xl font-semibold'>Write Us A Message</h2>
+          <form className='mx-2'>
+        <input
+          type="text"
+          id="name"
+          name='Name'
+          placeholder="Enter Your Name"
+          className="mb-6 w-full px-7 py-2 text-md text-gray-700 bg-white border border-gray-300 rounded-full transition ease-in-out"
+        />
+        <div className="relative mb-6">
+          <input
+            type='text'
+            id="email"
+           name='Email'
+            placeholder="Enter Your Email"
+            className="w-full px-7 py-2 text-md border text-gray-700 bg-white border-gray-300 rounded-full transition ease-in-out"
+          />
+         
         </div>
-        <div>
-          
+        <div className="relative mb-6">
+          <textarea
+            type='text'
+            id="message"
+           name='message'
+            placeholder="Write Your Message"
+            className="w-full px-7 py-2 text-md border text-gray-700 bg-white border-gray-300 rounded-full transition ease-in-out"
+          />
         </div>
-    
+      </form>
+      <div className="md:flex gap-4 md:ml-9 ml-5">
+          
+          <p className='flex my-6 '> <span> <AiFillPhone className='text-orange-600 text-2xl mr-2'/> </span> Phone Number: <span>+254769375210</span></p>
+          <p className='flex my-6'> <span><HiOutlineMailOpen className='text-orange-600 text-2xl mr-2'/></span> Email: <span>+pamushostel@gmail.com</span></p>
+        </div>
+          </div>
+          <div>
+            <Map/>
+          </div>
+      </div>
     </div>
   )
 }

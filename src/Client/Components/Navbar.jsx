@@ -1,34 +1,69 @@
-import React from 'react'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect, useState } from 'react'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+
 const Navbar = () => {
+  const [pageState, setPageState] = useState("Hosteller");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const auth = getAuth();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPageState("Profile");
+      } else {
+        setPageState("Hosteller");
+      }
+    });
+  }, [auth]);
+
+  function pathMatchRoute(route) {
+    if (route === location.pathname) {
+      return true;
+    }
+  }
   return (
     <div>
-      <div className='fixed w-full top-0 z-50 px-4 bg-gray-100 py-2 flex justify-between '>
-              <div className='items-center flex text-2xl font-semibold '>
-                <h1>Pamus </h1>
-              </div>
-              <div>
-               <div className='md:flex gap-3 text-gray-700 items-center hidden'>
-               <Link to={'/'}>Home</Link>
-                <Link to={'/contactus'}>Contact Us</Link>
-                <Link to={'/userprofile'}>Student</Link>
-               </div>
-                <button
-  className=" bg-none px-6 pt-2.5 pb-2 text-xl bold leading-normal text-black md:hidden  transition duration-200 ease-in-out"
-  type="button"
-  data-te-offcanvas-toggle
-  data-te-target="#offcanvasRight"
-  aria-controls="offcanvasRight"
-  data-te-ripple-init
-  data-te-ripple-color="light">
-  <AiOutlineMenu/>
-</button>
-              </div>
+      <div className='fixed w-full top-0 z-50 px-2 bg-gray-50 py-2  '>
+      <header className="flex justify-between items-center px-2 max-w-6xl mx-auto">
+        <div className="flex">
+          <span  onClick={() => navigate("/")}
+          ><h1 className="font-bold ml-1 cursor-pointer ">Pamus</h1></span>
+        </div>
+        <div>
+          <ul className="flex space-x-5">
+            <li
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-700 border-b-[3px] border-b-transparent ${
+                pathMatchRoute("/") && "text-black border-b-red-500"
+              }`}
+              onClick={() => navigate("/")}
+            >
+              Home
+            </li>
+            <li
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-700 border-b-[3px] border-b-transparent ${
+                (pathMatchRoute("/login") || pathMatchRoute("/studentprofile")) &&
+                "text-black border-b-red-500"
+              }`}
+              onClick={() => navigate("/studentprofile")}
+            >
+              {pageState}
+            </li>
+            <li
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-700 border-b-[3px] border-b-transparent ${
+                pathMatchRoute("/contactus") && "text-black border-b-red-500"
+              }`}
+              onClick={() => navigate("/contactus")}
+            >
+              Contacts
+            </li>
+          
+          </ul>
+        </div>
+      </header>
       </div>
       <div>
-    
-
 <div
   className="invisible fixed bottom-0 top-0 right-0 z-[1045] flex w-96 max-w-full translate-x-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200 [&[data-te-offcanvas-show]]:transform-none"
  

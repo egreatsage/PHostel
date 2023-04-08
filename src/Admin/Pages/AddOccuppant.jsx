@@ -21,20 +21,25 @@ const AddOccupant = ({ id, setOccupantId }) => {
     try {
       if (id !== undefined && id !== "") {
         await dbdataservice.updateOccupant(id, newOccupant);
-        setOccupantId("");
+      
         Swal.fire({
           title: 'Success',
           text: 'Document Edited Successfully',
           icon: 'success',
+          timer:2000,
+          position:'top-right',
           confirmButtonText: 'Close'
         })
           navigate('/occupants');
       } else {
         await dbdataservice.addOccupant(newOccupant);
+        
         Swal.fire({
           title: 'Success!',
           text: 'Occupant Added Successfully',
           icon: 'success',
+          timer:2000,
+          position:'top-right',
           confirmButtonText: 'Close'
         })
         navigate('/occupants');
@@ -44,6 +49,8 @@ const AddOccupant = ({ id, setOccupantId }) => {
         title: 'Error!',
         text: 'Error Adding Details',
         icon: 'error',
+        timer:2000,
+        position:'top-right',
         confirmButtonText: 'Close'
       })
     }
@@ -62,8 +69,10 @@ const AddOccupant = ({ id, setOccupantId }) => {
     } catch (err) {
       Swal.fire({
         title: 'Error!',
-        text: 'DProblem Adding Details',
+        text: 'There was a problem adding details',
         icon: 'error',
+        timer:2000,
+        position:'top-right',
         confirmButtonText: 'Close'
       })
     }

@@ -6,7 +6,7 @@ import dbdataservice from '../../Common/Operations'
 import Nav from '../Components/Nav';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2';
-const AddBooking = ({id}) => {
+const Allocate = ({id}) => {
     const [FName, setFName] = useState('');
     const [email, setEmail] = useState('');
     const [Gender, setGender] = useState('');
@@ -151,4 +151,4 @@ const AddBooking = ({id}) => {
  
   )
 }
-export default AddBooking
+export default Allocate

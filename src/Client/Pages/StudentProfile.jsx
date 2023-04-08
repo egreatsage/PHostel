@@ -2,12 +2,12 @@ import { Menu, MenuHandler, MenuList, Tooltip } from '@material-tailwind/react'
 import React,{useState,useEffect, useRef} from 'react'
 import {useUserAuth} from '../../Common/UserAuthContext'
 import dbdataservice from '../../Common/Operations';
-import {FcPrint} from 'react-icons/fc'
+import {FaFileDownload} from 'react-icons/fa'
 import { useReactToPrint } from 'react-to-print';
 import { AiOutlineMore } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import Profile from '../../Common/Profile'
-const UserProfile = () => {
+const StudentProfile = () => {
     const { user,} = useUserAuth();
     const [bookings, setBookings] = useState([]);
     const [occupants, setOccupants] = useState([]);
@@ -66,7 +66,16 @@ const UserProfile = () => {
     </Menu> 
            </div>
         </div>
-          <h1 className='text-center bold md:text-2xl tracking-wide text-md'>Hosteller Information</h1>
+        <div>
+            <div className="flex justify-end mr-5 my-4">
+                <Tooltip content='Print Document' placement='bottom'>
+                   <button className='bg-none border-none'>
+                   <FaFileDownload className='cursor-pointer text-[green]' onClick={handlePrint}/>
+                   </button>
+                </Tooltip>
+            </div>
+        <div ref={componentRef} className="">
+        <h1 className='text-center bold md:text-2xl tracking-wide text-md'>Hosteller Information</h1>
         <div className='shadow-md md:mx-8 border h-full my-7  rounded-md'>
            <div className="div">      
            <div className="border md:flex md:mx-2 md:my-2">
@@ -249,10 +258,11 @@ const UserProfile = () => {
               )})}
            </div>
         </div>
-        
-
+        </div>
+        </div>
+      
     </div>
   )
 }
 
-export default UserProfile
+export default StudentProfile

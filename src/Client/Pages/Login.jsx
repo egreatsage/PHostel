@@ -19,7 +19,7 @@ const Login= () => {
     e.preventDefault();
     await logIn(email,password);
     setTimeout(() => {
-      navigate('/userprofile')
+      navigate('/studentprofile')
      }, 6000);
     toast.success('Successfully Signed In')
   }catch(err){
@@ -49,7 +49,7 @@ const Login= () => {
             name='email'
             onChange={e=>setEmail(e.target.value)}
             placeholder="Email address"
-            className="mb-6 w-full px-4 py-2 text-md text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out"
+            className="mb-6 w-full px-4 py-2 text-md text-gray-700 bg-white border border-gray-300 rounded-full transition ease-in-out"
           />
           <div className="relative mb-6">
             <input
@@ -58,7 +58,7 @@ const Login= () => {
              name='password'
               onChange={e=>setPassword(e.target.value)}
               placeholder="Password"
-              className="w-full px-4 py-2 text-md border text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
+              className="w-full px-4 py-2 text-md border text-gray-700 bg-white border-gray-300 rounded-full transition ease-in-out"
             />
             {showPassword ? (
               <AiFillEyeInvisible
@@ -92,7 +92,7 @@ const Login= () => {
             </p>
           </div>
           <button
-            className="w-full bg-[#17202A] text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
+            className="w-full bg-orange-600 text-white px-7 py-3 text-sm font-bold uppercase rounded-full shadow-md transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
             type="submit"
           >
             Login

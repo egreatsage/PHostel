@@ -96,10 +96,7 @@ const AddBooking = ({id, setBookingId}) => {
         <Nav/>
       </div>
         <div className='mt-20 overflow-x-hidden'>
-
 <form onSubmit={handleSubmit}>
-
-
  <div className="md:mx-4 mx-2">
      <h1 className="text-xl font-semibold my-4">
         Personal Information
