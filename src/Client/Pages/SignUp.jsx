@@ -22,9 +22,17 @@ const SignUp = () => {
     setTimeout(() => {
       navigate('/booking')
      }, 6000);
-    toast.success('Successfully Signed Up')
+   
   }catch(err){
-    toast.error('Problem Signing in,Try again')
+    Swal.fire({
+      title: 'Error!',
+      text: 'Problem signing in, please try again',
+      icon: 'error',
+      timer:3000,
+      width:400,
+      position:'top-right',
+      confirmButtonText: 'Close'
+    })
           }  
       }    
   return (

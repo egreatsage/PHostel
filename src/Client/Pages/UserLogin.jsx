@@ -26,7 +26,6 @@ const UserLogin = () => {
       icon: 'error',
       title: 'Wrong Email or Password',
       showConfirmButton: true,
-      height:200,
       timer: 2000
     })
           }  

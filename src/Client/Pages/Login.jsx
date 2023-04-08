@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import OAuth from '../../Common/OAuth'
 import { useUserAuth } from '../../Common/UserAuthContext'
 import Navbar from '../Components/Navbar'
+import Swal from 'sweetalert2'
 
 
 const Login= () => {
@@ -21,9 +21,17 @@ const Login= () => {
     setTimeout(() => {
       navigate('/studentprofile')
      }, 6000);
-    toast.success('Successfully Signed In')
+ 
   }catch(err){
-    toast.error('Problem Signing in,Try again')
+    Swal.fire({
+      title: 'Error!',
+      text: 'Problem signing in, please try again',
+      icon: 'error',
+      timer:3000,
+      width:400,
+      position:'top-right',
+      confirmButtonText: 'Close'
+    })
           }  
       }        
   return (
