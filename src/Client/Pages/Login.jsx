@@ -20,7 +20,7 @@ const Login= () => {
     await logIn(email,password);
     setTimeout(() => {
       navigate('/studentprofile')
-     }, 6000);
+     }, 1000);
  
   }catch(err){
     Swal.fire({

@@ -22,7 +22,7 @@ const UserSignUp = () => {
     await signUp(username, email,password);
     setTimeout(() => {
       navigate('/booking')
-     }, 3000);
+     }, 1000);
   }catch(err){
    
           }  

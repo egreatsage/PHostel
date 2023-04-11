@@ -3,11 +3,37 @@ import { Link } from 'react-router-dom'
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Navbar from '../Components/Navbar'
 import { AiOutlineArrowRight } from 'react-icons/ai'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import "swiper/css/bundle";
+import SwiperCore, {
+  EffectFade,
+  Autoplay,
+  Navigation,
+  Pagination,
+} from "swiper";
 const Home = () => {
+ 
   return (
     <div className='mt-20 scroll-smooth'>
       <div>
       <Navbar/>
+      </div>
+      <div>
+          <div id="container">
+          Safe
+          <div id="flip">
+            <div className="">
+              <div className="">
+                Secure
+              </div>
+              <div>Satisfactory</div>
+              <div>
+                Confidental
+              </div>
+            </div>
+            Awesome
+          </div>
+          </div>
       </div>
       <div className='grid md:grid-cols-2 gap-4'>
         <div className='grid-cols-2 grid justify-center mx-1 md:mx-4 my-4 px-2'>
@@ -37,7 +63,7 @@ const Home = () => {
 </div>
 
 <Link to='/userlogin'>
-<button className='flex gap-3 border py-2 px-20 transition-all transition-400 w-full bg-orange-600 text rounded-full animate-pulse text-white font-extrabold items-center ml-5'>
+<button className='flex gap-3 border border-orange-700 py-2 px-10 transition-all transition-400 w-full bg-none text rounded-full animate-pulse text-black font-extrabold items-center ml-5'>
   <span>Book Now</span>
   <span><AiOutlineArrowRight className='text-2xl font-bold animate-pulse'/></span>
 </button>
@@ -181,6 +207,17 @@ const Home = () => {
 </div>
         </div>
       </div> 
+      <div>
+        <div className="testm">
+          <div><img src="https://w7.pngwing.com/pngs/446/646/png-transparent-saitama-illustration-one-punch-man-saitama-manga-sticker-one-punch-man-white-child-face-thumbnail.png" alt="" /></div>
+          <div><img src="https://w7.pngwing.com/pngs/446/646/png-transparent-saitama-illustration-one-punch-man-saitama-manga-sticker-one-punch-man-white-child-face-thumbnail.png" alt="" /></div>
+          <div><img src="https://w7.pngwing.com/pngs/446/646/png-transparent-saitama-illustration-one-punch-man-saitama-manga-sticker-one-punch-man-white-child-face-thumbnail.png" alt="" /></div>
+          <div><img src="https://w7.pngwing.com/pngs/446/646/png-transparent-saitama-illustration-one-punch-man-saitama-manga-sticker-one-punch-man-white-child-face-thumbnail.png" alt="" /></div>
+          <div><img src="https://w7.pngwing.com/pngs/446/646/png-transparent-saitama-illustration-one-punch-man-saitama-manga-sticker-one-punch-man-white-child-face-thumbnail.png" alt="" /></div>
+          <div><img src="https://w7.pngwing.com/pngs/446/646/png-transparent-saitama-illustration-one-punch-man-saitama-manga-sticker-one-punch-man-white-child-face-thumbnail.png" alt="" /></div>
+        </div>
+      </div>
+    
     </div>
   )
 }

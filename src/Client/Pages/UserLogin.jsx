@@ -19,7 +19,7 @@ const UserLogin = () => {
     await logIn(email,password);
     setTimeout(() => {
       navigate('/booking')
-     }, 3000);
+     }, 1000);
   }catch(err){
     Swal.fire({
       position: 'top-end',
