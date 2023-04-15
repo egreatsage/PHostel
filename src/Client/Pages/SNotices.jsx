@@ -1,17 +1,33 @@
-import { Button } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
 import dbdataservice from "../../Common/Operations"
 import Navbar from '../Components/Navbar';
+import Loader from '../Components/Loader';
+import Swal from 'sweetalert2';
+
 const SNotices = () => {
   const [notices, setNotices] = useState([]);
+    const [loading, setloading] = useState(true)
   useEffect(() => {
     getAllNotices();
   }, []);
   const getAllNotices = async () => {
-    const data = await dbdataservice.getAllNotices();
+
+    try {
+        const data = await dbdataservice.getAllNotices();
     setNotices(data.docs.map((doc) => ({ ...doc.data(),
       id: doc.id })));
+      setloading(false)
+    } catch (error) {
+         Swal.fire({
+        text: 'Problem fetching details,please try again',
+        icon: 'error',
+        timer:3000,
+        width:400,
+        position:'top-right',
+        confirmButtonText: 'Close'
+      })
+    }
+  
   };
   return (
     <div>
@@ -19,9 +35,12 @@ const SNotices = () => {
         <Navbar/>
       </div>
       <div className='md:mx-9 md:px-9 md:my-6 mt-20'>
-        
       <h1 className='text-center mb-4 font-extrabold pt-3 underline'>Hostel Notices</h1>
-       {notices.map((doc)=>{
+      {loading ?(
+         <Loader/>
+        ):
+        <div>
+ {notices.map((doc)=>{
              return(
         <div className='border mt-3 md:px-8 w-full mb-4 rounded-md border-black'>
                 <div className='tracking-widestmt-3 font-bold '>
@@ -40,6 +59,9 @@ const SNotices = () => {
         </div>
            )
           })}
+        </div>
+      
+        }
     </div>
     </div>
     

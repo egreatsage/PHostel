@@ -5,6 +5,7 @@ import { useUserAuth } from '../../Common/UserAuthContext';
 import dbdataservice from '../../Common/Operations'
 import Navbar from '../Components/Navbar';
 import Swal from 'sweetalert2';
+import Loader from '../Components/Loader';
 const Booking = () => {
 
     const {user} = useUserAuth();
@@ -26,6 +27,8 @@ const Booking = () => {
     const [MaritalStatus, setMaritalStatus] = useState('');
     const [Homecounty, setHomecounty] = useState('');
     const navigate = useNavigate();
+
+    const [loading, setloading] = useState(false)
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -44,11 +47,12 @@ const Booking = () => {
             position:'top-right',
             confirmButtonText: 'Close'
           })
+          setloading(true)
             navigate('/reply');
       } catch (err) {
         Swal.fire({
           text: 'Problem submitting details,please try again',
-          icon: 'success',
+          icon: 'error',
           timer:3000,
           width:400,
           position:'top-right',
@@ -66,6 +70,10 @@ const Booking = () => {
       <div>
         <Navbar/>
       </div>
+
+      {loading ?(
+         <Loader/>
+        ):
         <div className='mt-20 overflow-x-hidden'>
 
 <form onSubmit={handleSubmit}>
@@ -75,6 +83,7 @@ const Booking = () => {
      <h1 className="text-xl font-semibold my-4">
         Personal Information
      </h1>
+    
 <div className='grid md:grid-cols-3 gap-2'>
     <div>
     <label className='tracking-tighter'>Full Name</label>
@@ -213,6 +222,7 @@ const Booking = () => {
  </div>
  </form> 
 </div>
+}
     </div>
  
   )

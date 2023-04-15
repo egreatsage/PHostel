@@ -30,12 +30,12 @@ const Bookings = ({ getBookingId }) => {
         sheet: 'Booking List'
     })
   return (
-    <div>
+    <div className='overflow-y-auto ovaflo'>
     <Nav/>
-    <div className='md:flex md:justify-between overflow-x-hidden  mt-20 mx-5'>
+    <div className='md:flex md:justify-between overflow-x-hidden   mt-20 mx-5'>
         <div className='md:mx-3 md:mt-10 w-full md:ml-5'>
         <h1 className=' md:text-xl text-md font-semibold tracking-wider text-gray-700'>Booking Details</h1>
-               <div className='overflow-hidden'>
+               <div className='overflow-hidden ovaflo'>
            <div className="flex my-3">
             <Link to='/addbooking' className='text-sm mx-2 hover:underline hover:font-bold'>Add</Link>
             <button className='text-sm hover:font-bold hover:underline'  onClick={getAllBookings} > Refresh</button>

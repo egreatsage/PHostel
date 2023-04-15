@@ -26,8 +26,12 @@ const StudentProfile = () => {
       }, []);
       const getAllOccupants = async () => {
         const data = await dbdataservice.getAllOccupants();
-        setOccupants(data.docs.map((doc) => ({ ...doc.data(),
-          id: doc.id })));
+        if (data === null) {
+          // Display message if data is null
+          console.log('Data is null');
+        } else {
+          setOccupants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        }
       };
 
     const componentRef = useRef();
