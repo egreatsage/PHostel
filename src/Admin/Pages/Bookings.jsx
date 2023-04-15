@@ -32,7 +32,7 @@ const Bookings = ({ getBookingId }) => {
   return (
     <div className='overflow-y-auto ovaflo'>
     <Nav/>
-    <div className='md:flex md:justify-between overflow-x-hidden   mt-20 mx-5'>
+    <div className='md:flex md:justify-between overflow-x-hidden  mb-20  mt-20 mx-5'>
         <div className='md:mx-3 md:mt-10 w-full md:ml-5'>
         <h1 className=' md:text-xl text-md font-semibold tracking-wider text-gray-700'>Booking Details</h1>
                <div className='overflow-hidden ovaflo'>
