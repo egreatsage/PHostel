@@ -1,14 +1,15 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
+import Testimonials from './Testimonials'
+
+
+// Import Swiper styles
+
 const Home = () => {
   return (
-    <div>
-      <div className="mt-1">
-        <Navbar/>
-      </div>
-      <div className='mt-20'>
-            home
-      </div>
+    <div >
+   <div className='flex  content-center my-20'>
+    <Testimonials/>
+   </div>
     </div>
   )
 }

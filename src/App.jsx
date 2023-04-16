@@ -23,6 +23,7 @@ import { useState } from 'react'
 import UserLogin from './Client/Pages/UserLogin'
 import UserSignUp from './Client/Pages/UserSignUp'
 import MyProfile from './Common/MyProfile'
+import Testimonials from './Client/Pages/Testimonials'
 function App() {
   const [bookingId, setBookingId] = useState('');
   const [occupantId, setOccupantId] = useState('');
@@ -61,7 +62,6 @@ function App() {
           <Route path='/allocate' element={<Allocate id={bookingId} setBookingId={setBookingId} />}/>
         </Routes>
         </BrowserRouter>
-
   </div>
   
   )
