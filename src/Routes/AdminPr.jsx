@@ -9,5 +9,4 @@ const AdminPr = ({children}) => {
   }
   return  children;
 }
-
 export default AdminPr 

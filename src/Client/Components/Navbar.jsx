@@ -25,7 +25,7 @@ const Navbar = () => {
   }
   return (
     <div>
-      <div className='fixed w-full top-0 z-50 px-2 bg-gray-50 py-2  '>
+      <div className='fixed w-full top-0 z-50 px-2 bg-white py-2  '>
       <header className="flex justify-between items-center px-2 max-w-6xl mx-auto">
         <div className="flex">
           <span  onClick={() => navigate("/")}

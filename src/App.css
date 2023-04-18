@@ -6,11 +6,6 @@
     box-sizing: border-box;
     overflow: hidden;
 }
-.navbar{
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
 .logo
 {
     width: 50px;
@@ -20,6 +15,7 @@
 .menu-icon{
     width: 25px;
     cursor: pointer;
+    display: none;
 }
 nav{
     flex: 1;
@@ -42,7 +38,8 @@ nav ul li a:hover{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 100px 0;
+    margin: 100px 0px;
+   
 }
 .col-1{
     flex-basis: 40%;
@@ -79,7 +76,7 @@ nav ul li a:hover{
     color: whitesmoke;
     font-weight: bolder;
     transition: width 0.5s;
-    background: linear-gradient(to right, #9c7603,#e0b713, #FFC000);
+    background: linear-gradient(to right, #196003,#e0b713, #FFC000);
 }
 .col-1 button img{
     width: 30px;
@@ -98,14 +95,17 @@ nav ul li a:hover{
     content: "";
     width: 7px;
     height: 70%;
-    background: linear-gradient(#E49B0F,#DAA520);
+    background: linear-gradient(orange,green);
     position: absolute;
     left: -40px;
     top: 8px;
+
 }
 .col-2 .bgimage{
     width: 100%;
-    margin-left: 20%;
+    margin-left: 10%;
+    box-shadow: indigo;
+    opacity: 80%;
 }
 .color-box
 {
@@ -128,4 +128,38 @@ nav ul li a:hover{
     height: 20%;
     width: 18%;
     z-index: -7;
+}
+
+@media only screen and (max-width:700px) {
+    nav ul{
+        width: 100%;
+        background: rgb(218, 201, 11);
+        color: white;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        z-index: 2;
+    }
+    nav ul li {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    nav ul li a{
+        color: whitesmoke;
+        font-weight: bold;
+        font-size: 17px;
+    }
+    .menu-icon {
+        display: block;
+        right: 0;
+    }
+    .row{
+        flex-direction: column-reverse;
+        margin: 50px 0;
+    }
+    .col-2 .bgimage{
+      display: none;
+    }
+    
 }
