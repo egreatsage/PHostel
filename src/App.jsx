@@ -11,6 +11,7 @@ import StudentProfile from './Client/Pages/StudentProfile'
 import Reply from './Client/Pages/Reply'
 import ForgotPassword from './Common/ForgotPassword'
 import HostellarPr from './Routes/HostellarPr'
+import AdminPr from './Routes/AdminPr'
 import Rules from './Client/Pages/Rules'
 import Dashboard from './Admin/Pages/Dashboard'
 import Occupants from './Admin/Pages/Occupants'
@@ -23,7 +24,7 @@ import { useState } from 'react'
 import UserLogin from './Client/Pages/UserLogin'
 import UserSignUp from './Client/Pages/UserSignUp'
 import MyProfile from './Common/MyProfile'
-import Testimonials from './Client/Pages/Testimonials'
+import SignIn from './Client/Pages/SignIn'
 function App() {
   const [bookingId, setBookingId] = useState('');
   const [occupantId, setOccupantId] = useState('');
@@ -45,10 +46,11 @@ function App() {
           <Route path='/booking' element={
           <HostellarPr><Booking/></HostellarPr>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/signin' element={<SignIn/>}/>
           <Route path='/userlogin' element={<UserLogin/>}/>
           <Route path='/usersignup' element={<UserSignUp/>}/>
           <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/dashboard' element={<AdminPr><Dashboard/></AdminPr> }/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/notices' element={<SNotices/>}/>
           <Route path='/reply' element={<Reply/>}/>

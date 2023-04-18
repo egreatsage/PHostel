@@ -2,6 +2,7 @@ import React from 'react'
 import { AiFillFacebook, AiFillYoutube, AiOutlineWhatsApp } from 'react-icons/ai'
 import { FaTiktok } from 'react-icons/fa'
 import Navbar from '../Components/Navbar'
+import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     <div>
@@ -12,7 +13,9 @@ const Home = () => {
             <h2>Le Pamus </h2>
             <h3>Mixed Hostels for Students</h3>
             <p>Safe Secure Satisfactor</p>
+            <Link to='/booking'>
             <button type='button'>Book Now <img className='animate-pulse ' src="https://cdn.pixabay.com/photo/2012/04/11/10/24/arrow-27324__340.png" alt="" /></button>
+            </Link>
           </div>
           <div className="col-2">
              <img className='bgimage ' src="https://images.unsplash.com/photo-1522079185018-c7dfc98897c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80" alt="" />

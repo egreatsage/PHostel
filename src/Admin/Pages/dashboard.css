@@ -1,0 +1,30 @@
+:root{
+    --color-main:#1a202e
+}
+*{
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+.sidebar{
+    width: 280px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    padding: 1rem;
+    background: var(--color-main);
+    color: white;
+ 
+}
+.sidebar-brand{
+    height: 100px;
+}
+.brand-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-content{
+    margin-left: 280px;
+}
