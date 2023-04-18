@@ -47,7 +47,8 @@ nav ul li a:hover{
 .col-1{
     flex-basis: 40%;
     position: relative;
-    margin-left: 50px;
+    margin-left: 10px;
+    margin-right: 10%;
 }
 .col-1 h2{
     font-size: 40px;
