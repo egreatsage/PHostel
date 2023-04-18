@@ -52,8 +52,11 @@ nav ul li a:hover{
 }
 .col-1 h2{
     font-size: 40px;
+    font-weight: bolder;
+    color: orange;
+    letter-spacing: 1px;
 }.col-1 h3{
-    font-size: 25px;
+    font-size: 20px;
     color: rgb(158, 149, 149);
     font-weight: 100;
     margin: 20px 0 10px;
