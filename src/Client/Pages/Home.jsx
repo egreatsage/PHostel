@@ -13,7 +13,7 @@ const Home = () => {
             <h2>Le Pamus </h2>
             <h3>Mixed Hostels for Students</h3>
             <p>Safe Secure Satisfactor</p>
-            <Link to='/booking'>
+            <Link to='/userlogin'>
             <button type='button'>Book Now <img className='animate-pulse ' src="https://cdn.pixabay.com/photo/2012/04/11/10/24/arrow-27324__340.png" alt="" /></button>
             </Link>
           </div>
