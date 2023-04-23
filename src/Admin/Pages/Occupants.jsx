@@ -1,13 +1,14 @@
-
 import React, { useState, useEffect, useRef } from 'react'
-import { Link } from "react-router-dom";
+import {  AiOutlineClose, AiOutlineMenu, AiOutlineUser } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 import dbdataservice from '../../Common/Operations';
-import { AiFillEdit, AiOutlineSearch ,AiOutlineDownload} from 'react-icons/ai';
-import { MdOutlineDeleteForever } from 'react-icons/md';
-import { Input, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
-import Nav from '../Components/Nav';
+import { AiFillEdit, AiOutlineSearch } from 'react-icons/ai';
+import { MdLiving, MdOutlineDeleteForever, MdSpaceDashboard } from 'react-icons/md';
+import { Input} from '@material-tailwind/react';
 import { useDownloadExcel } from 'react-export-table-to-excel';
-const Occupants = ({ id, getOccupantId }) => {
+import Profile from '../../Common/Profile'
+import { TbBrandBooking } from 'react-icons/tb';
+const Users = ({ id, getOccupantId }) => {
   const [occupants, setOccupants] = useState([]);
   useEffect(() => {
     getAllOccupants();
@@ -57,9 +58,84 @@ const Occupants = ({ id, getOccupantId }) => {
         sheet: 'Occupants'
     })
   return (
-    <div>
-       <div><Nav/></div>
-       <div className='mt-9 md:mx-14 pt-8 px-2'> 
+  <div>
+      <div>
+      <input type='checkbox' name='' id='sidebar-toggle'/>
+      <div className="sidebar">
+        <div className="sidebar-brand">
+          <div className="brand-flex">
+            <div className="brand-icons flex ">
+              <span>Pamus Admin</span>
+           
+            <label htmlFor='sidebar-toggle' className='md:hidden mt-2 flex ml-14'>
+            <span>
+              <AiOutlineClose className='cursor-pointer'/>
+            </span>
+            </label>
+         
+            </div>
+          </div>
+        </div>
+        <div className="sidebar-main">
+          <div className="sidebar-user">
+            <img src="" alt="" />
+            <div>
+              <h3>The Admin</h3>
+              <span>
+                Admin@gmail.com
+              </span>
+              <span>
+           </span>
+            </div>
+          </div>
+          <div className="sidebar-menu">
+            <div className="menu-head">
+              <span>Dashboard</span>
+              <ul className='mt-7'>
+                <Link className='flex gap-2 my-3 items-center' to='/dashboard'>
+                <span><MdSpaceDashboard/></span>
+                <h1>Dashboard</h1>
+                </Link>
+                <Link className='flex gap-2 my-3 items-center' to='/bookings'>
+                <span><TbBrandBooking/></span>
+                <h1>Bookings</h1>
+                </Link>
+                <Link className='flex gap-2 my-3 items-center' to='/occupants'>
+                <span><MdLiving/></span>
+                <h1>Occupants</h1>
+                </Link>
+                <Link className='flex gap-2 my-3' to='/occupants'>
+                <span><AiOutlineUser/></span>
+                <h1>Occupants</h1>
+                </Link>
+                <Link className='flex gap-2 my-3' to='/occupants'>
+                <span><AiOutlineUser/></span>
+                <h1>Occupants</h1>
+                </Link>
+               
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    <div className="main-content">
+
+    <header>
+           <div className="menu-toggle">
+            <label htmlFor='sidebar-toggle'>
+            <span>
+              <AiOutlineMenu/>
+            </span>
+            </label>
+           </div>
+            <div className='header-icons'>
+             <Profile/>
+            </div>
+          </header>
+          <main>
+          <div>
+       <div className='mt-9  pt-8 '> 
      <p className='text-xl text-gray-600 mt-8 text-center'>Occupants Details</p>
      <div className="md:flex md:justify-between">
      <div className="mt-6 flex gap-6">
@@ -168,7 +244,13 @@ const Occupants = ({ id, getOccupantId }) => {
   </div>
 </div>
     </div>
+          </main>
+      </div> 
+        <label htmlFor="sidebar-toggle" className='body-label'/>
+    </div>
+   
+  </div>
   )
 }
 
-export default Occupants
+export default Users

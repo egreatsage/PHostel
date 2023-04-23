@@ -1,83 +1,158 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useUserAuth } from '../../Common/UserAuthContext';
-import dbdataservice from '../../Common/Operations'
-import Nav from '../Components/Nav';
-import { useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import dbdataservice from '../../Common/Operations';
+import {AiOutlineClose, AiOutlineMenu, AiOutlineUser} from 'react-icons/ai';
+import Profile from '../../Common/Profile';
+import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
-const Allocate = ({id}) => {
-    const [FName, setFName] = useState('');
-    const [email, setEmail] = useState('');
-    const [Gender, setGender] = useState('');
-    const [PNumber, setPNumber] = useState('');
-    const [Age, setAge] = useState('');
-    const [RoomNo, setRoomNo] = useState('');
-    const [EntryDate, setEntryDate] = useState('');
-    const [ExitDate, setExitDate] = useState('');
+import { MdLiving, MdSpaceDashboard } from "react-icons/md";
+import { TbBrandBooking } from "react-icons/tb";
+const AddBooking = ({ id, setOccupantId }) => {
+  const [FName, setFName] = useState('');
+  const [email, setEmail] = useState('');
+  const [Gender, setGender] = useState('');
+  const [PNumber, setPNumber] = useState('');
+  const [Age, setAge] = useState('');
+  const [RoomNo, setRoomNo] = useState('');
+  const [EntryDate, setEntryDate] = useState('');
+  const [ExitDate, setExitDate] = useState('');
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-      setOccupantId("");
-      e.preventDefault();
-      const newOccupant = {
-       FName,Gender,PNumber,Age,email,RoomNo,EntryDate,ExitDate
-      };
-      try {
-          await dbdataservice.addOccupant(newOccupant);
-          setTimeout(() => {
-            Swal.fire({
-              title: 'Success!',
-              text: 'Details Added Successfully',
-              icon: 'success',
-              confirmButtonText: 'Close'
-            })
-        }, 1000);
-        setTimeout(() => {
-          navigate('/occupants');
-        }, 3000);
-      } catch (err) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Problem Adding Details',
-          icon: 'error',
-          confirmButtonText: 'Close'
-        })
-      }
-      setFName("");setGender("");setPGContact("");setPNumber("");
-      setAge(""); setEntryDate('');setExitDate();setRoomNo('');
-      
+  const handleSubmit = async (e) => {
+    setOccupantId("");
+    e.preventDefault();
+    const newOccupant = {
+     FName,Gender,PNumber,Age,email,RoomNo,EntryDate,ExitDate
     };
-    const editHandler = async () => {
-       try {
-         const docSnap = await dbdataservice.getBooking(id);
-         setFName(docSnap.data().FName);
-         setGender(docSnap.data().Gender);
-         setPNumber(docSnap.data().PNumber);
-         setRoomNo(docSnap.data().RoomNo);
-         setAge(docSnap.data().Age);
-         setEntryDate(docSnap.data().EntryDate);
-         setExitDate(docSnap.data().ExitDate);
-         setEmail(docSnap.data().email);
-       } catch (err) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Error Editing Document',
-          icon: 'error',
-          confirmButtonText: 'Close'
-        })
-       }
-     };
-     useEffect(() => {
-       if (id !== undefined && id !== "") {
-         editHandler();
-       }   //eslint-disable-next-line
-     }, [id]);
+    try {
+        await dbdataservice.addOccupant(newOccupant);
+        setTimeout(() => {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Details Added Successfully',
+            icon: 'success',
+            confirmButtonText: 'Close'
+          })
+      }, 1000);
+      setTimeout(() => {
+        navigate('/occupants');
+      }, 3000);
+    } catch (err) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Problem Adding Details',
+        icon: 'error',
+        confirmButtonText: 'Close'
+      })
+    }
+    setFName("");setGender("");setPGContact("");setPNumber("");
+    setAge(""); setEntryDate('');setExitDate();setRoomNo('');
+    
+  };
+  const editHandler = async () => {
+     try {
+       const docSnap = await dbdataservice.getBooking(id);
+       setFName(docSnap.data().FName);
+       setGender(docSnap.data().Gender);
+       setPNumber(docSnap.data().PNumber);
+       setRoomNo(docSnap.data().RoomNo);
+       setAge(docSnap.data().Age);
+       setEntryDate(docSnap.data().EntryDate);
+       setExitDate(docSnap.data().ExitDate);
+       setEmail(docSnap.data().email);
+     } catch (err) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Error Editing Document',
+        icon: 'error',
+        confirmButtonText: 'Close'
+      })
+     }
+   };
+   useEffect(() => {
+     if (id !== undefined && id !== "") {
+       editHandler();
+     }   //eslint-disable-next-line
+   }, [id]);
   return (
-    <div className='overflow-y-auto'>
+  <div>
       <div>
-        <Nav/>
+      <input type='checkbox' name='' id='sidebar-toggle'/>
+      <div className="sidebar">
+        <div className="sidebar-brand">
+          <div className="brand-flex">
+            <div className="brand-icons flex ">
+              <span>Pamus Admin</span>
+           
+            <label htmlFor='sidebar-toggle' className='md:hidden mt-2 flex ml-14'>
+            <span>
+              <AiOutlineClose className='cursor-pointer'/>
+            </span>
+            </label>
+         
+            </div>
+          </div>
+        </div>
+        <div className="sidebar-main">
+          <div className="sidebar-user">
+            <img src="" alt="" />
+            <div>
+              <h3>The Admin</h3>
+              <span>
+                Admin@gmail.com
+              </span>
+              <span>
+           </span>
+            </div>
+          </div>
+          <div className="sidebar-menu">
+            <div className="menu-head">
+              <span>Dashboard</span>
+              <ul className='mt-7'>
+                <Link className='flex gap-2 my-3 items-center' to='/dashboard'>
+                <span><MdSpaceDashboard/></span>
+                <h1>Dashboard</h1>
+                </Link>
+                <Link className='flex gap-2 my-3 items-center' to='/bookings'>
+                <span><TbBrandBooking/></span>
+                <h1>Bookings</h1>
+                </Link>
+                <Link className='flex gap-2 my-3 items-center' to='/occupants'>
+                <span><MdLiving/></span>
+                <h1>Occupants</h1>
+                </Link>
+                <Link className='flex gap-2 my-3' to='/occupants'>
+                <span><AiOutlineUser/></span>
+                <h1>Occupants</h1>
+                </Link>
+                <Link className='flex gap-2 my-3' to='/occupants'>
+                <span><AiOutlineUser/></span>
+                <h1>Occupants</h1>
+                </Link>
+               
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    <div className="main-content">
+
+    <header>
+           <div className="menu-toggle">
+            <label htmlFor='sidebar-toggle'>
+            <span>
+              <AiOutlineMenu/>
+            </span>
+            </label>
+           </div>
+            <div className='header-icons'>
+             <Profile/>
+            </div>
+          </header>
+          <main>
+          <div className='overflow-y-auto'>
+      <div>
       </div>
         <div className='mt-20 overflow-x-hidden'>
 
@@ -148,7 +223,13 @@ const Allocate = ({id}) => {
  </form> 
 </div>
     </div>
- 
+          </main>
+      </div> 
+        <label htmlFor="sidebar-toggle" className='body-label'/>
+    </div>
+   
+  </div>
   )
 }
-export default Allocate
+
+export default AddBooking

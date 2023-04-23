@@ -1,99 +1,173 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useUserAuth } from '../../Common/UserAuthContext';
-import dbdataservice from '../../Common/Operations'
-import Nav from '../Components/Nav';
-import { useEffect } from 'react';
-import Swal from 'sweetalert2';
+import React, { useState, useEffect, useRef } from 'react'
+import { Link, useNavigate } from "react-router-dom";
+import dbdataservice from '../../Common/Operations';
+import {AiOutlineClose, AiOutlineMenu, AiOutlineUser} from 'react-icons/ai';
+import {TbBrandBooking} from 'react-icons/tb';
+import Profile from '../../Common/Profile';
+import { MdLiving, MdSpaceDashboard } from 'react-icons/md';
 const AddBooking = ({id, setBookingId}) => {
-    const [FName, setFName] = useState('');
-    const [PNumber, setPNumber] = useState('');
-    const [email, setEmail] = useState('');
-    const [PGEmail, setPGEmail] = useState('');
-    const [EEmail, setEEmail] = useState('');
-    const [Gender, setGender] = useState('');
-    const [Age, setAge] = useState('');
-    const [PGContact, setPGContact] = useState('');
-    const [PGName, setPGName] = useState('');
-    const [EName, setEName] = useState('');
-    const [EContact, setEContact] = useState('');
-    const [Relation, setRelation] = useState('');
-    const [Institution, setInstitution] = useState('');
-    const [YearOfStudy, setYearOfStudy] = useState('');
-    const [MaritalStatus, setMaritalStatus] = useState('');
-    const [Homecounty, setHomecounty] = useState('');
-    const navigate = useNavigate();
-    const handleSubmit = async (e) => {
-      setBookingId("");
-      e.preventDefault();
-      const newBooking = {
-       FName,Gender,PNumber,PGContact,Age,PGName,
-       EName,EContact,Relation,Institution,YearOfStudy,
-       MaritalStatus,Homecounty,email,PGEmail,EEmail,
-      };
-      try {
-          await dbdataservice.addBooking(newBooking);
-          setTimeout(() => {
-            Swal.fire({
-              title: 'Success!',
-              text: 'Details Added Successfully',
-              icon: 'success',
-              confirmButtonText: 'Close'
-            })
-        }, 1000);
-        setTimeout(() => {
-          navigate('/bookings');
-        }, 3000);
-      } catch (err) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Problem Adding Details',
-          icon: 'error',
-          confirmButtonText: 'Close'
-        })
-      }
-      setFName("");setGender("");setPGContact("");setPNumber("");
-      setAge("");setPGName(""); setEName(''); setEContact(''); setRelation(''); 
-      setInstitution(''); setMaritalStatus('');setPGEmail('');
-      setYearOfStudy(''); setHomecounty('');setEmail("");setEEmail('');
-      
+  const [FName, setFName] = useState('');
+  const [PNumber, setPNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [PGEmail, setPGEmail] = useState('');
+  const [EEmail, setEEmail] = useState('');
+  const [Gender, setGender] = useState('');
+  const [Age, setAge] = useState('');
+  const [PGContact, setPGContact] = useState('');
+  const [PGName, setPGName] = useState('');
+  const [EName, setEName] = useState('');
+  const [EContact, setEContact] = useState('');
+  const [Relation, setRelation] = useState('');
+  const [Institution, setInstitution] = useState('');
+  const [YearOfStudy, setYearOfStudy] = useState('');
+  const [MaritalStatus, setMaritalStatus] = useState('');
+  const [Homecounty, setHomecounty] = useState('');
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    setBookingId("");
+    e.preventDefault();
+    const newBooking = {
+     FName,Gender,PNumber,PGContact,Age,PGName,
+     EName,EContact,Relation,Institution,YearOfStudy,
+     MaritalStatus,Homecounty,email,PGEmail,EEmail,
     };
-    const editHandler = async () => {
-       try {
-         const docSnap = await dbdataservice.getBooking(id);
-         setFName(docSnap.data().FName);
-         setGender(docSnap.data().Gender);
-         setPNumber(docSnap.data().PNumber);
-         setPGContact(docSnap.data().PGContact);
-         setAge(docSnap.data().Age);
-         setPGName(docSnap.data().PGName);
-         setEName(docSnap.data().EName);
-         setEContact(docSnap.data().EContact);
-         setRelation(docSnap.data().Relation);
-         setInstitution(docSnap.data().Institution);
-         setYearOfStudy(docSnap.data().YearOfStudy);
-         setMaritalStatus(docSnap.data().MaritalStatus);
-         setHomecounty(docSnap.data().Homecounty);
-       } catch (err) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Error Editing Document',
-          icon: 'error',
-          confirmButtonText: 'Close'
-        })
-       }
-     };
-     useEffect(() => {
-       if (id !== undefined && id !== "") {
-      
-         editHandler();
-       }   //eslint-disable-next-line
-     }, [id]);
+    try {
+        await dbdataservice.addBooking(newBooking);
+        setTimeout(() => {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Details Added Successfully',
+            icon: 'success',
+            confirmButtonText: 'Close'
+          })
+      }, 1000);
+      setTimeout(() => {
+        navigate('/bookings');
+      }, 3000);
+    } catch (err) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Problem Adding Details',
+        icon: 'error',
+        confirmButtonText: 'Close'
+      })
+    }
+    setFName("");setGender("");setPGContact("");setPNumber("");
+    setAge("");setPGName(""); setEName(''); setEContact(''); setRelation(''); 
+    setInstitution(''); setMaritalStatus('');setPGEmail('');
+    setYearOfStudy(''); setHomecounty('');setEmail("");setEEmail('');
+    
+  };
+  const editHandler = async () => {
+     try {
+       const docSnap = await dbdataservice.getBooking(id);
+       setFName(docSnap.data().FName);
+       setGender(docSnap.data().Gender);
+       setPNumber(docSnap.data().PNumber);
+       setPGContact(docSnap.data().PGContact);
+       setAge(docSnap.data().Age);
+       setPGName(docSnap.data().PGName);
+       setEName(docSnap.data().EName);
+       setEContact(docSnap.data().EContact);
+       setRelation(docSnap.data().Relation);
+       setInstitution(docSnap.data().Institution);
+       setYearOfStudy(docSnap.data().YearOfStudy);
+       setMaritalStatus(docSnap.data().MaritalStatus);
+       setHomecounty(docSnap.data().Homecounty);
+     } catch (err) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Error Editing Document',
+        icon: 'error',
+        confirmButtonText: 'Close'
+      })
+     }
+   };
+   useEffect(() => {
+     if (id !== undefined && id !== "") {
+    
+       editHandler();
+     }   //eslint-disable-next-line
+   }, [id]);
   return (
-    <div className='overflow-y-auto'>
+  <div>
       <div>
-        <Nav/>
+      <input type='checkbox' name='' id='sidebar-toggle'/>
+      <div className="sidebar">
+        <div className="sidebar-brand">
+          <div className="brand-flex">
+            <div className="brand-icons flex ">
+              <span>Pamus Admin</span>
+           
+            <label htmlFor='sidebar-toggle' className='md:hidden mt-2 flex ml-14'>
+            <span>
+              <AiOutlineClose className='cursor-pointer'/>
+            </span>
+            </label>
+         
+            </div>
+          </div>
+        </div>
+        <div className="sidebar-main">
+          <div className="sidebar-user">
+            <img src="" alt="" />
+            <div>
+              <h3>The Admin</h3>
+              <span>
+                Admin@gmail.com
+              </span>
+              <span>
+           </span>
+            </div>
+          </div>
+          <div className="sidebar-menu">
+            <div className="menu-head">
+              <span>Dashboard</span>
+              <ul className='mt-7'>
+                <Link className='flex gap-2 my-3 items-center' to='/dashboard'>
+                <span><MdSpaceDashboard/></span>
+                <h1>Dashboard</h1>
+                </Link>
+                <Link className='flex gap-2 my-3 items-center' to='/bookings'>
+                <span><TbBrandBooking/></span>
+                <h1>Bookings</h1>
+                </Link>
+                <Link className='flex gap-2 my-3 items-center' to='/occupants'>
+                <span><MdLiving/></span>
+                <h1>Occupants</h1>
+                </Link>
+                <Link className='flex gap-2 my-3' to='/occupants'>
+                <span><AiOutlineUser/></span>
+                <h1>Occupants</h1>
+                </Link>
+                <Link className='flex gap-2 my-3' to='/occupants'>
+                <span><AiOutlineUser/></span>
+                <h1>Occupants</h1>
+                </Link>
+               
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    <div className="main-content">
+
+    <header>
+           <div className="menu-toggle">
+            <label htmlFor='sidebar-toggle'>
+            <span>
+              <AiOutlineMenu/>
+            </span>
+            </label>
+           </div>
+            <div className='header-icons'>
+             <Profile/>
+            </div>
+          </header>
+          <main>
+          <div>
+      <div>
       </div>
         <div className='mt-20 overflow-x-hidden'>
 <form onSubmit={handleSubmit}>
@@ -240,7 +314,13 @@ const AddBooking = ({id, setBookingId}) => {
  </form> 
 </div>
     </div>
- 
+          </main>
+      </div> 
+        <label htmlFor="sidebar-toggle" className='body-label'/>
+    </div>
+   
+  </div>
   )
 }
+
 export default AddBooking

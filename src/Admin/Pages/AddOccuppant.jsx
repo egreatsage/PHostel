@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import dbdataservice from '../../Common/Operations';
-import Nav from '../Components/Nav';
+import {AiOutlineClose, AiOutlineMenu, AiOutlineUser} from 'react-icons/ai';
+import Profile from '../../Common/Profile';
+import React, { useEffect, useState } from 'react'
+import {TbBrandBooking} from 'react-icons/tb';
 import Swal from 'sweetalert2';
-
-const AddOccupant = ({ id, setOccupantId }) => {
+import { MdLiving, MdSpaceDashboard } from "react-icons/md";
+const AddBooking = ({ id, setOccupantId }) => {
   const [FName, setFName] = useState('');
   const [PNumber, setPNumber] = useState('');
   const [Gender, setGender] = useState('');
   const [RoomNo, setRoomNo] = useState('');
   const [EntryDate, setEntryDate] = useState('');
   const [ExitDate, setExitDate] = useState('');
-
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -83,9 +84,85 @@ const AddOccupant = ({ id, setOccupantId }) => {
     } //eslint-disable-next-line
   }, [id]);
   return (
-    <div>
+  <div>
       <div>
-        <Nav/>
+      <input type='checkbox' name='' id='sidebar-toggle'/>
+      <div className="sidebar">
+        <div className="sidebar-brand">
+          <div className="brand-flex">
+            <div className="brand-icons flex ">
+              <span>Pamus Admin</span>
+           
+            <label htmlFor='sidebar-toggle' className='md:hidden mt-2 flex ml-14'>
+            <span>
+              <AiOutlineClose className='cursor-pointer'/>
+            </span>
+            </label>
+         
+            </div>
+          </div>
+        </div>
+        <div className="sidebar-main">
+          <div className="sidebar-user">
+            <img src="" alt="" />
+            <div>
+              <h3>The Admin</h3>
+              <span>
+                Admin@gmail.com
+              </span>
+              <span>
+           </span>
+            </div>
+          </div>
+          <div className="sidebar-menu">
+            <div className="menu-head">
+              <span>Dashboard</span>
+              <ul className='mt-7'>
+                <Link className='flex gap-2 my-3 items-center' to='/dashboard'>
+                <span><MdSpaceDashboard/></span>
+                <h1>Dashboard</h1>
+                </Link>
+                <Link className='flex gap-2 my-3 items-center' to='/bookings'>
+                <span><TbBrandBooking/></span>
+                <h1>Bookings</h1>
+                </Link>
+                <Link className='flex gap-2 my-3 items-center' to='/occupants'>
+                <span><MdLiving/></span>
+                <h1>Occupants</h1>
+                </Link>
+                <Link className='flex gap-2 my-3' to='/occupants'>
+                <span><AiOutlineUser/></span>
+                <h1>Occupants</h1>
+                </Link>
+                <Link className='flex gap-2 my-3' to='/occupants'>
+                <span><AiOutlineUser/></span>
+                <h1>Occupants</h1>
+                </Link>
+               
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    <div className="main-content">
+
+    <header>
+           <div className="menu-toggle">
+            <label htmlFor='sidebar-toggle'>
+            <span>
+              <AiOutlineMenu/>
+            </span>
+            </label>
+           </div>
+            <div className='header-icons'>
+             <Profile/>
+            </div>
+          </header>
+          <main>
+          <div>
+      <div>
+      
       </div>
         <div className='mt-20 overflow-x-hidden'>
 <form onSubmit={handleSubmit}>
@@ -144,7 +221,13 @@ const AddOccupant = ({ id, setOccupantId }) => {
  </form> 
 </div>
     </div>
+          </main>
+      </div> 
+        <label htmlFor="sidebar-toggle" className='body-label'/>
+    </div>
+   
+  </div>
   )
 }
 
-export default AddOccupant
+export default AddBooking
