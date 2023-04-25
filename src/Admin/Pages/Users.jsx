@@ -1,62 +1,33 @@
-import React, { useState, useEffect } from "react";
-
-import "firebase/firestore";
+import React from 'react'
 import { db } from "../../Common/dbconfig";
 
-function Users() {
-  const [rooms, setRooms] = useState([]);
+const Users = () => {
+    const docRef = db.collection('your_collection_name').doc('your_document_id'); // Replace 'your_collection_name' with the actual name of your collection and 'your_document_id' with the actual document ID
 
-  useEffect(() => {
-    const unsubscribe = db.collection("rooms").onSnapshot((snapshot) => {
-      const data = snapshot.docs.map((doc) => {
-        return {
-          id: doc.id,
-          ...doc.data(),
-        };
-      });
-      setRooms(data);
-    });
+// Fetch the document
+docRef.get()
+.then(doc => {
+  if (doc.exists) {
+    // Store the document data in an array
+    const dataArray = [];
+    dataArray.push(doc.data());
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+    // Get the length of the array
+    const arrayLength = dataArray.length;
 
-  const handleAddRoom = (event) => {
-    event.preventDefault();
-    const roomName = event.target.elements.roomName.value;
-    const roomDescription = event.target.elements.roomDescription.value;
-    db.collection("rooms").add({
-      name: roomName,
-      description: roomDescription,
-    });
-  };
-
-  const handleDeleteRoom = (roomId) => {
-    db.collection("rooms").doc(roomId).delete();
-  };
+    console.log('Document Data:', dataArray);
+    console.log('Array Length:', arrayLength);
+  } else {
+    console.log('Document does not exist');
+  }
+})
+.catch(error => {
+  console.error('Error getting document:', error);
+});
 
   return (
-    <div>
-      <h1>Rooms</h1>
-      <form onSubmit={handleAddRoom}>
-        <label htmlFor="roomName">Room name:</label>
-        <input type="text" id="roomName" />
-        <label htmlFor="roomDescription">Description:</label>
-        <textarea id="roomDescription"></textarea>
-        <button type="submit">Add room</button>
-      </form>
-      <ul>
-        {rooms.map((room) => (
-          <li key={room.id}>
-            <h2>{room.name}</h2>
-            <p>{room.description}</p>
-            <button onClick={() => handleDeleteRoom(room.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    <div>Users</div>
+  )
 }
 
-export default Users;
+export default Users

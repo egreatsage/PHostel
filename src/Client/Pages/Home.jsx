@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { Fragment, useState } from 'react'
 import { AiFillFacebook, AiFillYoutube, AiOutlineWhatsApp } from 'react-icons/ai'
 import { FaTiktok } from 'react-icons/fa'
 import Navbar from '../Components/Navbar'
-import { Link } from 'react-router-dom'
+import Booking from '../Pages/Booking'
+import { Button, Dialog, DialogBody, DialogFooter, DialogHeader } from '@material-tailwind/react'
 const Home = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
   return (
     <div>
        <Navbar/>
@@ -13,9 +16,30 @@ const Home = () => {
             <h2>Le Pamus </h2>
             <h3>Mixed Hostels for Students</h3>
             <p>Safe Secure Satisfactor</p>
-            <Link to='/userlogin'>
-            <button type='button'>Book Now <img className='animate-pulse ' src="https://cdn.pixabay.com/photo/2012/04/11/10/24/arrow-27324__340.png" alt="" /></button>
-            </Link>
+            <button onClick={handleOpen} type='button'>Book Now <img className='animate-pulse ' src="https://cdn.pixabay.com/photo/2012/04/11/10/24/arrow-27324__340.png" alt="" /></button>
+          </div>
+          <div>
+          <Fragment>
+      <Dialog
+        open={open}
+        size='xl'
+        handler={handleOpen}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+
+        }}
+        className='overflow-y-auto'
+      >
+        <DialogHeader>Enter your details</DialogHeader>
+        <DialogBody divider className='text-black'>
+          <Booking/>
+        </DialogBody>
+        <DialogFooter>
+         
+        </DialogFooter>
+      </Dialog>
+    </Fragment>
           </div>
           <div className="col-2">
              <img className='bgimage ' src="https://images.unsplash.com/photo-1522079185018-c7dfc98897c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80" alt="" />

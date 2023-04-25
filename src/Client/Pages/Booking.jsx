@@ -1,230 +1,37 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useUserAuth } from '../../Common/UserAuthContext';
-import dbdataservice from '../../Common/Operations'
-import Navbar from '../Components/Navbar';
-import Swal from 'sweetalert2';
-import Loader from '../Components/Loader';
+import { Input, Select } from '@material-tailwind/react'
+import React from 'react'
+
 const Booking = () => {
-
-    const {user} = useUserAuth();
-    const [FName, setFName] = useState('');
-    const [LName, setLName] = useState('');
-    const [PNumber, setPNumber] = useState('');
-    const [email, setEmail] = useState('');
-    const [PGEmail, setPGEmail] = useState('');
-    const [EEmail, setEEmail] = useState('');
-    const [Gender, setGender] = useState('');
-    const [Age, setAge] = useState('');
-    const [PGContact, setPGContact] = useState('');
-    const [PGName, setPGName] = useState('');
-    const [EName, setEName] = useState('');
-    const [EContact, setEContact] = useState('');
-    const [Relation, setRelation] = useState('');
-    const [Institution, setInstitution] = useState('');
-    const [YearOfStudy, setYearOfStudy] = useState('');
-    const [MaritalStatus, setMaritalStatus] = useState('');
-    const [Homecounty, setHomecounty] = useState('');
-    const navigate = useNavigate();
-
-    const [loading, setloading] = useState(false)
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      let userId = user.uid;
-      const newBooking = {
-       FName,LName,Gender,PNumber,PGContact,Age,PGName,
-       EName,EContact,Relation,Institution,YearOfStudy,
-       MaritalStatus,Homecounty,userId,email,PGEmail,EEmail,
-      };
-      try {
-          await dbdataservice.addBooking(newBooking);
-          Swal.fire({
-            text: 'Details Submitted',
-            icon: 'success',
-            timer:3000,
-            position:'top-right',
-            confirmButtonText: 'Close'
-          })
-          setloading(true)
-            navigate('/reply');
-      } catch (err) {
-        Swal.fire({
-          text: 'Problem submitting details,please try again',
-          icon: 'error',
-          timer:3000,
-          width:400,
-          position:'top-right',
-          confirmButtonText: 'Close'
-        })
-      }
-      setFName(""); setLName("");setGender("");setPGContact("");setPNumber("");
-      setAge("");setPGName(""); setEName(''); setEContact(''); setRelation(''); 
-      setInstitution(''); setMaritalStatus('');setPGEmail('');
-      setYearOfStudy(''); setHomecounty('');setEmail("");setEEmail('');
-      
-    };
   return (
-    <div className='overflow-y-auto'>
-      <div>
-        <Navbar/>
-      </div>
-
-      {loading ?(
-         <Loader/>
-        ):
-        <div className='mt-20 overflow-x-hidden'>
-
-<form onSubmit={handleSubmit}>
-
-
- <div className="md:mx-4 mx-2">
-     <h1 className="text-xl font-semibold my-4">
-        Personal Information
-     </h1>
-    
-<div className='grid md:grid-cols-3 gap-2'>
     <div>
-    <label className='tracking-tighter'>Full Name</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={FName}
-      onChange={(e)=>setFName(e.target.value)} required
-     />
+      <form >
+        <div className='grid md:py-6 w-full md:grid-cols-3 gap-3 overflow-x-hidden'>
+        <div className='my-3'><Input color='teal' type='text' className='text-black' variant='standard' label='Full Name' required/></div>
+    <div className='my-3 flex items-center mt-9'>
+    <select className='w-full border-b text-gray-600 border-b-gray-400 cursor-pointer ' id="Gender" type='text' label="Select Gender" required>
+    <option disabled value="Select Gender">Select Gender</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>
     </div>
-    <div>
-    <label className='tracking-tighter'>Phone Number</label>
-     <input type="tel" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={PNumber} 
-      onChange={(e)=>setPNumber(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Email</label>
-     <input type="email" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={email} 
-      onChange={(e)=>setEmail(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Home County</label>
-     <input type="address" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={Homecounty} 
-     onChange={(e)=>setHomecounty(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Age</label>
-     <input type="number" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={Age} 
-     onChange={(e)=>setAge(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Gender</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={Gender} 
-     onChange={(e)=>setGender(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Marital Status</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={MaritalStatus} 
-     onChange={(e)=>setMaritalStatus(e.target.value)} required
-     />
-    </div>
-    
-     </div>
-  
- </div>
-
- <div className="md:mx-4 mx-2">
-     <h1 className="text-xl font-semibold my-4">
-        Parent/Guardian  Information
-     </h1>
-     <div className='grid md:grid-cols-3 gap-2'>
-    <div>
-    <label className='tracking-tighter'>Full Name</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={PGName} 
-      onChange={(e)=>setPGName(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Phone Number</label>
-     <input type="tel" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={PGContact} 
-      onChange={(e)=>setPGContact(e.target.value)} required
-     />
-    </div>
-     </div>
-  
- </div>
- 
- <div className="md:mx-4 mx-2 my-5">
-     <h1 className="text-xl font-semibold my-4">
-        Emergency  Information
-     </h1>
-     <div className='grid md:grid-cols-3 gap-2'>
-    <div>
-    <label className='tracking-tighter'>Full Name</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={EName} 
-      onChange={(e)=>setEName(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Phone Number</label>
-     <input type="tel" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={EContact} 
-      onChange={(e)=>setEContact(e.target.value)} required
-     />
-    </div>
-
-    <div>
-    <label className='tracking-tighter'>Relation</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      
-      value={Relation} 
-      onChange={(e)=>setRelation(e.target.value)} required
-
-    />
-    </div>
-     </div>
-  
- </div>
- <div className="md:mx-4 mx-2 my-5">
-     <h1 className="text-xl font-semibold my-4">
-        Academic  Information
-     </h1>
-     <div className='grid md:grid-cols-3 gap-2'>
-    <div>
-    <label className='tracking-tighter'>Name Of Institution of Study</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-       value={Institution} 
-       onChange={(e)=>setInstitution(e.target.value)}
-    required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter' >Current Year Of Study</label>
-     <input type="tel" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-         value={YearOfStudy} 
-         onChange={(e)=>setYearOfStudy(e.target.value)}
-      required
-     />
-    </div>
-     </div>
- </div> 
- <div className='flex justify-end mx-2 mr-5 my-8'>
-     <button type='submit' className='bg-indigo-700 px-4 py-1 rounded-md hover:bg-indigo-800 text-white'>Submit</button>
- </div>
- </form> 
+      <div className='my-3'><Input color='teal' type='tel' className='text-black' variant='standard' label='Phone Number' required/></div>
+      <div className='my-3'><Input color='teal' type='text' className='text-black' variant='standard' label='Your Institution  ' required/></div>
+      <div className='my-3'><Input color='teal' type='email' className='text-black' variant='standard' label='Your Email' required/></div>
+      <div className='my-3'><Input color='teal' type='text' className='text-black' variant='standard' label='Guardian/Parent Name ' required/></div>
+      <div className='my-3'><Input color='teal' type='tel' className='text-black' variant='standard' label='Guardian/Parent Contact' required/></div>
+      <div className='my-3 flex items-center mt-9'>
+    <select className='w-full border-b text-gray-600 border-b-gray-400 cursor-pointer ' id="Sharing" type='text' label="Room Sharing" required>
+    <option disabled value="Sharing">Select sharing type</option>
+  <option value="Single room">Single room</option>
+  <option value="Two sharing">Two sharing</option>
+</select>
 </div>
-}
+      <div className='my-3'><Input color='teal' type='date' className='text-black' variant='standard' label='Check In' required/></div>
+      
+        </div>
+        <div  className='flex justify-end '> <button type='submit' className='rounded-md bg-[green] text-white font-semibold px-2 py-1'>Submit Booking</button></div>
+      </form>
     </div>
- 
   )
 }
 

@@ -57,8 +57,7 @@ const Navbar = () => {
               onClick={() => navigate("/contactus")}
             >
               Contacts
-            </li>
-          
+            </li>'
           </ul>
         </div>
       </header>

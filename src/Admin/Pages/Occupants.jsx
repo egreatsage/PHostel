@@ -8,16 +8,33 @@ import { Input} from '@material-tailwind/react';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Profile from '../../Common/Profile'
 import { TbBrandBooking } from 'react-icons/tb';
+import Loader from '../../Client/Components/Loader';
+import Swal from 'sweetalert2';
 const Users = ({ id, getOccupantId }) => {
   const [occupants, setOccupants] = useState([]);
+  const [loading, setloading] = useState(true)
   useEffect(() => {
     getAllOccupants();
   }, []);
   const getAllOccupants = async () => {
-    const data = await dbdataservice.getAllOccupants();
-    
-    setOccupants(data.docs.map((doc) => ({ ...doc.data(),
-      id: doc.id })));
+    try {
+      const data = await dbdataservice.getAllOccupants();
+      setOccupants(data.docs.map((doc) => ({ ...doc.data(),
+        id: doc.id })));
+        setloading(false)
+    } catch (error) {
+     setTimeout(() => {
+      Swal.fire({
+        text: 'Problem fetching details,please try again',
+        icon: 'error',
+        timer:3000,
+        width:400,
+        position:'top-right',
+        confirmButtonText: 'Close'
+      })
+     }, 2000);
+    }
+   
   };
  
   const deleteHandler = async (id) => {
@@ -59,6 +76,9 @@ const Users = ({ id, getOccupantId }) => {
     })
   return (
   <div>
+      {loading ?(
+         <Loader/>
+        ):
       <div>
       <input type='checkbox' name='' id='sidebar-toggle'/>
       <div className="sidebar">
@@ -248,6 +268,7 @@ const Users = ({ id, getOccupantId }) => {
       </div> 
         <label htmlFor="sidebar-toggle" className='body-label'/>
     </div>
+}
    
   </div>
   )

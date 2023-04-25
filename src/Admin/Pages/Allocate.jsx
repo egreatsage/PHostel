@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import { MdLiving, MdSpaceDashboard } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
+import Loader from "../../Client/Components/Loader";
 const AddBooking = ({ id, setOccupantId }) => {
   const [FName, setFName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const AddBooking = ({ id, setOccupantId }) => {
   const [RoomNo, setRoomNo] = useState('');
   const [EntryDate, setEntryDate] = useState('');
   const [ExitDate, setExitDate] = useState('');
-
+  const [loading, setloading] = useState(false)
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -26,6 +27,7 @@ const AddBooking = ({ id, setOccupantId }) => {
     };
     try {
         await dbdataservice.addOccupant(newOccupant);
+        setloading(true)
         setTimeout(() => {
           Swal.fire({
             title: 'Success!',
@@ -33,17 +35,19 @@ const AddBooking = ({ id, setOccupantId }) => {
             icon: 'success',
             confirmButtonText: 'Close'
           })
-      }, 1000);
+      }, 2000);
       setTimeout(() => {
         navigate('/occupants');
       }, 3000);
     } catch (err) {
+     setTimeout(() => {
       Swal.fire({
         title: 'Error!',
         text: 'Problem Adding Details',
         icon: 'error',
         confirmButtonText: 'Close'
       })
+     }, 2000);
     }
     setFName("");setGender("");setPGContact("");setPNumber("");
     setAge(""); setEntryDate('');setExitDate();setRoomNo('');
@@ -76,6 +80,9 @@ const AddBooking = ({ id, setOccupantId }) => {
    }, [id]);
   return (
   <div>
+      {loading ?(
+         <Loader/>
+        ):
       <div>
       <input type='checkbox' name='' id='sidebar-toggle'/>
       <div className="sidebar">
@@ -227,6 +234,7 @@ const AddBooking = ({ id, setOccupantId }) => {
       </div> 
         <label htmlFor="sidebar-toggle" className='body-label'/>
     </div>
+}
    
   </div>
   )

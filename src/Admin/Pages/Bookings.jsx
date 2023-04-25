@@ -7,15 +7,32 @@ import {BsBoxArrowUpRight} from 'react-icons/bs'
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Profile from '../../Common/Profile';
 import { TbBrandBooking } from 'react-icons/tb';
+import Loader from '../../Client/Components/Loader';
+import Swal from 'sweetalert2';
 const Bookings = ({ id, getBookingId }) => {
   const [bookings, setBookings] = useState([]);
+  const [loading, setloading] = useState(true)
   useEffect(() => {
     getAllBookings();
   }, []);
   const getAllBookings = async () => {
-    const data = await dbdataservice.getAllBookings();
-    setBookings(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
+    try {
+      const data = await dbdataservice.getAllBookings();
+      setBookings(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setTimeout(() => {
+        setloading(false)
+      }, 2000);  
+    } catch (error) {
+      Swal.fire({
+        text: 'Problem fetching details,please try again',
+        icon: 'error',
+        timer:3000,
+        width:400,
+        position:'top-right',
+        confirmButtonText: 'Close'
+      })
+    }
+  }
   const deleteHandler = async (id) => {
     await dbdataservice.deleteBooking(id);
     getAllBookings();
@@ -30,6 +47,9 @@ const Bookings = ({ id, getBookingId }) => {
     })
   return (
   <div>
+     {loading ?(
+         <Loader/>
+        ):
       <div>
       <input type='checkbox' name='' id='sidebar-toggle'/>
       <div className="sidebar">
@@ -87,8 +107,7 @@ const Bookings = ({ id, getBookingId }) => {
               </ul>
             </div>
           </div>
-        </div>
-        
+        </div> 
       </div>
     <div className="main-content">
 
@@ -258,6 +277,7 @@ const Bookings = ({ id, getBookingId }) => {
       </div> 
         <label htmlFor="sidebar-toggle" className='body-label'/>
     </div>
+}
    
   </div>
   )
