@@ -28,35 +28,13 @@ const Home = () => {
              <img className='animate-pulse ' src="https://cdn.pixabay.com/photo/2012/04/11/10/24/arrow-27324__340.png" alt="" /></button>
           </div>
           <div>
-          <Fragment>
-      <Dialog
-        open={open}
-        size='xl'
-        handler={handleOpen}
-        animate={{
-          mount: { scale: 1, y: 0 },
-          unmount: { scale: 0.9, y: -100 },
-
-        }}
-        className='overflow-y-auto'
-      >
-        <DialogHeader>Enter your details</DialogHeader>
-        <DialogBody divider className='text-black'>
-          <Booking/>
-        </DialogBody>
-        <DialogFooter>
-         
-        </DialogFooter>
-      </Dialog>
-    </Fragment>
-   
 
    <div>
    <div
   data-te-modal-init
-  class="fixed left-0 top-0 z-[1055] mt-12 hidden h-full w-[90%] md:ml-12  overflow-y-auto overflow-x-hidden outline-none"
+  class="fixed left-0 top-0 z-[1055] mt-12 hidden h-full md:w-[90%] w-full md:ml-12  overflow-y-auto overflow-x-hidden outline-none"
   id="exampleModalScrollable"
-  tabindex="-1"
+  tabiIndex="-1"
   aria-labelledby="exampleModalScrollableLabel"
   aria-hidden="true">
   <div

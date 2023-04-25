@@ -3,7 +3,7 @@ import React from 'react'
 
 const Booking = () => {
   return (
-    <div>
+    <div className='my-6'>
       <form >
         <div className='grid md:py-6 w-full md:grid-cols-3 gap-3 overflow-x-hidden'>
         <div className='my-3'><Input color='teal' type='text' className='text-black' variant='standard' label='Full Name' required/></div>
@@ -29,7 +29,7 @@ const Booking = () => {
       <div className='my-3'><Input color='teal' type='date' className='text-black' variant='standard' label='Check In' required/></div>
       
         </div>
-        <div  className='flex justify-end '> <button type='submit' className='rounded-full bg-[green] text-white font-semibold px-3 py-1'>Submit Booking</button></div>
+        <div  className='flex justify-end '> <button type='submit' className='rounded-full bg-[green] text-white font-semibold px-3 py-2'>Submit Booking</button></div>
       </form>
     </div>
   )
