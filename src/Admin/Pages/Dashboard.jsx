@@ -1,11 +1,28 @@
-import React from 'react'
-import { AiOutlineAccountBook, AiOutlineAlibaba, AiOutlineArrowRight, AiOutlineClose, AiOutlineHome, AiOutlineMenu, AiOutlineMessage, AiOutlinePieChart, AiOutlineUser } from 'react-icons/ai'
+import React, { useEffect, useState } from 'react'
+import {AiOutlineArrowRight, AiOutlineClose, AiOutlineHome, AiOutlineMenu, AiOutlineMessage, AiOutlinePieChart, AiOutlineUser } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import './dashboard.css'
 import Profile from '../../Common/Profile'
-import { MdLiving, MdSpaceDashboard } from 'react-icons/md'
+import { MdDeleteForever, MdLiving, MdSpaceDashboard } from 'react-icons/md'
 import { TbBrandBooking } from 'react-icons/tb'
+import {IoIosArrowDown} from 'react-icons/io'
+import dbdataservice from '../../Common/Operations'
 const Dashboard = () => {
+    const [messages, setMessages] = useState([]);
+  useEffect   (() => {
+    getAllMessages();
+  }, []);
+  const getAllMessages = async () => {
+    const data = await dbdataservice.getAllMessages();
+    
+    setMessages(data.docs.map((doc) => ({ ...doc.data(),
+      id: doc.id })));
+  };
+ 
+  const deleteHandler = async (id) => {
+    await dbdataservice.deleteMessage(id);
+    getAllMessages();
+  };
   return (
   <div>
       <div>
@@ -88,7 +105,7 @@ const Dashboard = () => {
                 Analytics Dashboard
               </h1>
               <small>
-                Monitor Students Available
+                Hostel Details Summary
               </small>
             </div>
             <div>
@@ -100,10 +117,10 @@ const Dashboard = () => {
               <div className="card-flex">
                 <div className="card-info">
                   <div className="card-head">
-                       <span>Purchases</span>
-                       <small>number of purchases</small>
+                       <span>Bookings</span>
+                       <small>Total number of bookings pending</small>
                   </div>
-                  <h2>17,000</h2>
+                  <h2>17</h2>
                   <small>2% less</small>
                 </div>
                 <div className="card-chart">
@@ -115,10 +132,10 @@ const Dashboard = () => {
               <div className="card-flex">
                 <div className="card-info">
                   <div className="card-head">
-                       <span>Purchases</span>
-                       <small>number of purchases</small>
+                       <span>Occupants</span>
+                       <small>Total number of Occupants present</small>
                   </div>
-                  <h2>17,000</h2>
+                  <h2>17</h2>
                   <small>2% less</small>
                 </div>
                 <div className="card-chart">
@@ -161,48 +178,68 @@ const Dashboard = () => {
                </div>
             </div>
             <div className="jobs">
-              <h3 className='flex items-center gap-4 cursor-pointer'><span>See All Active Users</span> <span><AiOutlineArrowRight/></span></h3>
+              <h3 className='flex items-center gap-4 cursor-pointer'><span>Messages and Notifications</span> <span></span></h3>
             <div className="flex flex-col table-responsive">
   <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
       <div className="overflow-hidden">
-        <table className="min-w-full text-left text-sm font-light">
-          <thead
-            className="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
-            <tr>
-              <th scope="col" className="px-6 py-4">#</th>
-              <th scope="col" className="px-6 py-4">First</th>
-              <th scope="col" className="px-6 py-4">Last</th>
-              <th scope="col" className="px-6 py-4">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              className="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700">
-              <td className="whitespace-nowrap px-6 py-4 font-medium">1</td>
-              <td className="whitespace-nowrap px-6 py-4">Mark</td>
-              <td className="whitespace-nowrap px-6 py-4">Otto</td>
-              <td className="whitespace-nowrap px-6 py-4">@mdo</td>
-            </tr>
-            <tr
-              className="border-b bg-white dark:border-neutral-500 dark:bg-neutral-600">
-              <td className="whitespace-nowrap px-6 py-4 font-medium">2</td>
-              <td className="whitespace-nowrap px-6 py-4">Jacob</td>
-              <td className="whitespace-nowrap px-6 py-4">Thornton</td>
-              <td className="whitespace-nowrap px-6 py-4">@fat</td>
-            </tr>
-            <tr
-              className="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700">
-              <td className="whitespace-nowrap px-6 py-4 font-medium">3</td>
-              <td
-                colspan="2"
-                className="whitespace-nowrap px-6 py-4 text-center">
-                Larry the Bird
-              </td>
-              <td className="whitespace-nowrap px-6 py-4">@twitter</td>
-            </tr>
-          </tbody>
-        </table>
+     <div className="bg-white w-full h-screen">
+      <div className="bg-[#F1F5F9] w-full">
+      {messages.map((doc,index)=>{
+             return(
+      <div id="accordionExample">
+  <div
+    class="rounded-t-lg border border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
+    <h2 class="mb-0" id="headingOne">
+      <button
+        class="group relative gap-4 flex w-full items-center rounded-t-[15px] border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
+        type="button"
+        data-te-collapse-init
+        data-te-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne">
+       <span> {doc.fullname}</span>
+       <span className='italic text-sm font-light'>{doc.email}</span>
+        <span
+          class="ml-auto flex  h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+     
+         <IoIosArrowDown/>
+        </span>
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="!visible"
+      data-te-collapse-item
+      data-te-collapse-show
+      aria-labelledby="headingOne"
+      data-te-parent="#accordionExample">
+      <div class="px-5 py-4">
+        <strong>
+          {doc.messsage}
+        </strong>
+      <div className="flex justify-end">
+          <MdDeleteForever
+           onClick={(e) => 
+            deleteHandler(doc.id)}
+           className='text-xl text-[red] cursor-pointer'/>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="border border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
+   
+  </div>
+  <div
+    class="rounded-b-lg border border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
+   
+  </div>
+</div>
+ )
+})}
+      </div>
+     </div>
       </div>
     </div>
   </div>
