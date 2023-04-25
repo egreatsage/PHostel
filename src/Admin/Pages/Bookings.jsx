@@ -107,7 +107,7 @@ const Bookings = ({ id, getBookingId }) => {
           <main>
           <div className='overflow-y-auto '>
   
-  <div className='md:flex md:justify-between overflow-x-hidden  mb-20  mt-20 mx-5'>
+  <div className='md:flex md:justify-between overflow-x-hidden mb-10 mt-20'>
       <div className='md:mt-10 w-full '>
       <h1 className=' md:text-xl text-md font-semibold tracking-wider text-gray-700'>Booking Details</h1>
              <div className='overflow-hidden ovaflo'>
