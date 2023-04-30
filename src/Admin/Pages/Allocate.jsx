@@ -7,13 +7,15 @@ import Swal from 'sweetalert2';
 import { MdLiving, MdSpaceDashboard } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import Loader from "../../Client/Components/Loader";
+import { Input } from "@material-tailwind/react";
 const AddBooking = ({ id, setOccupantId }) => {
-  const [FName, setFName] = useState('');
-  const [email, setEmail] = useState('');
-  const [Gender, setGender] = useState('');
-  const [PNumber, setPNumber] = useState('');
-  const [Age, setAge] = useState('');
+  const [fullname, setfullname] = useState('');
+  const [email, setemail] = useState('');
+  const [gender, setgender] = useState('');
+  const [contact, setcontact] = useState('');
+  const [pgname, setpgname] = useState('');
   const [RoomNo, setRoomNo] = useState('');
+  const [pgcontact, setpgcontact] = useState('');
   const [EntryDate, setEntryDate] = useState('');
   const [ExitDate, setExitDate] = useState('');
   const [loading, setloading] = useState(false)
@@ -23,7 +25,7 @@ const AddBooking = ({ id, setOccupantId }) => {
     setOccupantId("");
     e.preventDefault();
     const newOccupant = {
-     FName,Gender,PNumber,Age,email,RoomNo,EntryDate,ExitDate
+     fullname,gender,contact,pgname,email,RoomNo,EntryDate,ExitDate,pgname,pgcontact
     };
     try {
         await dbdataservice.addOccupant(newOccupant);
@@ -49,21 +51,22 @@ const AddBooking = ({ id, setOccupantId }) => {
       })
      }, 2000);
     }
-    setFName("");setGender("");setPGContact("");setPNumber("");
-    setAge(""); setEntryDate('');setExitDate();setRoomNo('');
-    
+    setfullname("");setgender("");setPGContact("");setcontact("");
+    setpgname(""); setEntryDate('');setExitDate();setRoomNo('');
+    setpgcontact('');setpgcontact('');
   };
   const editHandler = async () => {
      try {
        const docSnap = await dbdataservice.getBooking(id);
-       setFName(docSnap.data().FName);
-       setGender(docSnap.data().Gender);
-       setPNumber(docSnap.data().PNumber);
+       setfullname(docSnap.data().fullname);
+       setgender(docSnap.data().gender);
+       setcontact(docSnap.data().contact);
        setRoomNo(docSnap.data().RoomNo);
-       setAge(docSnap.data().Age);
+       setpgname(docSnap.data().pgname);
        setEntryDate(docSnap.data().EntryDate);
        setExitDate(docSnap.data().ExitDate);
-       setEmail(docSnap.data().email);
+       setpgcontact(docSnap.data().pgcontact);
+       setemail(docSnap.data().email);
      } catch (err) {
       Swal.fire({
         title: 'Error!',
@@ -155,71 +158,41 @@ const AddBooking = ({ id, setOccupantId }) => {
       </div>
         <div className='mt-20 overflow-x-hidden'>
 
-<form onSubmit={handleSubmit}>
-
-
- <div className="md:mx-4 mx-2">
-     <h1 className="text-xl font-semibold my-4">
-        Allocate A Room
-     </h1>
-<div className='grid md:grid-cols-3 gap-2'>
-    <div>
-    <label className='tracking-tighter'>Full Name</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={FName}
-      onChange={(e)=>setFName(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Email</label>
-     <input type="email" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-      value={email} 
-      onChange={(e)=>setEmail(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Age</label>
-     <input type="number" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={Age} 
-     onChange={(e)=>setAge(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Gender</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={Gender} 
-     onChange={(e)=>setGender(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Add Room Number</label>
-     <input type="text" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={RoomNo} 
-     onChange={(e)=>setRoomNo(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Entry Date</label>
-     <input type="date" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={EntryDate} 
-     onChange={(e)=>setEntryDate(e.target.value)} required
-     />
-    </div>
-    <div>
-    <label className='tracking-tighter'>Exit Date</label>
-     <input type="date" className='border border-gray-500 my-3 rounded-md w-full px-3 py-1' 
-     value={ExitDate} 
-     onChange={(e)=>setExitDate(e.target.value)} required
-     />
-    </div>
+ 
+        <div className='md:mx-10 mx-2 mt-20 my-10'>
+      <form onSubmit={handleSubmit} >
+        <div className='grid md:py-6 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-hidden'>
+        <div className='my-3'><Input
+         value={fullname}
+         onChange={(e)=>setfullname(e.target.value)}
+        color='teal' type='text' className='text-black' variant='standard' label='Full Name' required/></div>
+   
+    <div className='my-3 flex items-center mt-9'>
+    <select className='w-full border-b text-gray-600 border-b-gray-400 cursor-pointer ' id="gender" value={gender} name='gender' label="Select gender" onChange={handleChange}>
     
-     </div>
-  
- </div>
- <div className='flex justify-end mx-2 mr-5 my-8'>
-     <button type='submit' className='bg-indigo-700 px-4 py-1 rounded-md hover:bg-indigo-800 text-white'>Submit</button>
- </div>
- </form> 
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>
+    </div>  
+      <div className='my-3'><Input color='teal' type='tel' className='text-black' variant='standard' label='Phone Number'
+       value={contact}
+       onChange={(e)=>setcontact(e.target.value)} required/>
+       </div>
+      <div className='my-3'><Input color='teal' type='text' className='text-black' variant='standard' label='Guardian/Parent Name '
+       value={pgname}
+       onChange={(e)=>setpgname(e.target.value)}
+      required/></div>
+      <div className='my-3'><Input color='teal' type='tel' className='text-black' variant='standard' label='Guardian/Parent Contact' required
+       value={pgcontact}
+       onChange={(e)=>setpgcontact(e.target.value)}
+      /></div>
+      <div className='my-3'><Input color='teal' type='string' className='text-black' variant='standard' label='Room Number' /></div>
+      <div className='my-3'><Input color='teal' type='date' className='text-black' variant='standard' label='Check In Date' /></div>
+      <div className='my-3'><Input color='teal' type='date' className='text-black' variant='standard' label='Check Out Date' /></div>
+        </div>
+        <div  className='flex justify-end '> <button type='submit' className='rounded-md bg-[gray] text-white font-semibold px-3 py-1'>Submit </button></div>
+      </form>
+      </div>
 </div>
     </div>
           </main>
