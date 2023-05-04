@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
 import { useUserAuth } from "../../Common/UserAuthContext";
-
-const Booking = () => {
+import { useNavigate } from "react-router-dom";
+import dbdataservice from '../../Common/Operations'
+import Navbar from '../Components/Navbar'
+import { Input } from "@material-tailwind/react";
+const Booking = ({id}) => {
   const {user} = useUserAuth();
   const [fullname, setfullname] = useState('');
-  
   const [contact, setcontact] = useState('');
   const [institution, setinstitution] = useState('');
   const [gender, setgender] = useState('');
@@ -14,7 +17,6 @@ const Booking = () => {
   const [emmail, setemmail] = useState('');
   const [message, setmessage] = useState({ error: false, msg: "" });
   const navigate = useNavigate();
-
   let userId = user ? user.uid : null; 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,9 +33,9 @@ const Booking = () => {
         setmessage({ error: false, msg: "Updated successfully!" });
       } else {
         await dbdataservice.addBooking(newBooking); 
-        setmessage({ error: false, msg: "New Booking added successfully!" });
+        setmessage({ error: false, msg: "Details added successfully!" });
         setTimeout(() => {
-          navigate('/bookings');
+          navigate('/reply');
       }, 1000);
 
       }
