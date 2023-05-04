@@ -7,91 +7,75 @@ import Loader from "../../Client/Components/Loader";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Profile from "../../Common/Profile";
 import { Input } from "@material-tailwind/react";
-const AddBooking = ({ id }) => {
+const AddOccupant = ({ id,setOccupantId }) => {
   const {user} = useUserAuth();
   const [fullname, setfullname] = useState('');
   const [contact, setcontact] = useState('');
   const [institution, setinstitution] = useState('');
   const [emmail, setemmail] = useState('');
   const [gender, setgender] = useState('');
-  const [roomtype, setroomtype] = useState('');
   const [pgname, setpgname] = useState('');
   const [pgcontact, setpgcontact] = useState('');
-  const [loading,setloading]=useState(false)
+  const [checkindate, setcheckindate] = useState('');
+  const [roomno, setroomno] = useState('');
+  const [allocateddate, setallocateddate] = useState('');
+  const [checkoutdate, setcheckoutdate] = useState('');
+  const [loading,setloading] = useState(false)
+  const [message, setmessage] = useState({ error: false, msg: "" });
   const navigate = useNavigate();
- const handleChange = (event)=>{
-    gender(event.target.value)
- }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let userId = user ? user.uid : null; 
-    if (!userId) {
-      navigate("/login")
-      return;
-    } else {
-      const newBooking = {
-        fullname, contact, institution, emmail, pgname, pgcontact,roomtype, userId,gender
+    setmessage('')
+      const newOccupant = {
+        fullname, contact, institution, emmail, pgname, pgcontact,
+        checkindate,gender,roomno,allocateddate,checkoutdate,
       };
-      try {
-        await dbdataservice.addBooking(newBooking);
-        setloading(true)
-        Swal.fire({
-          text: 'Details Added',
-          icon: 'success',
-          timer: 3000,
-          position: 'top-right',
-          confirmButtonText: 'Close'
-        })
-        setTimeout(() => {
-          navigate('/bookings')
-        }, 3000);
+      console.log(newOccupant)
+      try { 
+        if (id !== undefined && id !== "") {
+          await dbdataservice.updateOccupant(id, newOccupant);
+        setOccupantId("");
+               console.log({ error: false, msg: "Updated successfully!" })
+        } else {
+          await dbdataservice.addOccupant(newOccupant);
+                  console.log({ error: false, msg: "New Occupant added successfully!" })
+          setTimeout(() => {
+            navigate('/occupants')
+          }, 1000);
+          
+        }
+      
       } catch (err) {
-        Swal.fire({
-          text: 'Problem submitting details, please try again',
-          icon: 'error',
-          timer: 6000,
-          position: 'top-right',
-          confirmButtonText: 'Close'
-        })
+        console.log(err)
       }
-      setfullname("");
-      setcontact('');
-      setinstitution();
-      setemmail();
-      setpgname();
-      setpgcontact('');
-      setgender('');
-      setroomtype('');
-    }
-  };
+      
+      setfullname('');setcontact('');setinstitution('');setemmail('');setpgname('');setpgcontact('');
+      setcheckindate(''); setgender('');setroomno('');setallocateddate('');setcheckoutdate('');
 
+  };
+  
   const editHandler = async () => {
+    setmessage('');
     try {
-      const docSnap = await dbdataservice.getBooking(id);
+      const docSnap = await dbdataservice.getOccupant(id);
       setfullname(docSnap.data().fullname);
       setgender(docSnap.data().gender);
       setcontact(docSnap.data().contact);
       setinstitution(docSnap.data().institution);
-      setpgname(docSnap.data().pgcontact);
-   
-      setroomtype(docSnap.data().roomtype);
+      setpgname(docSnap.data().pgname);
+      setpgcontact(docSnap.data().pgcontact);
       setemmail(docSnap.data().emmail);
-      setcheckin(docSnap.data().checkin);
+      setcheckindate(docSnap.data().checkindate);
+      setroomno(docSnap.data().roomno);
+      setallocateddate(docSnap.data().allocateddate);
+      setcheckoutdate(docSnap.data().checkoutdate);
     } catch (err) {
-     Swal.fire({
-       title: 'Error!',
-       text: 'Error Editing Document',
-       icon: 'error',
-       timer:'1000',
-       confirmButtonText: 'Close',
-       position: 'top-right',
-     })
+      console.log(err)
     }
   };
   useEffect(() => {
     if (id !== undefined && id !== "") {
-   
       editHandler();
     }   //eslint-disable-next-line
   }, [id]);
@@ -147,12 +131,11 @@ const AddBooking = ({ id }) => {
             <button>Profile</button>
           </Link>
          </div>
-        </div>
+      </div>
 
         </div> 
       </div>
     <div className="main-content">
-
     <header>
            <div className="menu-toggle">
             <label htmlFor='sidebar-toggle'>
@@ -164,41 +147,82 @@ const AddBooking = ({ id }) => {
             <div className='header-icons'>
              <Profile/>
             </div>
-          </header>
+    </header>
           <main>
           <div className='overflow-y-auto  '>
-  
           <div className='md:mx-10 mx-2 mt-20 my-10'>
       <form onSubmit={handleSubmit} >
-        <div className='grid md:py-6 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-hidden'>
-        <div className='my-3'><Input
+
+      <div className='grid md:py-6 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-hidden'>
+
+        <div className='my-3'>
+        <Input
          value={fullname}
          onChange={(e)=>setfullname(e.target.value)}
-        color='teal' type='text' className='text-black' variant='standard' label='Full Name' required/></div>
-   
-    <div className='my-3 flex items-center mt-9'>
-    <select className='w-full border-b text-gray-600 border-b-gray-400 cursor-pointer ' id="Gender" value={gender} name='Gender' label="Select Gender" onChange={handleChange}>
-    
-  <option value="Male">Male</option>
-  <option value="Female">Female</option>
-</select>
-    </div>  
-      <div className='my-3'><Input color='teal' type='tel' className='text-black' variant='standard' label='Phone Number'
+        color='teal' type='text' className='text-black' variant='standard' label='Full Name' required/>
+        </div>
+      <div className='my-3'>
+      <Input color='teal' type='tel' className='text-black' variant='standard' label='Phone Number'
        value={contact}
        onChange={(e)=>setcontact(e.target.value)} required/>
        </div>
-      <div className='my-3'><Input color='teal' type='text' className='text-black' variant='standard' label='Guardian/Parent Name '
+
+       <div className='my-3'>
+       <Input color='teal' type='text' className='text-black' variant='standard' label='Your Institution  '
+       value={institution}
+       onChange={(e)=>setinstitution(e.target.value)}
+       required/>
+       </div>
+
+      <div className='my-3'>
+      <Input color='teal' type='email' className='text-black' variant='standard' label='Your Email'
+       value={emmail}
+       onChange={(e)=>setemmail(e.target.value)}
+      required/>
+      </div>
+
+      <div className='my-3'>
+      <Input color='teal' type='text' className='text-black' variant='standard' label='Guardian/Parent Name '
        value={pgname}
        onChange={(e)=>setpgname(e.target.value)}
-      required/></div>
-      <div className='my-3'><Input color='teal' type='tel' className='text-black' variant='standard' label='Guardian/Parent Contact' required
+      required/>
+      </div>
+
+      <div className='my-3'>
+      <Input color='teal' type='tel' className='text-black' variant='standard' label='Guardian/Parent Contact' required
        value={pgcontact}
        onChange={(e)=>setpgcontact(e.target.value)}
-      /></div>
-      <div className='my-3'><Input color='teal' type='string' className='text-black' variant='standard' label='Room Number' /></div>
-      <div className='my-3'><Input color='teal' type='date' className='text-black' variant='standard' label='Check In Date' /></div>
-      <div className='my-3'><Input color='teal' type='date' className='text-black' variant='standard' label='Check Out Date' /></div>
-        </div>
+      />
+      </div>
+
+      <div className='my-3'>
+      <Input color='teal' type='date' className='text-black' variant='standard' label='Check In'
+         required 
+        value={checkindate}
+        onChange={(e)=>setcheckindate(e.target.value)}/>
+      </div>
+
+      <div className='my-3'>
+        <Input color='teal' type='string' className='text-black' variant='standard' label='Room Number'
+          required
+         value={roomno}
+         onChange={(e)=>setroomno(e.target.value)} />
+      </div>
+
+      <div className='my-3'>
+        <Input color='teal' type='date' className='text-black' variant='standard' label='Allocated Date'
+        required
+        value={allocateddate}
+        onChange={(e)=>setallocateddate(e.target.value)} />
+      </div>
+
+      <div className='my-3'>
+        <Input color='teal' type='date' className='text-black' variant='standard' label='Check Out Date' 
+        required value={checkoutdate}
+        onChange={(e)=>setcheckoutdate(e.target.value)}/>
+      </div>
+
+  </div>
         <div  className='flex justify-end '> <button type='submit' className='rounded-md bg-[gray] text-white font-semibold px-3 py-1'>Submit </button></div>
       </form>
       </div>
@@ -212,4 +236,4 @@ const AddBooking = ({ id }) => {
   )
 }
 
-export default AddBooking
+export default AddOccupant

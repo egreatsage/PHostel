@@ -34,7 +34,6 @@ function App() {
   const getBookingIdHandler=(id) =>{
     setBookingId(id);
   }  
-
   return (
   <div className=' overflow-hidden'>
      <BrowserRouter>

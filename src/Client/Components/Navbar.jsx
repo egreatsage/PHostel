@@ -25,8 +25,8 @@ const Navbar = () => {
   }
   return (
     <div>
-      <div className='fixed w-full top-0 z-50 px-2 bg-white py-2  '>
-      <header className="flex justify-between items-center px-2 max-w-6xl mx-auto">
+      <div className='fixed w-full top-0 z-50 px-2 bg-white py-2   '>
+      <header className="flex justify-between shadow-md border-b items-center px-2w-full mx-auto">
         <div className="flex">
           <span  onClick={() => navigate("/")}
           ><h1 className="font-bold ml-1 cursor-pointer ">Pamus</h1></span>

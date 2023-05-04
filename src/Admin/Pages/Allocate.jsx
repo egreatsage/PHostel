@@ -1,89 +1,81 @@
+import React, { useEffect, useState } from "react";
+import { useUserAuth } from "../../Common/UserAuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import dbdataservice from '../../Common/Operations';
-import {AiOutlineClose, AiOutlineMenu, AiOutlineUser} from 'react-icons/ai';
-import Profile from '../../Common/Profile';
-import React, { useEffect, useState } from 'react'
-import Swal from 'sweetalert2';
-import { MdLiving, MdSpaceDashboard } from "react-icons/md";
-import { TbBrandBooking } from "react-icons/tb";
+import dbdataservice from '../../Common/Operations'
+import Swal from "sweetalert2";
 import Loader from "../../Client/Components/Loader";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import Profile from "../../Common/Profile";
 import { Input } from "@material-tailwind/react";
-const AddBooking = ({ id, setOccupantId }) => {
+const Allocate = ({ id }) => {
+  const {user} = useUserAuth();
   const [fullname, setfullname] = useState('');
-  const [email, setemail] = useState('');
-  const [gender, setgender] = useState('');
   const [contact, setcontact] = useState('');
+  const [institution, setinstitution] = useState('');
+  const [emmail, setemmail] = useState('');
+  const [gender, setgender] = useState('');
   const [pgname, setpgname] = useState('');
-  const [RoomNo, setRoomNo] = useState('');
   const [pgcontact, setpgcontact] = useState('');
-  const [EntryDate, setEntryDate] = useState('');
-  const [ExitDate, setExitDate] = useState('');
-  const [loading, setloading] = useState(false)
+  const [checkindate, setcheckindate] = useState('');
+  const [roomno, setroomno] = useState('');
+  const [allocateddate, setallocateddate] = useState('');
+  const [checkoutdate, setcheckoutdate] = useState('');
+  const [message, setmessage] = useState('');
+  const [loading,setloading] = useState(false)
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    setOccupantId("");
     e.preventDefault();
-    const newOccupant = {
-     fullname,gender,contact,pgname,email,RoomNo,EntryDate,ExitDate,pgname,pgcontact
-    };
-    try {
+    setmessage('')
+      const newOccupant = {
+        fullname, contact, institution, emmail, pgname, pgcontact,
+        checkindate,gender,roomno,allocateddate,checkoutdate,
+      };
+      try {
         await dbdataservice.addOccupant(newOccupant);
-        setloading(true)
+        // setloading(true)
+       
         setTimeout(() => {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Details Added Successfully',
-            icon: 'success',
-            confirmButtonText: 'Close'
-          })
-      }, 2000);
-      setTimeout(() => {
-        navigate('/occupants');
-      }, 3000);
-    } catch (err) {
-     setTimeout(() => {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Problem Adding Details',
-        icon: 'error',
-        confirmButtonText: 'Close'
-      })
-     }, 2000);
-    }
-    setfullname("");setgender("");setPGContact("");setcontact("");
-    setpgname(""); setEntryDate('');setExitDate();setRoomNo('');
-    setpgcontact('');setpgcontact('');
+          navigate('/occupants')
+        }, 1000);
+      } catch (err) {
+        console.log(err)
+      }
   };
   const editHandler = async () => {
-     try {
-       const docSnap = await dbdataservice.getBooking(id);
-       setfullname(docSnap.data().fullname);
-       setgender(docSnap.data().gender);
-       setcontact(docSnap.data().contact);
-       setRoomNo(docSnap.data().RoomNo);
-       setpgname(docSnap.data().pgname);
-       setEntryDate(docSnap.data().EntryDate);
-       setExitDate(docSnap.data().ExitDate);
-       setpgcontact(docSnap.data().pgcontact);
-       setemail(docSnap.data().email);
-     } catch (err) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Error Editing Document',
-        icon: 'error',
-        confirmButtonText: 'Close'
-      })
-     }
-   };
-   useEffect(() => {
-     if (id !== undefined && id !== "") {
-       editHandler();
-     }   //eslint-disable-next-line
-   }, [id]);
+    try {
+      const docSnap = await dbdataservice.getBooking(id);
+      setfullname(docSnap.data().fullname);
+      setgender(docSnap.data().gender);
+      setcontact(docSnap.data().contact);
+      setinstitution(docSnap.data().institution);
+      setpgname(docSnap.data().pgname);
+      setpgcontact(docSnap.data().pgcontact);
+      setemmail(docSnap.data().emmail);
+      setcheckindate(docSnap.data().checkindate);
+      setroomno(docSnap.data().roomno);
+      setallocateddate(docSnap.data().allocateddate);
+      setcheckoutdate(docSnap.data().chesetcheckoutdate);
+    } catch (err) {
+     Swal.fire({
+       title: 'Error!',
+       text: 'Error Editing Document',
+       icon: 'error',
+       timer:'1000',
+       confirmButtonText: 'Close',
+       position: 'top-right',
+     })
+    }
+  };
+  useEffect(() => {
+    if (id !== undefined && id !== "") {
+   
+      editHandler();
+    }   //eslint-disable-next-line
+  }, [id]);
   return (
   <div>
-      {loading ?(
+     {loading ?(
          <Loader/>
         ):
       <div>
@@ -133,13 +125,11 @@ const AddBooking = ({ id, setOccupantId }) => {
             <button>Profile</button>
           </Link>
          </div>
-        </div>
+      </div>
 
-        </div>
-        
+        </div> 
       </div>
     <div className="main-content">
-
     <header>
            <div className="menu-toggle">
             <label htmlFor='sidebar-toggle'>
@@ -151,58 +141,93 @@ const AddBooking = ({ id, setOccupantId }) => {
             <div className='header-icons'>
              <Profile/>
             </div>
-          </header>
+    </header>
           <main>
-          <div className='overflow-y-auto'>
-      <div>
-      </div>
-        <div className='mt-20 overflow-x-hidden'>
-
- 
-        <div className='md:mx-10 mx-2 mt-20 my-10'>
+          <div className='overflow-y-auto  '>
+          <div className='md:mx-10 mx-2 mt-20 my-10'>
       <form onSubmit={handleSubmit} >
-        <div className='grid md:py-6 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-hidden'>
-        <div className='my-3'><Input
+
+      <div className='grid md:py-6 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-hidden'>
+
+        <div className='my-3'>
+        <Input
          value={fullname}
          onChange={(e)=>setfullname(e.target.value)}
-        color='teal' type='text' className='text-black' variant='standard' label='Full Name' required/></div>
-   
-    <div className='my-3 flex items-center mt-9'>
-    <select className='w-full border-b text-gray-600 border-b-gray-400 cursor-pointer ' id="gender" value={gender} name='gender' label="Select gender" onChange={handleChange}>
-    
-  <option value="Male">Male</option>
-  <option value="Female">Female</option>
-</select>
-    </div>  
-      <div className='my-3'><Input color='teal' type='tel' className='text-black' variant='standard' label='Phone Number'
+        color='teal' type='text' className='text-black' variant='standard' label='Full Name' required/>
+        </div>
+      <div className='my-3'>
+      <Input color='teal' type='tel' className='text-black' variant='standard' label='Phone Number'
        value={contact}
        onChange={(e)=>setcontact(e.target.value)} required/>
        </div>
-      <div className='my-3'><Input color='teal' type='text' className='text-black' variant='standard' label='Guardian/Parent Name '
+
+       <div className='my-3'>
+       <Input color='teal' type='text' className='text-black' variant='standard' label='Your Institution  '
+       value={institution}
+       onChange={(e)=>setinstitution(e.target.value)}
+       required/>
+       </div>
+
+      <div className='my-3'>
+      <Input color='teal' type='email' className='text-black' variant='standard' label='Your Email'
+       value={emmail}
+       onChange={(e)=>setemmail(e.target.value)}
+      required/>
+      </div>
+
+      <div className='my-3'>
+      <Input color='teal' type='text' className='text-black' variant='standard' label='Guardian/Parent Name '
        value={pgname}
        onChange={(e)=>setpgname(e.target.value)}
-      required/></div>
-      <div className='my-3'><Input color='teal' type='tel' className='text-black' variant='standard' label='Guardian/Parent Contact' required
+      required/>
+      </div>
+
+      <div className='my-3'>
+      <Input color='teal' type='tel' className='text-black' variant='standard' label='Guardian/Parent Contact' required
        value={pgcontact}
        onChange={(e)=>setpgcontact(e.target.value)}
-      /></div>
-      <div className='my-3'><Input color='teal' type='string' className='text-black' variant='standard' label='Room Number' /></div>
-      <div className='my-3'><Input color='teal' type='date' className='text-black' variant='standard' label='Check In Date' /></div>
-      <div className='my-3'><Input color='teal' type='date' className='text-black' variant='standard' label='Check Out Date' /></div>
-        </div>
+      />
+      </div>
+
+      <div className='my-3'>
+      <Input color='teal' type='date' className='text-black' variant='standard' label='Check In'
+         required 
+        value={checkindate}
+        onChange={(e)=>setcheckindate(e.target.value)}/>
+      </div>
+
+      <div className='my-3'>
+        <Input color='teal' type='string' className='text-black' variant='standard' label='Room Number'
+          required
+         value={roomno}
+         onChange={(e)=>setroomno(e.target.value)} />
+      </div>
+
+      <div className='my-3'>
+        <Input color='teal' type='date' className='text-black' variant='standard' label='Allocated Date'
+        required
+        value={allocateddate}
+        onChange={(e)=>setallocateddate(e.target.value)} />
+      </div>
+
+      <div className='my-3'>
+        <Input color='teal' type='date' className='text-black' variant='standard' label='Check Out Date' 
+        required value={checkoutdate}
+        onChange={(e)=>setcheckoutdate(e.target.value)}/>
+      </div>
+
+  </div>
         <div  className='flex justify-end '> <button type='submit' className='rounded-md bg-[gray] text-white font-semibold px-3 py-1'>Submit </button></div>
       </form>
       </div>
 </div>
-    </div>
           </main>
       </div> 
         <label htmlFor="sidebar-toggle" className='body-label'/>
     </div>
 }
-   
   </div>
   )
 }
 
-export default AddBooking
+export default Allocate

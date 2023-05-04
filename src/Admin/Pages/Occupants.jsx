@@ -9,63 +9,28 @@ import { useDownloadExcel } from 'react-export-table-to-excel';
 import Profile from '../../Common/Profile'
 import { TbBrandBooking } from 'react-icons/tb';
 import Loader from '../../Client/Components/Loader';
-import Swal from 'sweetalert2';
-const Users = ({ id, getOccupantId }) => {
+const Users = ({  getOccupantId }) => {
   const [occupants, setOccupants] = useState([]);
   const [loading, setloading] = useState(true)
+
   useEffect(() => {
     getAllOccupants();
   }, []);
+
   const getAllOccupants = async () => {
     try {
       const data = await dbdataservice.getAllOccupants();
       setOccupants(data.docs.map((doc) => ({ ...doc.data(),
         id: doc.id })));
         setloading(false)
-    } catch (error) {
-     setTimeout(() => {
-      Swal.fire({
-        text: 'Problem fetching details,please try again',
-        icon: 'error',
-        timer:3000,
-        width:400,
-        position:'top-right',
-        confirmButtonText: 'Close'
-      })
-     }, 2000);
-    }
-   
-  };
- 
+    } catch (err) {
+      console.log(error)
+  }; 
+}
   const deleteHandler = async (id) => {
     await dbdataservice.deleteOccupant(id);
     getAllOccupants();
   };
-
-  const editHandler = async () => {
-    try {
-      const docSnap = await dbdataservice.getOccupant(id);
-      setFName(docSnap.data().FName);
-      setLName(docSnap.data().LName);
-      setGender(docSnap.data().Gender);
-      setPNumber(docSnap.data().PNumber);
-      setEntryDate(docSnap.data().EntryDate);
-      setRoomNo(docSnap.data().RoomNo);
-      setExitDate(docSnap.data().ExitDate);
-    } catch (err) {
-     Swal.fire({
-  title: 'Error!',
-  text: 'Error Editing Document',
-  icon: 'error',
-  confirmButtonText: 'Close'
-})
-    }
-  };
-  useEffect(() => {
-    if (id !== undefined && id !== "") {
-      editHandler();
-    } //eslint-disable-next-line
-  }, [id]);
 
   const [searchedVal, setSearchedVal] = useState("")
   const tableRef = useRef(null);
@@ -178,20 +143,35 @@ const Users = ({ id, getOccupantId }) => {
                 Gender
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Age
+                Phone
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Contact
+                Institution
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Email
+              </th>
+             
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                PgName
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                PgContact
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Type
+              </th> 
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Checkindate
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 RoomNo
               </th>
-             
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                EntryDate
+                Allocateddate
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                ExitDate
+                Checkoutdate
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Edit
@@ -212,26 +192,40 @@ const Users = ({ id, getOccupantId }) => {
             <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index+1}</td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {doc.FName}
+              {doc.fullname}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {doc.Gender}
+              {doc.gender}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-              {doc.Age}
+              {doc.contact}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {doc.PNumber}
+              {doc.institution}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {doc.RoomNo}
-              </td>
-              
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {doc.EntryDate}
+              {doc.emmail}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {doc.ExitDate}
+              {doc.pgname}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              {doc.pgcontact}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.roomtype}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.checkindate}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              {doc.roomno}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.allocateddate}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.checkoutddate}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
               <Link to='/addoccupant'>

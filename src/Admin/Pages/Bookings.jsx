@@ -8,32 +8,22 @@ import { useDownloadExcel } from 'react-export-table-to-excel';
 import Profile from '../../Common/Profile';
 import { TbBrandBooking } from 'react-icons/tb';
 import Loader from '../../Client/Components/Loader';
-import Swal from 'sweetalert2';
 import { Input } from '@material-tailwind/react';
-const Bookings = ({ id, getBookingId }) => {
+const Bookings = ({ getBookingId }) => {
+
   const [bookings, setBookings] = useState([]);
   const [loading, setloading] = useState(true)
+
   useEffect(() => {
     getAllBookings();
   }, []);
+
   const getAllBookings = async () => {
-    try {
       const data = await dbdataservice.getAllBookings();
       setBookings(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      setTimeout(() => {
         setloading(false)
-      }, 1000);  
-    } catch (error) {
-      Swal.fire({
-        text: 'Problem fetching details,please try again',
-        icon: 'error',
-        timer:3000,
-        width:400,
-        position:'top-right',
-        confirmButtonText: 'Close'
-      })
-    }
   }
+  
   const deleteHandler = async (id) => {
     await dbdataservice.deleteBooking(id);
     getAllBookings();
@@ -46,6 +36,7 @@ const Bookings = ({ id, getBookingId }) => {
         filename: 'Bookings ',
         sheet: 'Bookings '
     })
+    
   return (
   <div>
      {loading ?(
@@ -119,21 +110,21 @@ const Bookings = ({ id, getBookingId }) => {
           <main>
           <div className='overflow-y-auto '>
   
-  <div className='md:flex md:justify-between overflow-x-hidden mb-10 mt-20'>
+  <div className='md:flex md:justify-between overflow-x-hidden mb-10 mt-10'>
       <div className='md:mt-10 w-full '>
-      <h1 className=' md:text-xl text-md font-semibold tracking-wider text-gray-700'>Booking Details</h1>
+      <h1 className=' md:text-xl md:ml-4 text-md font-semibold tracking-wider text-gray-700'>Booking Details</h1>
              <div className='overflow-hidden ovaflo'>
          <div className="flex justify-between my-3">
-        <div>
-        <Link to='/addbooking' className='text-sm mx-2 hover:underline hover:font-bold'>Add</Link>
-          <button className='text-sm hover:font-bold hover:underline'  onClick={getAllBookings} > Refresh</button>
-          <button className='hover:font-bold mx-2 text-green-700 text-sm hover:underline'  onClick={onDownload} > Export</button>
+        <div className='md:ml-8'>
+        <Link to='/addbooking' className='text-md mx-2 hover:underline hover:font-bold'>Add</Link>
+          <button className='text-md hover:font-bold hover:underline'  onClick={getAllBookings} > Refresh</button>
+          <button className='hover:font-bold mx-2 text-green-700 text-md hover:underline'  onClick={onDownload} > Export</button>
         </div>
         <div>
         <Input variant="standard" label="Search..."  color='teal' onChange={(e) => setSearchedVal(e.target.value)} icon={<AiOutlineSearch/>} />
         </div>
          </div>
-         <div className='bg-gray-300 w-full overflow-x-auto'>
+         <div className='bg-white w-full overflow-x-auto'>
                 <table ref={tableRef} className=''>
                      <thead className='bg-white border-b'>
                      <tr className=''>
@@ -214,7 +205,7 @@ const Bookings = ({ id, getBookingId }) => {
             {doc.pgcontact}
             </td>
             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            {doc.PGContact}
+            {doc.checkindate}
             </td>
             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
             <Link to='/allocate'>
@@ -236,14 +227,14 @@ const Bookings = ({ id, getBookingId }) => {
           </tbody>
            )
           })}
-                </table>
+          </table>
          </div>
-             </div>
+        </div>
       </div>
-  </div>
-</div>
-          </main>
-      </div> 
+   </div>
+ </div>
+</main>
+    </div> 
         <label htmlFor="sidebar-toggle" className='body-label'/>
     </div>
 }

@@ -123,7 +123,8 @@ header{
     transition: margin-left 300ms;
 }
 main{
-    background: #f1f5f9;
+    /* background: #f1f5f9; */
+    background: white;
     min-height: calc(100vh- 70px);
     margin-top: 70px;
     overflow:hidden;
