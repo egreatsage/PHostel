@@ -2,23 +2,25 @@ import React, { Fragment, useState } from 'react'
 import { AiFillFacebook, AiFillYoutube, AiOutlineWhatsApp } from 'react-icons/ai'
 import { FaTiktok } from 'react-icons/fa'
 import Navbar from '../Components/Navbar'
-import Booking from '../Pages/Booking'
-import { Button, Dialog, DialogBody, DialogFooter, DialogHeader } from '@material-tailwind/react'
 import { Link } from 'react-router-dom'
+
 const Home = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
+  
   return (
     <div>
        <Navbar/>
+     
       <div className="container">
         <div className="row">
           <div className="col-1">
             <h2>Le Pamus </h2>
             <h3>Mixed Hostels for Students</h3>
             <p>Safe Secure Satisfactor</p>
-            <Link to='/booking'>            <button >
-    Book Now
+
+        
+            <Link to='/booking'>         
+               <button >
+                Book Now
              <img className='animate-pulse ' src="https://cdn.pixabay.com/photo/2012/04/11/10/24/arrow-27324__340.png" alt="" /></button>
          </Link>
 

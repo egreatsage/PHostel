@@ -5,7 +5,8 @@ import dbdataservice from '../../Common/Operations'
 import Loader from "../../Client/Components/Loader";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Profile from "../../Common/Profile";
-import { Alert, Input } from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react";
+import { useAlert } from "react-alert";
 const AddBooking = ({ id,setBookingId }) => {
   const {user} = useUserAuth();
   const [fullname, setfullname] = useState('');
@@ -19,6 +20,7 @@ const AddBooking = ({ id,setBookingId }) => {
   const [emmail, setemmail] = useState('');
   const [message, setmessage] = useState({ error: false, msg: "" });
   const navigate = useNavigate();
+ const alert = useAlert();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setmessage("");
@@ -31,7 +33,9 @@ const AddBooking = ({ id,setBookingId }) => {
       if (id !== undefined && id !== "") {
         await dbdataservice.updateBooking(id, newBooking);
         setBookingId("");
-        setmessage({ error: false, msg: "Updated successfully!" });
+      alert.success('Operation successfull Operation successfull')
+ 
+   
       } else {
         await dbdataservice.addBooking(newBooking); 
         setmessage({ error: false, msg: "New Booking added successfully!" });
@@ -72,15 +76,7 @@ const AddBooking = ({ id,setBookingId }) => {
   return (
   <div>
      <div className="flex justify-end w-8">
-     {message?.msg && (
-          <Alert
-            color={message?.error ? "red" : "green"}
-            dismissible={1000}
-            onClose={() => setmessage("")}
-          >
-            {message?.msg}
-          </Alert>
-        )}
+   
      </div>
 
      {loading ?(
@@ -153,15 +149,7 @@ const AddBooking = ({ id,setBookingId }) => {
           </header>
           <main>
           <div className='overflow-y-auto  '>
-          {message?.msg && (
-          <Alert
-            color={message?.error ? "red" : "green"}
-            dismissible={true}
-            onClose={() => setmessage("")}
-          >
-            {message?.msg}
-          </Alert>
-        )}
+       
           <div className='md:mx-10 mx-2 mt-20 my-10'>
       <form onSubmit={handleSubmit} >
         <div className='grid md:py-6 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-hidden'>

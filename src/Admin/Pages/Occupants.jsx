@@ -225,7 +225,7 @@ const Users = ({  getOccupantId }) => {
               {doc.allocateddate}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {doc.checkoutddate}
+              {doc.checkoutdate}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
               <Link to='/addoccupant'>
