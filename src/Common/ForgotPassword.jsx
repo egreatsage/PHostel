@@ -1,7 +1,6 @@
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import Navbar from "../Client/Components/Navbar";
 import OAuth from "./OAuth";
 
@@ -19,7 +18,7 @@ export default function ForgotPassword() {
       toast.success("Email was sent");
       navigate('/')
     } catch (error) {
-      toast.error("Could not send reset password,try logging in with email and password");
+      // toast.error("Could not send reset password,try logging in with email and password");
     }
   }
   
