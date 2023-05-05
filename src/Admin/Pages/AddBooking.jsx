@@ -6,7 +6,6 @@ import Loader from "../../Client/Components/Loader";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Profile from "../../Common/Profile";
 import { Input } from "@material-tailwind/react";
-import { useAlert } from "react-alert";
 const AddBooking = ({ id,setBookingId }) => {
   const {user} = useUserAuth();
   const [fullname, setfullname] = useState('');
@@ -20,7 +19,6 @@ const AddBooking = ({ id,setBookingId }) => {
   const [emmail, setemmail] = useState('');
   const [message, setmessage] = useState({ error: false, msg: "" });
   const navigate = useNavigate();
- const alert = useAlert();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setmessage("");
@@ -33,7 +31,7 @@ const AddBooking = ({ id,setBookingId }) => {
       if (id !== undefined && id !== "") {
         await dbdataservice.updateBooking(id, newBooking);
         setBookingId("");
-      alert.success('Operation successfull Operation successfull')
+      
  
    
       } else {
