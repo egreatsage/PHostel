@@ -3,9 +3,9 @@ import React,{useState,useEffect, useRef} from 'react'
 import {useUserAuth} from '../../Common/UserAuthContext'
 import dbdataservice from '../../Common/Operations';
 import {FaFileDownload} from 'react-icons/fa'
-import { useReactToPrint } from 'react-to-print';
-import { AiOutlineMore } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { useReactToPrint} from 'react-to-print';
+import { AiOutlineMore} from 'react-icons/ai'
+import { Link} from 'react-router-dom'
 import Profile from '../../Common/Profile'
 import Navbar from '../Components/Navbar'
 const StudentProfile = () => {
@@ -85,188 +85,86 @@ const StudentProfile = () => {
             </div>
         <div ref={componentRef} className="">
         <h1 className='text-center bold md:text-2xl tracking-wide text-md'>Hosteller Information</h1>
-        <div className='shadow-md md:mx-8 border h-full my-7  rounded-md'>
-           <div className="div">      
-           <div className="border md:flex md:mx-2 md:my-2">
-           <div className="md:w-72">
-           <h1 className='text-center my-5 md:mx-2 md:mr-20 font-bold md:text-xl tracking-wide text-md'>Room Information</h1>
-           </div>
-           {occupants?.filter((room) => room.userId === userId).map((doc, index) => {
+        {occupants?.filter((room) => room.userId === userId).map((doc, index) => {
         return(
-           <div className="div">
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center text-md items-center flex'>Room Number</h1>
-            </div>
-            <h1 className='text-center  border-b-gray-800 items-center flex'>{doc.RoomNo}</h1>
-            </div>
-            <div className="flex">
-
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Room Type</h1>        
-            </div>
-            <h1 className='text-center items-center flex'>{doc.RoomType}</h1>
-            </div>
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Entry Date</h1>
-                
-            </div>
-            <h1 className='text-center items-center flex'>{doc.EntryDate}</h1>
-
-            </div>
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Exit Date</h1>
-                
-            </div>
-            <h1 className='text-center items-center flex'>{doc.ExitDate}</h1>
-            </div>
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Remaining Days :</h1>
-                
-            </div>
-            <h1 className='text-center items-center flex'>{doc.Period}</h1>
-            </div>
-           
-          
-           </div>
-            )})}
-           </div>
-         {bookings?.filter((booking) => booking.userId === userId).map((doc, index) => {
-        return(
-           <div>
-          <div className="border md:flex md:mx-2 md:my-2">
-           <h1 className='my-9 font-bold text-xl text-center md:mx-2 md:mr-20 bold md:text-xl tracking-wide text-md'>Personal  Information</h1>
-           <div className="div">
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Full Name</h1>
-            </div>
-            <h1 className='text-center items-center flex'>{doc.FName}</h1>
-            </div>
-            <div className="flex">
-
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Phone Number</h1>        
-            </div>
-            <h1 className='text-center items-center flex'>{doc.PNumber}</h1>
-            </div>
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Age</h1>
-                
-            </div>
-            <h1 className='text-center items-center flex'>{doc.Age}</h1>
-            </div>
-              <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Gender</h1>
-                
-            </div>
-            <h1 className='text-center items-center flex'>{doc.Gender}</h1>
-            </div>
-              <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Marital Status</h1>
-                
-            </div>
-            <h1 className='text-center items-center flex'>{doc.MaritalStatus}</h1>
-            </div>
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Address</h1>
-                
-            </div>
-            <h1 className='text-center items-center flex'>{doc.Homecounty}</h1>
-            </div>
-           
-           
-          
-           </div>
-            </div>
-
-            <div className="border md:flex md:mx-2 md:my-2">
-          <div className='w-72'>
-          <h1 className='text-center my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide'>Parent/Guardian  Information</h1>
-          </div>
-           <div className="div">
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Parent/Guardian Name</h1>
-            </div>
-            <h1 className='text-center items-center flex'>{doc.PGName}</h1>
-            </div>
-            <div className="flex">
-
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Contact</h1>        
-            </div>
-            <h1 className='text-center items-center flex'>{doc.PGContact}</h1>
-            </div>
-           </div>
-              </div>
-               <div className="border md:flex md:mx-2 md:my-2">
-                <div className='md:w-72'>
-                <h1 className='text-center my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide '>Emergency  Information</h1>
-                </div>
-
-           <div className="div">
-            <div className="md:flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'> Name</h1>
-            </div>
-            <h1 className='text-center items-center flex'>{doc.EName}</h1>
-            </div>
-            <div className="flex">
-
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Contact</h1>        
-            </div>
-            <h1 className='text-center items-center flex'>{doc.EContact}</h1>
-            </div>
-            <div className="flex">
-
-<div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-    <h1 className='text-center items-center flex'>Relation</h1>        
-</div>
-           <h1 className='text-center items-center flex'>{doc.Relation}</h1>
-           </div>
-           </div>
-              </div>
-              <div className="border md:flex md:mx-2  md:my-2">
-                <div className='md:w-72'>
-                <h1 className='text-center my-8 font-bold text-xl md:mx-2 md:mr-20 bold md:text-xl tracking-wide '>Academic  Information</h1>
-                </div>
-          
-           <div className="div">
-            <div className="flex">
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'> Institution Of Study</h1>
-            </div>
-            <h1 className='text-center items-center flex'>{doc.Institution}</h1>
-            </div>
-            <div className="flex">
-
-            <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-                <h1 className='text-center items-center flex'>Year Of Study</h1>        
-            </div>
-            <h1 className='text-center items-center flex'>{doc.YearOfStudy}</h1>
-            </div>
-            <div className="flex">
-
-             <div className=" md:border px-6 mr-6 py-2 flex md:w-64 ">
-    <h1 className='text-center items-center flex'>Relation</h1>        
-           </div>
-           <h1 className='text-center items-center flex'>{doc.Relation}</h1>
-           </div>
-           </div>
-              </div>
-           </div>
-              )})}
-           </div>
+        <div className='shadow-md md:mx-8 border border-shadow-[black] h-full my-12  rounded-md'>
+         <div className='md:flex my-5 mx-1 items-center sm:flex md:border md:shadow-sm  '>
+        <div  className='md:w-[250px] w-full flex items-center md:border-r-gray-400 md:border-r text-xl md:p-3 p-2  font-semibold '>
+        <h1>Room Information</h1>
         </div>
+         <div className=" md:p-12 py-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">   
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Room Number</div>
+              <div className='md:underline my-1 text-sm text-gray-700 '>{doc.roomno}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Check - in Date</div>
+              <div className='md:underline my-1 text-sm text-gray-700 '>{doc.checkindate}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Check - out Date</div>
+              <div className='md:underline my-1 text-sm text-gray-700 '>{doc.checkoutdate}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Period</div>
+              <div className='md:underline my-1 text-sm  text-gray-700 '>{doc.period}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+        
+           </div>
+
+         </div>
+         <div className='md:flex my-5 mx-1 items-center sm:flex md:border md:shadow-sm  '>
+        <div  className='md:w-[250px] w-full flex items-center md:border-r-gray-400 md:border-r text-xl md:p-3 p-2  font-semibold '>
+        <h1>Personal Information</h1>
+        </div>
+         <div className=" md:p-12 py-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">   
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Name</div>
+              <div className='md:underline my-1 text-sm text-gray-700 '>{doc.fullname}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Gender</div>
+              <div className='md:underline my-1 text-sm text-gray-700 '>{doc.gender}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Contact</div>
+              <div className='md:underline my-1 text-sm text-gray-700 '>{doc.contact}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> School</div>
+              <div className='md:underline my-1 text-sm  text-gray-700 '>{doc.institution}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Parent/Guardian Name</div>
+              <div className='md:underline my-1 text-sm  text-gray-700 '>{doc.pgname}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+
+            <div className='md:flex gap-1 md:mr-6 mb-2 md:ml-0  ml-4'>
+             <div className='md:font-semibold font-normal text-black md:text-gray-800 mr-2'> Parent/Guardian Contact</div>
+              <div className='md:underline my-1 text-sm  text-gray-700 '>{doc.pgcontact}</div>
+            </div>
+            <div className="divider mx-3 rounded-lg mb-3 md:hidden"></div>
+        
+           </div>
+         </div>
+        </div>
+       )})}
         </div>
         </div>
       

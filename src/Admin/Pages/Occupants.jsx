@@ -228,6 +228,9 @@ const Users = ({  getOccupantId }) => {
               {doc.checkoutdate}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              {doc.userId}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
               <Link to='/addoccupant'>
             <AiFillEdit className='text-[orange] text-2xl cursor-pointer'  onClick={(e) =>
                    getOccupantId(doc.id)}/>

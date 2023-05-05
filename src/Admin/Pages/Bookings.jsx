@@ -207,6 +207,9 @@ const Bookings = ({ getBookingId }) => {
             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
             {doc.checkindate}
             </td>
+            <td class="text-sm hidden text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+            {doc.userId}
+            </td>
             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
             <Link to='/allocate'>
             <BsBoxArrowUpRight variant="outlined"  onClick={(e) => 

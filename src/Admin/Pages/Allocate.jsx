@@ -20,6 +20,7 @@ const Allocate = ({ id }) => {
   const [roomno, setroomno] = useState('');
   const [allocateddate, setallocateddate] = useState('');
   const [checkoutdate, setcheckoutdate] = useState('');
+  const [userId, setuserId] = useState('');
   const [message, setmessage] = useState('');
   const [loading,setloading] = useState(false)
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Allocate = ({ id }) => {
     setmessage('')
       const newOccupant = {
         fullname, contact, institution, emmail, pgname, pgcontact,
-        checkindate,gender,roomno,allocateddate,checkoutdate,
+        checkindate,gender,roomno,allocateddate,checkoutdate,userId
       };
       try {
         await dbdataservice.addOccupant(newOccupant);
@@ -54,6 +55,7 @@ const Allocate = ({ id }) => {
       setemmail(docSnap.data().emmail);
       setcheckindate(docSnap.data().checkindate);
       setroomno(docSnap.data().roomno);
+      setuserId(docSnap.data().userId)
       setallocateddate(docSnap.data().allocateddate);
       setcheckoutdate(docSnap.data().chesetcheckoutdate);
     } catch (err) {
@@ -214,6 +216,11 @@ const Allocate = ({ id }) => {
         <Input color='teal' type='date' className='text-black' variant='standard' label='Check Out Date' 
         required value={checkoutdate}
         onChange={(e)=>setcheckoutdate(e.target.value)}/>
+      </div>
+      <div className='my-3 hidden'>
+        <Input color='teal' type='text' className='text-black' variant='standard' label='Check Out Date' 
+        required value={userId}
+        onChange={(e)=>setuserId(e.target.value)}/>
       </div>
 
   </div>

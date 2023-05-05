@@ -37,7 +37,6 @@ const Booking = ({id}) => {
         setTimeout(() => {
           navigate('/reply');
       }, 1000);
-
       }
     } catch (err) { 
       setmessage({ error: true, msg: err.message });
