@@ -18,7 +18,7 @@ const ContactUs = () => {
           id="name"
           name='Name'
           placeholder="Enter Your Name"
-          className="mb-6 w-full px-7 py-2 text-md text-gray-700 bg-white border border-gray-300 rounded-full transition ease-in-out"
+          className="mb-6 w-full px-7 py-2 text-md text-gray-700 bg-white border border-gray-500 rounded-[15px] transition ease-in-out"
         />
         <div className="relative mb-6">
           <input
@@ -26,7 +26,7 @@ const ContactUs = () => {
             id="email"
            name='Email'
             placeholder="Enter Your Email"
-            className="w-full px-7 py-2 text-md border text-gray-700 bg-white border-gray-300 rounded-full transition ease-in-out"
+            className="w-full px-7 py-2 text-md border text-gray-700 bg-white border-gray-500 rounded-[15px] transition ease-in-out"
           />
          
         </div>
@@ -36,8 +36,11 @@ const ContactUs = () => {
             id="message"
            name='message'
             placeholder="Write Your Message"
-            className="w-full px-7 py-2 text-md border text-gray-700 bg-white border-gray-300 rounded-full transition ease-in-out"
+            className="w-full px-7 py-9 text-md border text-gray-700 bg-white border-gray-500 rounded-[15px] transition ease-in-out"
           />
+        </div>
+        <div className='flex justify-end mr-4'>
+          <button type='submit' className='outline text-white font-bold outline-white px-8 bg-orange-700 py-1 rounded-md shadow-md '>Send</button>
         </div>
       </form>
       <div className="md:flex gap-4 md:ml-9 ml-5">

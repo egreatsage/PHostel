@@ -5,7 +5,8 @@ import dbdataservice from '../../Common/Operations'
 import Loader from "../../Client/Components/Loader";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Profile from "../../Common/Profile";
-import { Input } from "@material-tailwind/react";
+import { Alert, Input } from "@material-tailwind/react";
+import { MdAirplaneTicket } from "react-icons/md";
 const AddBooking = ({ id,setBookingId }) => {
   const {user} = useUserAuth();
   const [fullname, setfullname] = useState('');
@@ -30,6 +31,7 @@ const AddBooking = ({ id,setBookingId }) => {
     try {
       if (id !== undefined && id !== "") {
         await dbdataservice.updateBooking(id, newBooking);
+        setmessage({ error: false, msg: "New Booking added successfully!" });
         setBookingId("");
       
  
@@ -73,6 +75,17 @@ const AddBooking = ({ id,setBookingId }) => {
   }, [id]);
   return (
   <div>
+   <div className="mt-16 flex justify-end w-12">
+   <Alert 
+  color={message?.error?'red' :'green'}
+  dismissible
+  icon={<MdAirplaneTicket className="mt-px h-6 w-6" />}
+  onClose={()=> setmessage('')}>
+   {''}
+   {message?.msg}
+   
+  </Alert> 
+   </div>
      <div className="flex justify-end w-8">
    
      </div>
