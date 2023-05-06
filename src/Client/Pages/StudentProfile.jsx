@@ -64,19 +64,19 @@ const StudentProfile = () => {
       <h1 className='mt-3 text-black text-center mb-3'>More Actions</h1>
       <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/booking'>Book A Room</Link>
       
-      <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/rules'>Hostel Rules</Link>
+      <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/rules'> Rules/Regulations</Link>
       
-      <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/notices'>Hostel Notices</Link>
+      <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/notices'> Notices</Link>
       
-      <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/booking'>Contact Admin</Link>
+      <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/booking'>Contact Landlord</Link>
       
-      <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/booking'>Connect with friends</Link>
+      <Link className='my-2 bold tracking-wide ml-3 hover:bg-gray-100 px-2 rounded-md py-1 text-black' to='/booking'>Connect with hostelmates</Link>
       </MenuList>
     </Menu> 
            </div>
         </div>
         <div>
-            <div className="flex justify-end mr-5 my-4">
+            <div className="flex justify-end mr-5 mt-3 my-4">
                 <Tooltip content='Print Document' placement='bottom'>
                    <button className='bg-none border-none'>
                    <FaFileDownload className='cursor-pointer text-[green]' onClick={handlePrint}/>

@@ -46,7 +46,7 @@ const ContactUs = () => {
           <p className='flex my-6'> <span><HiOutlineMailOpen className='text-orange-600 text-2xl mr-2'/></span> Email: <span>+pamushostel@gmail.com</span></p>
         </div>
           </div>
-          <div>
+          <div className='w-40'>
             <Map/>
           </div>
       </div>

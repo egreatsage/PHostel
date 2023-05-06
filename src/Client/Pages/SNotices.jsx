@@ -30,7 +30,7 @@ const SNotices = () => {
   
   };
   return (
-    <div>
+    <div className='mt-20'>
       <div>
         <Navbar/>
       </div>
@@ -42,7 +42,7 @@ const SNotices = () => {
         <div>
  {notices.map((doc)=>{
              return(
-        <div className='border mt-3 md:px-8 w-full mb-4 rounded-md border-black'>
+        <div className=' mt-3 md:px-8 w-full mb-4 rounded-md '>
                 <div className='tracking-widestmt-3 font-bold '>
                   <p>{doc.name}</p>
                    <p>{doc.designation}</p>

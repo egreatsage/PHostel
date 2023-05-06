@@ -25,6 +25,7 @@ import UserLogin from './Client/Pages/UserLogin'
 import UserSignUp from './Client/Pages/UserSignUp'
 import MyProfile from './Common/MyProfile'
 import SignIn from './Client/Pages/SignIn'
+import MessageAdmin from './Client/Pages/MessageAdmin'
 function App() {
   const [bookingId, setBookingId] = useState('');
   const [occupantId, setOccupantId] = useState('');
@@ -53,6 +54,7 @@ function App() {
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/notices' element={<SNotices/>}/>
           <Route path='/reply' element={<Reply/>}/>
+          <Route path='/messageadmin' element={<MessageAdmin/>}/>
           <Route path='/rules' element={<Rules/>}/>
           <Route path='/myprofile' element={<MyProfile/>}/>
           <Route path='/occupants' element={<Occupants getOccupantId={getOccupantHandler} />}/>

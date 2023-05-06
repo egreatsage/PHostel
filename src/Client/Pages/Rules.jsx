@@ -43,7 +43,7 @@ const Notices = () => {
         {loading ?(
          <Loader/>
         ):
-        <div className='border border-black md:my-5 mx-1 rounded-sm'>
+        <div className=' md:my-5 mx-1 rounded-sm'>
         <p className='tracking-wider text-black text-center mx-3 italic  font-extrabold my-5'>The Following Rules and Regulations should be applied and followed by all Hostel 
           Fraternity as a guide to ethics and proper conduct of the Hostel Family
         </p>
