@@ -93,6 +93,12 @@ const Rooms = ({ id,setRoomId }) => {
         setTimeout(() => {
           setloading(false)
         }, 2000);
+        const snapshot = await dbdataservice.getAllRooms();
+        const roomData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setRooms(roomData);
   }
 
   const deleteHandler = async (id) => {
