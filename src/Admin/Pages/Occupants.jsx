@@ -24,7 +24,7 @@ const Users = ({  getOccupantId }) => {
         id: doc.id })));
         setloading(false)
     } catch (err) {
-      console.log(error)
+      console.log(err)
   }; 
 }
   const deleteHandler = async (id) => {
@@ -79,6 +79,11 @@ const Users = ({  getOccupantId }) => {
          <div className='my-8 m-8  hover:font-semibold'>
          <Link  to='/occupants'>
             <button>Occupants</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+         <Link  to='/rooms'>
+            <button>Rooms</button>
           </Link>
          </div>
          <div className='my-8 m-8  hover:font-semibold'>

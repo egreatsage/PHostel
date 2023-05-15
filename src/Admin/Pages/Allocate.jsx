@@ -34,7 +34,13 @@ const Allocate = ({ id }) => {
       };
       try {
         await dbdataservice.addOccupant(newOccupant);
-        // setloading(true)
+        Swal.fire({
+          icon:'success',
+          title: 'Success',
+          text: 'Allocated successfully',
+          showConfirmButton: false,
+          timer: 2000
+        });
        
         setTimeout(() => {
           navigate('/occupants')

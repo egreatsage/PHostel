@@ -27,14 +27,19 @@ import MyProfile from './Common/MyProfile'
 import SignIn from './Client/Pages/SignIn'
 import MessageAdmin from './Client/Pages/MessageAdmin'
 import MessageStudent from './Admin/Pages/MessageStudent'
+import Rooms from './Admin/Pages/Rooms'
 function App() {
   const [bookingId, setBookingId] = useState('');
   const [occupantId, setOccupantId] = useState('');
+  const [roomId, setRoomId] = useState('');
   const getOccupantHandler = (id)=>{
     setOccupantId(id);
   }
   const getBookingIdHandler=(id) =>{
     setBookingId(id);
+  }  
+  const getRoomIdHandler=(id) =>{
+    setRoomId(id);
   }  
   return (
   <div className=' overflow-hidden'>
@@ -48,6 +53,7 @@ function App() {
           <HostellarPr><Booking/></HostellarPr>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signin' element={<SignIn/>}/>
+          <Route path='/rooms' element={<Rooms id={roomId} setRoomId={setRoomId} getRoomId={getRoomIdHandler}/>}/>
           <Route path='/userlogin' element={<UserLogin/>}/>
           <Route path='/usersignup' element={<UserSignUp/>}/>
           <Route path='/signup' element={<SignUp/>}/>

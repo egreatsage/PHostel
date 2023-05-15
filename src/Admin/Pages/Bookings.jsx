@@ -9,6 +9,7 @@ import Profile from '../../Common/Profile';
 import { TbBrandBooking } from 'react-icons/tb';
 import Loader from '../../Client/Components/Loader';
 import { Input } from '@material-tailwind/react';
+import Dashboard from './Dashboard';
 const Bookings = ({ getBookingId }) => {
 
   const [bookings, setBookings] = useState([]);
@@ -21,9 +22,12 @@ const Bookings = ({ getBookingId }) => {
   const getAllBookings = async () => {
       const data = await dbdataservice.getAllBookings();
       setBookings(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        setloading(false)
+
+        setTimeout(() => {
+          setloading(false)
+        }, 2000);
   }
-  
+
   const deleteHandler = async (id) => {
     await dbdataservice.deleteBooking(id);
     getAllBookings();
@@ -80,6 +84,11 @@ const Bookings = ({ getBookingId }) => {
           </Link>
          </div>
          <div className='my-8 m-8  hover:font-semibold'>
+         <Link  to='/rooms'>
+            <button>Rooms</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
          <Link  to='/users'>
             <button>Users</button>
           </Link>
@@ -113,7 +122,7 @@ const Bookings = ({ getBookingId }) => {
   <div className='md:flex md:justify-between overflow-x-hidden mb-10 mt-10'>
       <div className='md:mt-10 w-full '>
       <h1 className=' md:text-xl md:ml-4 text-md font-semibold tracking-wider text-gray-700'>Booking Details</h1>
-             <div className='overflow-hidden ovaflo'>
+             <div className='overflow-hidden'>
          <div className="flex justify-between my-3">
         <div className='md:ml-8'>
         <Link to='/addbooking' className='text-md mx-2 hover:underline hover:font-bold'>Add</Link>
@@ -124,9 +133,9 @@ const Bookings = ({ getBookingId }) => {
         <Input variant="standard" label="Search..."  color='teal' onChange={(e) => setSearchedVal(e.target.value)} icon={<AiOutlineSearch/>} />
         </div>
          </div>
-         <div className='bg-white w-full overflow-x-auto'>
+         <div className='bg-white w-full mb-8 overflow-x-auto mx-2'>
                 <table ref={tableRef} className=''>
-                     <thead className='bg-white border-b'>
+                     <thead className='bg-[white] border-b'>
                      <tr className=''>
             <th scope="col" class="text-sm font-semibold text-gray-900 px-6 py-1 text-center">
               SNO

@@ -5,10 +5,16 @@ import './dashboard.css'
 import Profile from '../../Common/Profile'
 import { MdDeleteForever, MdLiving, MdSpaceDashboard } from 'react-icons/md'
 import { TbBrandBooking } from 'react-icons/tb'
+import {FaUsers} from 'react-icons/fa'
 import {IoIosArrowDown} from 'react-icons/io'
+import {BsHouses} from 'react-icons/bs'
 import dbdataservice from '../../Common/Operations'
 const Dashboard = () => {
     const [messages, setMessages] = useState([]);
+    const [bookings, setBookings] = useState([]);
+    const [occupants, setOccupants] = useState([]);
+    const [rooms, setRooms] = useState([]);
+    const [loading, setloading] = useState(true)  
   useEffect   (() => {
     getAllMessages();
   }, []);
@@ -18,11 +24,38 @@ const Dashboard = () => {
     setMessages(data.docs.map((doc) => ({ ...doc.data(),
       id: doc.id })));
   };
- 
   const deleteHandler = async (id) => {
     await dbdataservice.deleteMessage(id);
     getAllMessages();
   };
+
+  useEffect(() => {
+    getAllBookings();
+  }, []);
+  const getAllBookings = async () => {
+      const data = await dbdataservice.getAllBookings();
+      setBookings(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        setloading(false)
+  }
+  const bookingsCount = bookings.length;
+
+  useEffect(() => {
+    getAllOccupants();
+  }, []);
+  const getAllOccupants = async () => {
+    const data = await dbdataservice.getAllOccupants();
+    setOccupants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+}
+const occupantsCount = occupants.length;
+
+useEffect(() => {
+  getAllRooms();
+}, []);
+const getAllRooms = async () => {
+  const data = await dbdataservice.getAllRooms();
+  setRooms(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+}
+const roomCount = rooms.length;
   return (
   <div>
       <div>
@@ -101,6 +134,11 @@ const Dashboard = () => {
          <div className='my-8 m-8  hover:font-semibold'>
          <Link  to='/occupants'>
             <button>Occupants</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+         <Link  to='/rooms'>
+            <button>Rooms</button>
           </Link>
          </div>
          <div className='my-8 m-8  hover:font-semibold'>
@@ -183,13 +221,12 @@ const Dashboard = () => {
                        <span>Bookings</span>
                        <small>Total number of bookings pending</small>
                   </div>
-                  <h2>17</h2>
+                  <h2>{bookingsCount}</h2>
                  <Link to='/bookings'>
-                  <button>Open</button>
                  </Link>
                 </div>
                 <div className="card-chart">
-                  <span><AiOutlinePieChart/> </span>
+                  <span><TbBrandBooking className='text-[indigo]'/> </span>
                 </div>
               </div>
             </div>
@@ -200,11 +237,11 @@ const Dashboard = () => {
                        <span>Occupants</span>
                        <small>Total number of Occupants present</small>
                   </div>
-                  <h2>17</h2>
-                  <small>2% less</small>
+                  <h2>{occupantsCount}</h2>
+                
                 </div>
                 <div className="card-chart">
-                  <span><AiOutlinePieChart/> </span>
+                  <span><FaUsers className='text-[indigo]'/> </span>
                 </div>
               </div>
             </div>
@@ -212,14 +249,14 @@ const Dashboard = () => {
               <div className="card-flex">
                 <div className="card-info">
                   <div className="card-head">
-                       <span>Purchases</span>
-                       <small>number of purchases</small>
+                       <span>Rooms</span>
+                       <small>Rooms Available</small>
                   </div>
-                  <h2>17,000</h2>
-                  <small>2% less</small>
+                  <h2>{roomCount}</h2>
+                  
                 </div>
                 <div className="card-chart">
-                  <span><AiOutlinePieChart/> </span>
+                  <span><BsHouses className='text-[indigo]' /> </span>
                 </div>
               </div>
             </div>

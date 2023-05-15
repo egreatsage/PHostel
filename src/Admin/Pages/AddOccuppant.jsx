@@ -31,12 +31,20 @@ const AddOccupant = ({ id,setOccupantId }) => {
         fullname, contact, institution, emmail, pgname, pgcontact,
         checkindate,gender,roomno,allocateddate,checkoutdate,
       };
-      console.log(newOccupant)
+   
+    setloading(true)
       try { 
         if (id !== undefined && id !== "") {
           await dbdataservice.updateOccupant(id, newOccupant);
         setOccupantId("");
-               console.log({ error: false, msg: "Updated successfully!" })
+              Swal.fire({
+                              icon:'success',
+                              title: 'Success',
+                              text: 'Occupant Updated Successfully',
+                              showConfirmButton: false,
+                              timer: 2000
+                            });
+                            navigate("/occupants");
         } else {
           await dbdataservice.addOccupant(newOccupant);
                   console.log({ error: false, msg: "New Occupant added successfully!" })
@@ -119,6 +127,11 @@ const AddOccupant = ({ id,setOccupantId }) => {
          <div className='my-8 m-8  hover:font-semibold'>
          <Link  to='/occupants'>
             <button>Occupants</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+         <Link  to='/rooms'>
+            <button>Rooms</button>
           </Link>
          </div>
          <div className='my-8 m-8  hover:font-semibold'>
