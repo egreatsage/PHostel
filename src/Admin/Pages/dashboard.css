@@ -41,6 +41,7 @@
     z-index: 20;
     transition: left 300ms;
     box-shadow: 290px;
+    overflow-y: scroll;
 }
 .sidebar-brand{
     height: 100px;

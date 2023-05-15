@@ -109,7 +109,39 @@ const Dashboard = () => {
           </Link>
          </div>
          <div className='my-8 m-8  hover:font-semibold'>
-         <Link  to='/adminprofile'>
+          <Link  to='/adminprofile'>
+            <button>Profile</button>
+          </Link>
+         </div>
+         <div className='p-1 bg-white'>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+          <Link  to='/messagestudent'>
+            <button>Mesage Students</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+          <Link  to='/adminprofile'>
+            <button>Profile</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+          <Link  to='/adminprofile'>
+            <button>Profile</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+          <Link  to='/adminprofile'>
+            <button>Profile</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+          <Link  to='/adminprofile'>
+            <button>Profile</button>
+          </Link>
+         </div>
+         <div className='my-8 m-8  hover:font-semibold'>
+          <Link  to='/adminprofile'>
             <button>Profile</button>
           </Link>
          </div>

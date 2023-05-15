@@ -80,8 +80,9 @@ const StudentProfile = () => {
                 <Tooltip content='Print Document' placement='bottom'>
                    <button className='bg-none border-none'>
                    <FaFileDownload className='cursor-pointer text-[green]' onClick={handlePrint}/>
-                   </button>
+                </button>
                 </Tooltip>
+    
             </div>
         <div ref={componentRef} className="">
         <h1 className='text-center bold md:text-2xl tracking-wide text-md'>Hosteller Information</h1>
@@ -165,6 +166,9 @@ const StudentProfile = () => {
          </div>
         </div>
        )})}
+        </div>
+        <div>
+
         </div>
         </div>
       
