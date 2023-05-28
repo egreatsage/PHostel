@@ -27,6 +27,7 @@ const AddOccupant = ({ id,setOccupantId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setmessage('')
+    
       const newOccupant = {
         fullname, contact, institution, emmail, pgname, pgcontact,
         checkindate,gender,roomno,allocateddate,checkoutdate,
@@ -48,6 +49,7 @@ const AddOccupant = ({ id,setOccupantId }) => {
         } else {
           await dbdataservice.addOccupant(newOccupant);
                   console.log({ error: false, msg: "New Occupant added successfully!" })
+                  
           setTimeout(() => {
             navigate('/occupants')
           }, 1000);
